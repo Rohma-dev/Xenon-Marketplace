@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💎 Xenon Ultimate | Next-Gen Cloud Ecosystem</title>
+    <title>💎 Xenon Minimal | Premium Pastel Cloud Ecosystem</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2 family=Inter:wght=300;400;500;600;700;800&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
     <script>
-        // Tailwind config expansion for smooth theme overrides
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         premium: {
-                            bgLight: '#f3f8f8',
-                            bgDark: '#0b0f19',
-                            cardDark: '#161f30'
+                            bgLight: '#f1f6f4', /* Premium Soft Light Sage Green Base */
+                            cardLight: 'rgba(255, 255, 255, 0.75)',
+                            accentPeach: '#f49773'
                         }
                     }
                 }
@@ -26,66 +25,67 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            transition: background-color 0.3s ease, color 0.3s ease;
+            background: linear-gradient(135deg, #f0f6f4 0%, #fcf7f2 50%, #f5f0eb 100%); /* Gorgeous Pastel Light Gradient */
+            color: #2d3748;
+            transition: all 0.3s ease;
         }
         .heading-font { font-family: 'Space Grotesk', sans-serif; }
-        .premium-shadow { box-shadow: 0 10px 40px rgba(138, 43, 226, 0.04); }
-        .custom-gradient { background: linear-gradient(135deg, #8a2be2 0%, #6366f1 100%); }
+        .premium-shadow { box-shadow: 0 12px 40px rgba(162, 123, 92, 0.05); }
+        .custom-gradient { background: linear-gradient(135deg, #e07a5f 0%, #f4a261 100%); } /* Beautiful Soft Terra/Peach Gradient */
         .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(14px);
+            border: 1px solid rgba(224, 122, 95, 0.15);
         }
-        .dark .glass-card {
-            background: rgba(22, 31, 48, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .card-hover-effect {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        /* Webkit scrollbar engineering */
+        .card-hover-effect:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(224, 122, 95, 0.1);
+            border-color: rgba(224, 122, 95, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        /* Custom scrollbar alignment */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .dark ::-webkit-scrollbar-thumb { background: #334155; }
     </style>
 </head>
-<body class="bg-premium-bgLight text-slate-800 dark:bg-premium-bgDark dark:text-slate-200 min-h-screen flex flex-col justify-between antialiased">
+<body class="min-h-screen flex flex-col justify-between antialiased">
 
     <div id="xenonNotificationHub" class="fixed top-24 right-6 z-50 space-y-3 pointer-events-none w-80"></div>
 
-    <header class="sticky top-0 z-40 bg-white/70 dark:bg-premium-bgDark/70 backdrop-blur-md border-b border-purple-100 dark:border-slate-800 shadow-sm transition-all">
+    <header class="sticky top-0 z-40 bg-white/60 backdrop-blur-md border-b border-orange-100/50 shadow-sm transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
             
             <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-2xl custom-gradient flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-purple-200 dark:shadow-none heading-font">
+                <div class="w-11 h-11 rounded-2xl custom-gradient flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-orange-200 heading-font">
                     X
                 </div>
                 <div>
-                    <h1 class="text-slate-900 dark:text-white font-extrabold text-xl tracking-tight heading-font">xenon<span class="text-purple-500 text-xs ml-1">v8.0</span></h1>
-                    <span class="text-[10px] text-purple-600 dark:text-purple-400 font-bold tracking-wider block uppercase">Ultimate Engine Sync</span>
+                    <h1 class="text-slate-900 font-extrabold text-xl tracking-tight heading-font">xenon<span class="text-orange-600 text-xs ml-1">v9.0</span></h1>
+                    <span class="text-[10px] text-emerald-700 font-bold tracking-wider block uppercase">Aesthetic Sage & Peach Edition</span>
                 </div>
             </div>
             
             <div class="flex items-center gap-2 sm:gap-3">
-                <button onclick="toggleGlobalThemeEngine()" class="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-purple-100 dark:border-slate-700 text-sm shadow-sm hover:scale-105 transition-transform" title="Toggle Theme">
-                    <span id="themeToggleIcon">🌙</span>
-                </button>
-
-                <select id="currencySelectorNode" onchange="switchGlobalCurrencyEngine()" class="bg-white dark:bg-slate-800 border border-purple-100 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold rounded-xl px-2.5 py-2.5 focus:outline-none cursor-pointer shadow-sm">
+                <select id="currencySelectorNode" onchange="switchGlobalCurrencyEngine()" class="bg-white/80 border border-orange-100 text-slate-800 text-xs font-semibold rounded-xl px-2.5 py-2.5 focus:outline-none cursor-pointer shadow-sm">
                     <option value="USD">🇺🇸 USD ($)</option>
                     <option value="PKR">🇵🇰 PKR (Rs)</option>
                     <option value="INR">🇮🇳 INR (₹)</option>
                 </select>
 
-                <button onclick="toggleCartDrawer(true)" class="bg-white dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-slate-700 border border-purple-100 dark:border-slate-700 px-3.5 py-2.5 rounded-xl flex items-center gap-2 transition-all shadow-sm group">
+                <button onclick="toggleCartDrawer(true)" class="bg-white/80 hover:bg-orange-50/50 border border-orange-100 px-3.5 py-2.5 rounded-xl flex items-center gap-2 transition-all shadow-sm group">
                     <span class="text-base group-hover:scale-110 transition-transform">🛍️</span>
-                    <span id="globalCartCounter" class="font-extrabold text-xs text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-slate-900 px-2 py-0.5 rounded-md">0</span>
+                    <span id="globalCartCounter" class="font-extrabold text-xs text-orange-700 bg-orange-100/70 px-2 py-0.5 rounded-md">0</span>
                 </button>
 
-                <div class="bg-purple-50 dark:bg-slate-900 p-1 rounded-xl flex gap-1 border border-purple-100 dark:border-slate-800">
-                    <button id="switchStorefrontBtn" onclick="toggleXenonPortal('storefront')" class="text-xs font-bold px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-sm transition-all">
+                <div class="bg-emerald-50/60 p-1 rounded-xl flex gap-1 border border-emerald-100/50">
+                    <button id="switchStorefrontBtn" onclick="toggleXenonPortal('storefront')" class="text-xs font-bold px-4 py-2 rounded-lg bg-white text-slate-950 shadow-sm transition-all">
                         Market
                     </button>
-                    <button id="switchVendorBtn" onclick="toggleXenonPortal('vendor')" class="text-xs font-bold px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
+                    <button id="switchVendorBtn" onclick="toggleXenonPortal('vendor')" class="text-xs font-bold px-4 py-2 rounded-lg text-emerald-700 hover:text-slate-900 transition-all">
                         Control
                     </button>
                 </div>
@@ -96,39 +96,39 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-8 py-8 flex-1 w-full relative">
         
         <div id="portalStorefront" class="space-y-8 block transition-all duration-300">
-            <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-6 sm:p-10 rounded-3xl relative overflow-hidden premium-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div class="bg-white/80 border border-orange-100/40 p-6 sm:p-10 rounded-3xl relative overflow-hidden premium-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div class="max-w-xl space-y-3 relative z-10">
-                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-slate-900 px-3 py-1 rounded-full border border-purple-100 dark:border-slate-700">Cloud Data Layer Active</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-950 dark:text-white tracking-tight heading-font">The Ultimate Decentralized Marketplace Experiment</h2>
-                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Mutate catalog rows, filter indices instantaneously via categories, configure star algorithms, and enjoy fluid system themes.</p>
+                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-100/50 px-3 py-1 rounded-full">Cloud Cloud Architecture Active</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight heading-font">Curated Luxury Tech. Crafted with Soft Pastel Colors.</h2>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium">Enjoy a premium retail app dashboard experience stylized with gorgeous custom gradients, fluid categories, and real-time backend updates.</p>
                 </div>
                 <div class="w-32 h-32 rounded-full custom-gradient absolute -right-10 -bottom-10 opacity-10 blur-3xl"></div>
             </div>
 
             <div class="space-y-4">
-                <div class="flex flex-col md:flex-row gap-4 justify-between items-center bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-4 rounded-2xl border border-purple-50 dark:border-slate-800 premium-shadow">
+                <div class="flex flex-col md:flex-row gap-4 justify-between items-center bg-white/50 backdrop-blur-sm p-4 rounded-2xl border border-orange-100/30 premium-shadow">
                     <div class="relative w-full md:w-96">
-                        <span class="absolute inset-y-0 left-4 flex items-center text-purple-400 text-xs">🔍</span>
-                        <input type="text" id="xenonSearchInput" oninput="compileXenonStorefrontGrid()" placeholder="Search from cluster database node indices..." class="w-full bg-white dark:bg-slate-800 border border-purple-100 dark:border-slate-700 focus:border-purple-300 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-800 dark:text-slate-200 focus:outline-none font-medium transition-all shadow-inner">
+                        <span class="absolute inset-y-0 left-4 flex items-center text-orange-400 text-xs">🔍</span>
+                        <input type="text" id="xenonSearchInput" oninput="compileXenonStorefrontGrid()" placeholder="Search from live dynamic API indices..." class="w-full bg-white border border-orange-100 focus:border-orange-300 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-800 focus:outline-none font-medium transition-all shadow-inner">
                     </div>
                     
                     <div class="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
-                        <button onclick="filterStorefrontByCategory('All')" class="category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-purple-600 text-white transition-all">All Stock</button>
-                        <button onclick="filterStorefrontByCategory('🎧 Gadgets')" class="category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-all">Gadgets</button>
-                        <button onclick="filterStorefrontByCategory('⌚ Wearables')" class="category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-all">Wearables</button>
-                        <button onclick="filterStorefrontByCategory('💻 Tech')" class="category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-all">Computing</button>
+                        <button onclick="filterStorefrontByCategory('All')" class="category-pill text-[11px] font-bold px-4 py-2 rounded-xl bg-orange-600 text-white shadow-sm transition-all">All Stock</button>
+                        <button onclick="filterStorefrontByCategory('🎧 Gadgets')" class="category-pill text-[11px] font-bold px-4 py-2 rounded-xl bg-white border border-orange-100/40 text-slate-600 hover:bg-orange-50/50 transition-all">Gadgets</button>
+                        <button onclick="filterStorefrontByCategory('⌚ Wearables')" class="category-pill text-[11px] font-bold px-4 py-2 rounded-xl bg-white border border-orange-100/40 text-slate-600 hover:bg-orange-50/50 transition-all">Wearables</button>
+                        <button onclick="filterStorefrontByCategory('💻 Tech')" class="category-pill text-[11px] font-bold px-4 py-2 rounded-xl bg-white border border-orange-100/40 text-slate-600 hover:bg-orange-50/50 transition-all">Computing</button>
                     </div>
                 </div>
             </div>
 
             <div id="xenonProductsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                 <div class="col-span-full text-center py-16 text-xs text-purple-400 font-bold animate-pulse">Establishing cluster data links...</div>
+                 <div class="col-span-full text-center py-16 text-xs text-orange-400 font-bold animate-pulse">Establishing secure network catalog data synchronization...</div>
             </div>
 
-            <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 rounded-3xl p-6 sm:p-8 premium-shadow space-y-6">
+            <div class="bg-white/80 border border-orange-100/40 rounded-3xl p-6 sm:p-8 premium-shadow space-y-6">
                 <div>
-                    <h3 class="text-slate-950 dark:text-white font-bold text-base tracking-tight heading-font">📜 Centralized Blockchain Network Invoices</h3>
-                    <p class="text-[11px] text-slate-500 dark:text-slate-400">Asynchronous checkout streams recorded globally across user terminals.</p>
+                    <h3 class="text-slate-900 font-bold text-base tracking-tight heading-font">📜 Dynamic System Node Billing Records</h3>
+                    <p class="text-[11px] text-slate-500">Every transactional mutation is updated globally into decentralized client tables.</p>
                 </div>
                 <div id="customerOrderHistoryTarget" class="space-y-2.5 max-h-64 overflow-y-auto pr-2 text-xs">
                     </div>
@@ -136,68 +136,68 @@
         </div>
 
         <div id="portalVendor" class="space-y-6 hidden transition-all duration-300">
-            <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
-                <h2 class="text-xl font-bold text-slate-950 dark:text-white tracking-tight heading-font">Enterprise Cloud Controller</h2>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Mutate live values, delete product arrays from endpoint streams, and visualize global income analytics.</p>
+            <div class="border-b border-emerald-100 pb-4">
+                <h2 class="text-xl font-bold text-slate-900 tracking-tight heading-font">Cloud Catalog Management Console</h2>
+                <p class="text-xs text-slate-500">Inject data structures payload properties, remove row indexing fields, and observe sales valuation charts.</p>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-                <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow">
-                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-purple-400">Consolidated Cash Metrics</h4>
-                    <p id="vendorRevenueLabel" class="text-2xl font-extrabold text-slate-950 dark:text-white mt-1 heading-font">$0.00</p>
-                    <div class="w-full bg-slate-100 dark:bg-slate-700 h-1 rounded-full mt-3 overflow-hidden">
+                <div class="bg-white/80 border border-orange-100/40 p-5 rounded-2xl premium-shadow">
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Total Accumulative Turnover</h4>
+                    <p id="vendorRevenueLabel" class="text-2xl font-extrabold text-slate-900 mt-1 heading-font">$0.00</p>
+                    <div class="w-full bg-slate-100 h-1 rounded-full mt-3 overflow-hidden">
                         <div id="revProgressNode" class="custom-gradient h-full w-0 transition-all duration-500"></div>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow">
-                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-purple-400">Global Ledger Logs Count</h4>
-                    <p id="vendorOrdersLabel" class="text-2xl font-extrabold text-slate-950 dark:text-white mt-1 heading-font">0 Logs</p>
-                    <div class="w-full bg-slate-100 dark:bg-slate-700 h-1 rounded-full mt-3 overflow-hidden">
-                        <div id="ordProgressNode" class="bg-purple-600 h-full w-0 transition-all duration-500"></div>
+                <div class="bg-white/80 border border-orange-100/40 p-5 rounded-2xl premium-shadow">
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Ledger Transactions Pipeline</h4>
+                    <p id="vendorOrdersLabel" class="text-2xl font-extrabold text-slate-900 mt-1 heading-font">0 Nodes</p>
+                    <div class="w-full bg-slate-100 h-1 rounded-full mt-3 overflow-hidden">
+                        <div id="ordProgressNode" class="bg-emerald-600 h-full w-0 transition-all duration-500"></div>
                     </div>
                 </div>
-                <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow">
-                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-purple-400">Database Vector Registry Row</h4>
-                    <p id="vendorTotalItemsLabel" class="text-2xl font-extrabold text-purple-500 mt-1 heading-font">0 Entries</p>
-                    <p class="text-[10px] text-slate-400 mt-2">Active products array sizing capacity.</p>
+                <div class="bg-white/80 border border-orange-100/40 p-5 rounded-2xl premium-shadow">
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Database Sizing Index Matrix</h4>
+                    <p id="vendorTotalItemsLabel" class="text-2xl font-extrabold text-orange-600 mt-1 heading-font">0 Nodes</p>
+                    <p class="text-[10px] text-slate-400 mt-2">Active records entries allocation tracking array.</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="lg:col-span-1 bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow h-fit space-y-4">
+                <div class="lg:col-span-1 bg-white/90 border border-orange-100/40 p-5 rounded-2xl premium-shadow h-fit space-y-4">
                     <div>
-                        <h3 class="text-slate-950 dark:text-white font-bold text-xs tracking-tight heading-font">Inject Listing Index</h3>
-                        <p class="text-[11px] text-slate-400">Deploy dynamic properties into REST api architecture structures.</p>
+                        <h3 class="text-slate-900 font-bold text-xs tracking-tight heading-font">Deploy Catalog Payload</h3>
+                        <p class="text-[11px] text-slate-400">Populate specific rows configurations inside API storage frames.</p>
                     </div>
                     <form id="xenonVendorForm" onsubmit="handleVendorFormSubmit(event)" class="space-y-3.5 text-xs">
                         <div class="space-y-1">
-                            <label class="text-slate-600 dark:text-slate-400 font-semibold">Listing Title</label>
-                            <input type="text" id="vProdName" required placeholder="e.g. Ultra Titanium Pods X" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium shadow-inner">
+                            <label class="text-slate-600 font-semibold">Product Name Label</label>
+                            <input type="text" id="vProdName" required placeholder="e.g. Minimalist Aero Sound Pods" class="w-full bg-white border border-orange-100 rounded-xl p-2.5 text-slate-800 focus:outline-none font-medium shadow-inner">
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div class="space-y-1">
-                                <label class="text-slate-600 dark:text-slate-400 font-semibold">Price ($)</label>
-                                <input type="number" step="0.01" id="vProdPrice" required placeholder="149.00" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium shadow-inner">
+                                <label class="text-slate-600 font-semibold">Valuation Base ($)</label>
+                                <input type="number" step="0.01" id="vProdPrice" required placeholder="129.00" class="w-full bg-white border border-orange-100 rounded-xl p-2.5 text-slate-800 focus:outline-none font-medium shadow-inner">
                             </div>
                             <div class="space-y-1">
-                                <label class="text-slate-600 dark:text-slate-400 font-semibold">Group Category</label>
-                                <select id="vProdImg" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium cursor-pointer shadow-inner">
-                                    <option value="🎧 Gadgets">🎧 Audio Gadgets</option>
-                                    <option value="📱 Gadgets">📱 Smartphones</option>
-                                    <option value="⌚ Wearables">⌚ Smart Wearables</option>
-                                    <option value="💻 Tech">💻 Ultimate Computing</option>
-                                    <option value="📷 Gadgets">📷 Pro Cameras</option>
+                                <label class="text-slate-600 font-semibold">Group Categorization</label>
+                                <select id="vProdImg" class="w-full bg-white border border-orange-100 rounded-xl p-2.5 text-slate-800 focus:outline-none font-medium cursor-pointer shadow-inner">
+                                    <option value="🎧 Gadgets">🎧 Premium Audio Gadgets</option>
+                                    <option value="📱 Gadgets">📱 Smartphones Mesh</option>
+                                    <option value="⌚ Wearables">⌚ Smart Wearables Hub</option>
+                                    <option value="💻 Tech">💻 Computing System</option>
+                                    <option value="📷 Gadgets">📷 Optical Digital Camera</option>
                                 </select>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div class="space-y-1">
-                                <label class="text-slate-600 dark:text-slate-400 font-semibold">Initial Stock Level</label>
-                                <input type="number" id="vProdStock" required value="20" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium shadow-inner">
+                                <label class="text-slate-600 font-semibold">Initial Stock Level</label>
+                                <input type="number" id="vProdStock" required value="25" class="w-full bg-white border border-orange-100 rounded-xl p-2.5 text-slate-800 focus:outline-none font-medium shadow-inner">
                             </div>
                             <div class="space-y-1">
-                                <label class="text-slate-600 dark:text-slate-400 font-semibold">Star Metric Metric</label>
-                                <select id="vProdRating" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium cursor-pointer shadow-inner">
+                                <label class="text-slate-600 font-semibold">Star Quality Index</label>
+                                <select id="vProdRating" class="w-full bg-white border border-orange-100 rounded-xl p-2.5 text-slate-800 focus:outline-none font-medium cursor-pointer shadow-inner">
                                     <option value="5.0">⭐⭐⭐⭐⭐ (5.0)</option>
                                     <option value="4.5">⭐⭐⭐⭐★ (4.5)</option>
                                     <option value="4.0">⭐⭐⭐⭐☆ (4.0)</option>
@@ -206,30 +206,30 @@
                             </div>
                         </div>
                         <div class="space-y-1">
-                            <label class="text-slate-600 dark:text-slate-400 font-semibold">Summary Parameters Description</label>
-                            <textarea id="vProdDesc" rows="2" required placeholder="Describe configuration array details..." class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium shadow-inner"></textarea>
+                            <label class="text-slate-600 font-semibold">Technical Summary Overview Description</label>
+                            <textarea id="vProdDesc" rows="2" required placeholder="Describe unit parameters metrics array details..." class="w-full bg-white border border-orange-100 rounded-xl p-2.5 text-slate-800 focus:outline-none font-medium shadow-inner"></textarea>
                         </div>
-                        <button type="submit" class="w-full custom-gradient hover:opacity-90 text-white font-bold py-3 rounded-xl transition-all shadow-md shadow-purple-100 dark:shadow-none active:scale-98">
-                            Inject Row Index into Live Core 🚀
+                        <button type="submit" class="w-full custom-gradient text-white font-bold py-3 rounded-xl transition-all shadow-md active:scale-98">
+                            Publish Row Entry Array ✨
                         </button>
                     </form>
                 </div>
 
-                <div class="lg:col-span-2 bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow">
+                <div class="lg:col-span-2 bg-white/80 border border-orange-100/40 p-5 rounded-2xl premium-shadow">
                     <div class="space-y-4">
-                        <h3 class="text-slate-950 dark:text-white font-bold text-xs tracking-tight heading-font">Live Inventory Database Rows</h3>
+                        <h3 class="text-slate-900 font-bold text-xs tracking-tight heading-font">Global API Infrastructure Memory Allocations</h3>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-left text-xs text-slate-600 dark:text-slate-400">
-                                <thead class="text-[10px] font-bold text-purple-400 uppercase border-b border-purple-50 dark:border-slate-700">
+                            <table class="w-full text-left text-xs text-slate-600">
+                                <thead class="text-[10px] font-bold text-orange-700 uppercase border-b border-orange-100">
                                     <tr>
-                                        <th class="pb-2.5 pl-1">API-ID</th>
-                                        <th class="pb-2.5">PRODUCT INSTANCE</th>
-                                        <th class="pb-2.5">STOCK</th>
-                                        <th class="pb-2.5">VALUATION</th>
-                                        <th class="pb-2.5 text-right pr-1">MUTATE</th>
+                                        <th class="pb-2.5 pl-1">ID SLOT</th>
+                                        <th class="pb-2.5">PRODUCT INSTANCE IDENTITY</th>
+                                        <th class="pb-2.5">STOCK CAP</th>
+                                        <th class="pb-2.5">VALUATION PRICE</th>
+                                        <th class="pb-2.5 text-right pr-1">ACTION PURGE</th>
                                     </tr>
                                 </thead>
-                                <tbody id="vendorInventoryTableTarget" class="divide-y divide-purple-50/50 dark:divide-slate-700/50">
+                                <tbody id="vendorInventoryTableTarget" class="divide-y divide-orange-50/50">
                                     </tbody>
                             </table>
                         </div>
@@ -238,49 +238,49 @@
             </div>
         </div>
 
-        <div id="xenonCartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white dark:bg-slate-800 border-l border-purple-50 dark:border-slate-700 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
+        <div id="xenonCartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white border-l border-orange-100 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
             <div class="space-y-5 flex-1 flex flex-col overflow-hidden">
-                <div class="flex justify-between items-center border-b border-purple-100 dark:border-slate-700 pb-3">
-                    <h3 class="font-bold text-slate-950 dark:text-white text-base heading-font">Your Storage Bag</h3>
-                    <button onclick="toggleCartDrawer(false)" class="text-purple-400 hover:text-purple-900 dark:hover:text-white text-xs font-bold bg-purple-50 dark:bg-slate-700 px-3 py-1.5 rounded-xl transition-all">Close ✕</button>
+                <div class="flex justify-between items-center border-b border-orange-100 pb-3">
+                    <h3 class="font-bold text-slate-900 text-base heading-font">Secure Storage Basket</h3>
+                    <button onclick="toggleCartDrawer(false)" class="text-orange-600 hover:text-orange-900 text-xs font-bold bg-orange-50 px-3 py-1.5 rounded-xl transition-all">Close ✕</button>
                 </div>
                 
-                <div id="cartStreamWrapper" class="flex-1 overflow-y-auto space-y-3.5 pr-1 text-xs divide-y divide-slate-100 dark:divide-slate-700">
+                <div id="cartStreamWrapper" class="flex-1 overflow-y-auto space-y-3.5 pr-1 text-xs divide-y divide-slate-100">
                     </div>
             </div>
 
-            <div class="border-t border-purple-100 dark:border-slate-700 pt-4 space-y-3.5 bg-white dark:bg-slate-800">
-                <div class="bg-purple-50 dark:bg-slate-900 p-1.5 rounded-xl flex gap-1.5">
-                    <input type="text" id="cartPromoInput" placeholder="VOUCHER (XENON2026)" class="w-full bg-white dark:bg-slate-800 text-purple-900 dark:text-slate-100 border border-purple-100 dark:border-slate-700 rounded-lg px-2.5 py-2 text-[10px] uppercase font-bold focus:outline-none">
-                    <button onclick="applyCartPromoNode()" class="bg-purple-600 text-white font-bold text-xs px-3.5 rounded-lg hover:bg-purple-700 transition-all">Apply</button>
+            <div class="border-t border-orange-100 pt-4 space-y-3.5 bg-white">
+                <div class="bg-orange-50/60 p-1.5 rounded-xl flex gap-1.5 border border-orange-100/50">
+                    <input type="text" id="cartPromoInput" placeholder="PROMO ENTRY (XENON2026)" class="w-full bg-white text-orange-900 border border-orange-100 rounded-lg px-2.5 py-2 text-[10px] uppercase font-bold focus:outline-none">
+                    <button onclick="applyCartPromoNode()" class="bg-orange-600 text-white font-bold text-xs px-3.5 rounded-lg hover:bg-orange-700 transition-all">Verify</button>
                 </div>
-                <div class="space-y-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400">
+                <div class="space-y-1.5 text-xs font-semibold text-slate-600">
                     <div class="flex justify-between">
-                        <span>Items Base Value:</span>
-                        <span id="cartSubtotalLabel" class="text-slate-900 dark:text-white font-bold">$0.00</span>
+                        <span>Items Aggregation Base:</span>
+                        <span id="cartSubtotalLabel" class="text-slate-900 font-bold">$0.00</span>
                     </div>
                     <div id="promoRowAlert" class="flex justify-between text-emerald-600 font-bold hidden">
-                        <span>Promo Code Applied (15%):</span>
+                        <span>Promo Code Reduction (15%):</span>
                         <span id="cartDiscountLabel">-$0.00</span>
                     </div>
-                    <div class="flex justify-between items-baseline border-t border-purple-50 dark:border-slate-700 pt-3 mt-1">
-                        <span class="text-slate-950 dark:text-white font-bold text-xs">Total Net Value:</span>
-                        <span id="cartTotalLabel" class="text-lg font-extrabold text-purple-600 dark:text-purple-400 heading-font">$0.00</span>
+                    <div class="flex justify-between items-baseline border-t border-orange-50 pt-3 mt-1">
+                        <span class="text-slate-950 font-bold text-xs">Final Net Payable:</span>
+                        <span id="cartTotalLabel" class="text-lg font-extrabold text-orange-600 heading-font">$0.00</span>
                     </div>
                 </div>
-                <button onclick="triggerCheckoutOperation()" class="w-full custom-gradient text-white font-bold text-xs py-3.5 rounded-xl shadow-lg shadow-purple-100 dark:shadow-none hover:opacity-90 active:scale-98 transition-all">
-                    Execute Secure Network Checkout
+                <button onclick="triggerCheckoutOperation()" class="w-full custom-gradient text-white font-bold text-xs py-3.5 rounded-xl shadow-lg shadow-orange-100 hover:opacity-95 active:scale-98 transition-all">
+                    Execute Ledger Serialization Checkout
                 </button>
             </div>
         </div>
     </main>
 
-    <footer class="border-t border-purple-50 dark:border-slate-800 bg-white dark:bg-slate-800/50 py-5 text-center text-xs text-slate-500 dark:text-slate-400 font-medium transition-all">
-        © 2026 Xenon Adaptive Core Ecosystem Engine v8.0. Pure Vanilla Javascript Backend Stream Sync.
+    <footer class="border-t border-orange-100/40 bg-white/50 py-5 text-center text-xs text-slate-500 font-medium tracking-wide">
+        © 2026 Xenon Distributed Ledger Node v9.0. Soft Pastel Matrix Aesthetics Configured. Built by Rohma Noor.
     </footer>
 
     <script>
-        // MOCK REST INSTANCE CLOUD NETWORK CONSTANTS
+        // MOCK ENDPOINT CLOUD API REST DATABASE SCHEMA CONFIGURATIONS
         const BACKEND_PRODUCTS_URL = "https://667b003f3c30ed74e664b5ba.mockapi.io/api/v1/products";
         const BACKEND_ORDERS_URL = "https://667b003f3c30ed74e664b5ba.mockapi.io/api/v1/orders";
 
@@ -293,7 +293,7 @@
         };
         let currentCurrencyMode = "USD";
 
-        // Memory Array Spaces
+        // Application Buffer Array Registers
         let CYBER_PRODUCT_INDEX = [];
         let internalCartMemory = {};
         let activeDiscountRatio = 0.00;
@@ -301,70 +301,43 @@
         let packedOrdersCount = 0;
         let invoiceLedgerHistory = [];
 
-        // Application Bootstrap Pipeline Hookups
+        // Application Bootstrap Lifecycle Entry point
         window.onload = async function() {
-            initializeThemeContextState();
             renderCartInterfaceStream();
             await pullCloudProductCatalogIndex();
             await pullCloudLedgerTransactionsIndex();
         };
 
-        // FEATURE 1 IMPLEMENTATION: Light/Dark Mode Toggle Configuration System
-        function initializeThemeContextState() {
-            if (localStorage.getItem('xenonThemeState') === 'dark') {
-                document.documentElement.classList.add('dark');
-                document.getElementById("themeToggleIcon").innerText = "☀️";
-            } else {
-                document.documentElement.classList.add('light');
-                document.getElementById("themeToggleIcon").innerText = "🌙";
-            }
-        }
-
-        function toggleGlobalThemeEngine() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.replace('dark', 'light');
-                localStorage.setItem('xenonThemeState', 'light');
-                document.getElementById("themeToggleIcon").innerText = "🌙";
-                triggerXenonNotice("Light Aethetic Variant Initialized.");
-            } else {
-                document.documentElement.classList.replace('light', 'dark');
-                localStorage.setItem('xenonThemeState', 'dark');
-                document.getElementById("themeToggleIcon").innerText = "☀️";
-                triggerXenonNotice("Cyberpunk Dark Matrix Mode Enabled.");
-            }
-        }
-
-        // FEATURE 2 IMPLEMENTATION: Category Filtration Methods Engine
+        // Category Slicing Index Array Filter Mutation Logic Handler
         function filterStorefrontByCategory(categoryValueString) {
             currentActiveCategoryFilter = categoryValueString;
             
-            // Re-render categories tabs active pills styles
             const pills = document.querySelectorAll('.category-pill');
             pills.forEach(p => {
                 if(p.getAttribute('onclick').includes(categoryValueString)) {
-                    p.className = "category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-purple-600 text-white transition-all";
+                    p.className = "category-pill text-[11px] font-bold px-4 py-2 rounded-xl bg-orange-600 text-white shadow-sm transition-all";
                 } else {
-                    p.className = "category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-all";
+                    p.className = "category-pill text-[11px] font-bold px-4 py-2 rounded-xl bg-white border border-orange-100/40 text-slate-600 hover:bg-orange-50/50 transition-all";
                 }
             });
 
             compileXenonStorefrontGrid();
-            triggerXenonNotice(`Catalog sliced to [${categoryValueString}] entries.`);
+            triggerXenonNotice(`Catalog grid localized to [${categoryValueString}] filter segment block.`);
         }
 
-        // ASYNC CORE FETCH OPERATION 1: Load Products Index Out of API Database
+        // LOAD DATA SYSTEM ASYNC METHOD 1: Pull Products Inventory Catalog Data
         async function pullCloudProductCatalogIndex() {
             try {
                 let res = await fetch(BACKEND_PRODUCTS_URL);
-                if (!res.ok) throw new Error("Connection timed out.");
+                if (!res.ok) throw new Error("Distributed server cluster handshake dropped down.");
                 CYBER_PRODUCT_INDEX = await res.json();
                 
-                // If cloud pipeline database layout gets wiped out, populate boilerplate seeds
+                // If endpoint tables get completely cleaned, seed default boilerplate elements maps
                 if(CYBER_PRODUCT_INDEX.length === 0) {
                     const fallbackSeedArray = [
-                        { name: "Xenon Adaptive Audio Pods 1.0", price: 210.00, desc: "Noise isolation acoustics utilizing neural wave filtering processors.", img: "🎧 Gadgets", stock: 12, rating: 5.0 },
-                        { name: "Liquid Titanium OLED Smart Handset", price: 899.00, desc: "Sleek responsive aluminum build with advanced core multi-processing speeds.", img: "📱 Gadgets", stock: 6, rating: 4.5 },
-                        { name: "Chronos Carbon Fiber Smartwatch", price: 340.00, desc: "Tactile scratchproof screen detailing telemetry analysis pipelines.", img: "⌚ Wearables", stock: 16, rating: 4.0 }
+                        { name: "Aero Pods Pro Minimalist", price: 199.00, desc: "Ultra spatial acoustics device wrapped inside lightweight composite housing shell.", img: "🎧 Gadgets", stock: 15, rating: 5.0 },
+                        { name: "Titanium Fusion Fluid Smartphone", price: 849.00, desc: "Fluid edge-to-edge organic screen architecture with intelligent multi processing core units.", img: "📱 Gadgets", stock: 8, rating: 4.5 },
+                        { name: "Chronos Matte Carbon Watch", price: 299.00, desc: "High density telemetry module monitor displaying multi vector ambient conditions tracker.", img: "⌚ Wearables", stock: 18, rating: 4.0 }
                     ];
                     for(let x of fallbackSeedArray) {
                         await fetch(BACKEND_PRODUCTS_URL, {
@@ -380,12 +353,12 @@
                 compileXenonStorefrontGrid();
                 refreshVendorInventoryTable();
             } catch (err) {
-                console.error("Products catalog mapping exception thrown: ", err);
-                triggerXenonNotice("Database connection dropped down.", "error");
+                console.error("Products catalog parsing error caught: ", err);
+                triggerXenonNotice("Central database framework sync drop failure anomaly.", "error");
             }
         }
 
-        // ASYNC FETCH DATA ENGINE 2: Load Transaction logs Array Maps
+        // LOAD DATA SYSTEM ASYNC METHOD 2: Fetch Invoices ledger rows array allocations
         async function pullCloudLedgerTransactionsIndex() {
             try {
                 let res = await fetch(BACKEND_ORDERS_URL);
@@ -398,97 +371,97 @@
                     updateMetricsVisuals();
                 }
             } catch (error) {
-                console.error("Ledgers load runtime error: ", error);
+                console.error("Ledger arrays buffer mapping exception: ", error);
             }
         }
 
-        // CRUD PROCESS: POST Request Inject Product Data payload to REST Backend
+        // POST REQUEST OPERATION: Inject and publish parameters array payload into database indices
         async function handleVendorFormSubmit(e) {
             e.preventDefault();
-            triggerXenonNotice("Propagating payload fields directly to API schema server...");
+            triggerXenonNotice("Injecting serialized fields parameters payload to REST network server...");
             
             const name = document.getElementById("vProdName").value;
             const price = parseFloat(document.getElementById("vProdPrice").value);
-            const img = document.getElementById("vProdImg").value; // Holds category emoji string combo
+            const img = document.getElementById("vProdImg").value; 
             const desc = document.getElementById("vProdDesc").value;
             const stock = parseInt(document.getElementById("vProdStock").value);
             const rating = parseFloat(document.getElementById("vProdRating").value);
 
-            const dynamicPayloadBundle = { name, price, desc, img, stock, rating };
+            const integratedBundle = { name, price, desc, img, stock, rating };
 
             try {
                 let response = await fetch(BACKEND_PRODUCTS_URL, {
                     method: 'POST',
                     headers: {'content-type':'application/json'},
-                    body: JSON.stringify(dynamicPayloadBundle)
+                    body: JSON.stringify(integratedBundle)
                 });
-                if(!response.ok) throw new Error("Database validation fail.");
+                if(!response.ok) throw new Error("POST entity propagation command denied down.");
                 
-                triggerXenonNotice(`Success! "${name}" added to cloud.`, 'success');
+                triggerXenonNotice(`Product instance "${name}" established on cloud schema index entries!`, 'success');
                 document.getElementById("xenonVendorForm").reset();
                 await pullCloudProductCatalogIndex();
             } catch (error) {
-                triggerXenonNotice("Error syncing parameters payload array.", "error");
+                triggerXenonNotice("Failed to insert properties node bundle into API backend pipeline.", "error");
             }
         }
 
-        // CRUD DELETE OPERATION: Erase Row Record Index From Server Database
+        // DELETE PROTOCOL METHOD: Wipe specific product record line entries from cloud tables indices
         async function wipeProductRecordNode(id) {
-            if(confirm("Confirm hard mutation wipe instruction directly on cloud API registry row? (This synchronization processes across all screens)")) {
+            if(confirm("Execute extreme record row purge command parameters on distributed database layer? (This mutation instantly syncs across active terminals global user screens)")) {
                 try {
                     let response = await fetch(`${BACKEND_PRODUCTS_URL}/${id}`, { method: 'DELETE' });
-                    if(!response.ok) throw new Error("Delete command failed.");
+                    if(!response.ok) throw new Error("Purge request line discarded.");
                     
                     if(internalCartMemory[id]) delete internalCartMemory[id];
-                    triggerXenonNotice("Data row successfully erased from global schema core.", "error");
+                    triggerXenonNotice("Target record index successfully wiped out from central schema registers.", "error");
                     await pullCloudProductCatalogIndex();
                     renderCartInterfaceStream();
                 } catch (error) {
-                    triggerXenonNotice("Erase mutation protocol dropped by server.", "error");
+                    triggerXenonNotice("Wipe operation failed. Server rejected request parameters.", "error");
                 }
             }
         }
 
-        // ASYNC CHECKOUT LOGIC PIPELINE: PUT stock levels count mutations and POST billing index nodes
+        // ASYNC CHECKOUT INTEGRATED SEQUENCE SYSTEM: PUT stock levels values and POST finalized invoice receipts
         async function triggerCheckoutOperation() {
-            const keySlots = Object.keys(internalCartMemory);
-            if(keySlots.length === 0) return;
+            const memorySlots = Object.keys(internalCartMemory);
+            if(memorySlots.length === 0) return;
 
-            triggerXenonNotice("Assembling ledger serialization checkout sequences...");
-            let invoiceReceiptItemsList = [];
-            let aggregateGrossSum = 0;
+            triggerXenonNotice("Validating digital order ledger signatures operations sequences...");
+            let itemSummaryStringsArray = [];
+            let localizedSummationTotalValuation = 0;
 
-            for(let cellId of keySlots) {
-                const targetBagNode = internalCartMemory[cellId];
-                const realDatabaseReferenceProduct = CYBER_PRODUCT_INDEX.find(item => item.id === cellId);
+            for(let productKey of memorySlots) {
+                const targetCartUnit = internalCartMemory[productKey];
+                const realDatabaseReferenceProduct = CYBER_PRODUCT_INDEX.find(item => item.id === productKey);
                 
                 if(realDatabaseReferenceProduct) {
-                    const finalizedDeductedStockLevelValue = Math.max(0, realDatabaseReferenceProduct.stock - targetBagNode.qty);
+                    const dynamicRecalculatedStockLevel = Math.max(0, realDatabaseReferenceProduct.stock - targetCartUnit.qty);
                     // Emit asynchronous PUT updates packets to database schema levels
-                    await fetch(`${BACKEND_PRODUCTS_URL}/${cellId}`, {
+                    await fetch(`${BACKEND_PRODUCTS_URL}/${productKey}`, {
                         method: 'PUT',
                         headers: {'content-type':'application/json'},
-                        body: JSON.stringify({ stock: finalizedDeductedStockLevelValue })
+                        body: JSON.stringify({ stock: dynamicRecalculatedStockLevel })
                     });
                 }
-                aggregateGrossSum += (targetBagNode.price * targetBagNode.qty);
-                invoiceReceiptItemsList.push(`${targetBagNode.qty}x ${targetBagNode.name}`);
+                localizedSummationTotalValuation += (targetCartUnit.price * targetCartUnit.qty);
+                itemSummaryStringsArray.push(`${targetCartUnit.qty}x ${targetCartUnit.name}`);
             }
 
-            let netPayableInvoiceTotal = aggregateGrossSum - (aggregateGrossSum * activeDiscountRatio);
-            const timeString = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            let computedNetPayableAmount = localizedSummationTotalValuation - (localizedSummationTotalValuation * activeDiscountRatio);
+            const standardClockTimestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
-            const transactionReceiptPayloadNode = {
-                time: timeString,
-                summary: invoiceReceiptItemsList.join(', '),
-                totalVal: netPayableInvoiceTotal
+            const transactionLogNodeObject = {
+                time: standardClockTimestamp,
+                summary: itemSummaryStringsArray.join(', '),
+                totalVal: computedNetPayableAmount
             };
 
             try {
                 await fetch(BACKEND_ORDERS_URL, {
                     method: 'POST',
                     headers: {'content-type':'application/json'},
-                    body: JSON.stringify(transactionReceiptPayloadNode)
+                    body: JSON.stringify(transactionLogNodeObject)
                 });
 
                 internalCartMemory = {};
@@ -500,72 +473,85 @@
                 await pullCloudLedgerTransactionsIndex();
                 toggleCartDrawer(false);
 
-                triggerXenonNotice("Invoice registered on database ledger successfully!", "success");
+                triggerXenonNotice("Central transaction registered and compiled into ledger successfully!", "success");
             } catch (err) {
-                triggerXenonNotice("Transaction checkout pipe dropped out.", "error");
+                triggerXenonNotice("Handshake verification error during checkout execution.", "error");
             }
         }
 
-        // FEATURE 3 COMPONENT BUILDER: Interactive Star Logic Generator Parsing
+        // Dynamic Stars Array Matrix String String Engine Decoder
         function renderStarsAlgorithmicString(ratingValue) {
             let integerPart = Math.floor(ratingValue);
             let checkDecimal = ratingValue - integerPart;
-            let starsRowHtmlOutput = "";
+            let starCharactersStringOutput = "";
 
             for(let i=1; i<=5; i++) {
                 if(i <= integerPart) {
-                    starsRowHtmlOutput += `<span class="text-amber-500">★</span>`;
+                    starCharactersStringOutput += `<span class="text-amber-500">★</span>`;
                 } else if(i === integerPart + 1 && checkDecimal >= 0.4) {
-                    starsRowHtmlOutput += `<span class="text-amber-500">★</span>`; // Half or proximate filled
+                    starCharactersStringOutput += `<span class="text-amber-500">★</span>`;
                 } else {
-                    starsRowHtmlOutput += `<span class="text-slate-300 dark:text-slate-600">☆</span>`;
+                    starCharactersStringOutput += `<span class="text-slate-200">☆</span>`;
                 }
             }
-            return starsRowHtmlOutput;
+            return starCharactersStringOutput;
+        }
+
+        // Dynamic Currency Conversion Formatting Filter Output Engine
+        function renderValuation(amountUSD) {
+            const currentSelectedConfigMode = CURRENCY_DICTIONARY[currentCurrencyMode];
+            return `${currentSelectedConfigMode.symbol}${(amountUSD * currentSelectedConfigMode.rate).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        }
+
+        function switchGlobalCurrencyEngine() {
+            currentCurrencyMode = document.getElementById("currencySelectorNode").value;
+            compileXenonStorefrontGrid();
+            renderCartInterfaceStream();
+            refreshVendorInventoryTable();
+            renderInvoiceLedgerHistoryList();
+            triggerXenonNotice(`System visualization currency standard localized into [${currentCurrencyMode}]`);
         }
 
         function compileXenonStorefrontGrid() {
             const grid = document.getElementById("xenonProductsGrid");
-            const searchKeyword = document.getElementById("xenonSearchInput").value.toLowerCase();
+            const filterKeywordInputString = document.getElementById("xenonSearchInput").value.toLowerCase();
             grid.innerHTML = "";
 
-            // Layered Filter Logic: Category parsing validation combined with active word strings matching
-            let filteredArray = CYBER_PRODUCT_INDEX.filter(item => {
-                const alignCategory = (currentActiveCategoryFilter === "All") || (item.img && item.img.includes(currentActiveCategoryFilter));
-                const alignSearch = item.name.toLowerCase().includes(searchKeyword);
-                return alignCategory && alignSearch;
+            let matchingItemsCollectionArray = CYBER_PRODUCT_INDEX.filter(item => {
+                const alignCategoryFlags = (currentActiveCategoryFilter === "All") || (item.img && item.img.includes(currentActiveCategoryFilter));
+                const alignSearchStrings = item.name.toLowerCase().includes(filterKeywordInputString);
+                return alignCategoryFlags && alignSearchStrings;
             });
 
-            if(filteredArray.length === 0) {
-                grid.innerHTML = `<div class="col-span-full border border-dashed border-purple-200 dark:border-slate-700 p-12 text-center rounded-2xl text-xs font-semibold text-slate-400">No active item matches inside this specific filter segment node.</div>`;
+            if(matchingItemsCollectionArray.length === 0) {
+                grid.innerHTML = `<div class="col-span-full border border-dashed border-orange-200/60 bg-white/40 p-12 text-center rounded-2xl text-xs font-semibold text-slate-400">No active stock lines align with the requested filtration markers parameters.</div>`;
                 return;
             }
 
-            filteredArray.forEach(product => {
-                const outOfStockFlag = product.stock <= 0;
-                // Parse split arrays to safely handle emoji indicators configurations symbols
-                const designIconSymbol = product.img ? product.img.split(" ")[0] : "💎";
+            matchingItemsCollectionArray.forEach(product => {
+                const stockIsExhaustedFlag = product.stock <= 0;
+                const dynamicIconSymbol = product.img ? product.img.split(" ")[0] : "💎";
 
                 grid.innerHTML += `
-                    <div class="p-5 rounded-2xl flex flex-col justify-between gap-4 glass-card shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative ${outOfStockFlag ? 'opacity-40' : ''}">
+                    <div class="p-5 rounded-2xl flex flex-col justify-between gap-4 glass-card premium-shadow card-hover-effect ${stockIsExhaustedFlag ? 'opacity-45' : ''}">
                         <div class="space-y-3.5">
                             <div class="flex justify-between items-start relative">
-                                <div class="w-12 h-12 bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-800 rounded-xl flex items-center justify-center text-2xl shadow-inner relative z-10">${designIconSymbol}</div>
-                                <div class="w-10 h-10 bg-purple-400 rounded-full blur-xl absolute opacity-30 -left-1 -top-1"></div>
+                                <div class="w-12 h-12 bg-white border border-orange-100 rounded-xl flex items-center justify-center text-2xl shadow-inner relative z-10">${dynamicIconSymbol}</div>
+                                <div class="w-10 h-10 bg-orange-200 rounded-full blur-xl absolute opacity-30 -left-1 -top-1"></div>
                                 <div class="text-right space-y-1">
-                                    <span class="text-[9px] font-extrabold px-2 py-0.5 rounded border block ${outOfStockFlag ? 'text-rose-600 bg-rose-50 dark:bg-slate-900 border-rose-100 dark:border-rose-950' : 'text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 border-slate-100 dark:border-slate-800'}">Units: ${product.stock}</span>
+                                    <span class="text-[9px] font-extrabold px-2 py-0.5 rounded border block ${stockIsExhaustedFlag ? 'text-rose-600 bg-rose-50 border-rose-100' : 'text-emerald-800 bg-emerald-50 border-emerald-100/50'}">Registry Units: ${product.stock}</span>
                                     <div class="text-xs font-bold block">${renderStarsAlgorithmicString(product.rating || 4.5)}</div>
                                 </div>
                             </div>
                             <div class="space-y-1">
-                                <h4 class="text-slate-900 dark:text-white font-extrabold text-xs tracking-tight heading-font">${product.name}</h4>
-                                <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed font-normal">${product.desc}</p>
+                                <h4 class="text-slate-900 font-extrabold text-xs tracking-tight heading-font">${product.name}</h4>
+                                <p class="text-[11px] text-slate-500 leading-relaxed font-normal">${product.desc}</p>
                             </div>
                         </div>
-                        <div class="flex items-center justify-between border-t border-purple-50/50 dark:border-slate-700/50 pt-3.5 mt-1">
-                            <span class="font-extrabold text-purple-600 dark:text-purple-400 text-sm font-mono">${renderValuation(product.price)}</span>
-                            <button ${outOfStockFlag ? 'disabled' : ''} onclick="stageItemToCart('${product.id}')" class="custom-gradient text-white font-bold text-[10px] uppercase tracking-wider px-3 py-2 rounded-xl transition-all disabled:opacity-20 disabled:pointer-events-none active:scale-95">
-                                ${outOfStockFlag ? 'Depleted' : 'Add Node'}
+                        <div class="flex items-center justify-between border-t border-orange-100/30 pt-3.5 mt-1">
+                            <span class="font-extrabold text-orange-700 text-sm font-mono">${renderValuation(product.price)}</span>
+                            <button ${stockIsExhaustedFlag ? 'disabled' : ''} onclick="stageItemToCart('${product.id}')" class="custom-gradient text-white font-bold text-[10px] uppercase tracking-wider px-4 py-2 rounded-xl transition-all disabled:opacity-20 disabled:pointer-events-none active:scale-95 shadow-sm">
+                                ${stockIsExhaustedFlag ? 'Sold Out' : 'Add Node'}
                             </button>
                         </div>
                     </div>`;
@@ -574,18 +560,18 @@
 
         function refreshVendorInventoryTable() {
             const tableBody = document.getElementById("vendorInventoryTableTarget");
-            document.getElementById("vendorTotalItemsLabel").innerText = `${CYBER_PRODUCT_INDEX.length} Rows`;
+            document.getElementById("vendorTotalItemsLabel").innerText = `${CYBER_PRODUCT_INDEX.length} Allocated`;
             tableBody.innerHTML = "";
 
             CYBER_PRODUCT_INDEX.forEach(p => {
                 tableBody.innerHTML += `
-                    <tr class="hover:bg-purple-50/10 dark:hover:bg-slate-700/20 transition-colors font-medium">
-                        <td class="py-3 pl-1 font-bold text-purple-400 text-[10px]">${p.id}</td>
-                        <td class="py-3 text-slate-900 dark:text-white font-bold text-xs truncate max-w-xs heading-font">${p.name}</td>
-                        <td class="py-3 font-bold ${p.stock < 5 ? 'text-amber-600' : 'text-slate-500'}">${p.stock} pcs</td>
-                        <td class="py-3 text-slate-950 dark:text-slate-200 font-extrabold font-mono">${renderValuation(p.price)}</td>
+                    <tr class="hover:bg-orange-50/30 transition-colors font-medium">
+                        <td class="py-3 pl-1 font-bold text-orange-400 text-[10px]">${p.id}</td>
+                        <td class="py-3 text-slate-900 font-bold text-xs truncate max-w-xs heading-font">${p.name}</td>
+                        <td class="py-3 font-bold ${p.stock < 5 ? 'text-rose-600' : 'text-slate-500'}">${p.stock} units</td>
+                        <td class="py-3 text-slate-950 font-extrabold font-mono">${renderValuation(p.price)}</td>
                         <td class="py-3 text-right pr-1">
-                            <button onclick="wipeProductRecordNode('${p.id}')" class="text-rose-600 hover:text-white font-bold text-[9px] uppercase bg-rose-50 dark:bg-slate-900 border border-rose-100 dark:border-rose-950 hover:bg-rose-600 px-2.5 py-1 rounded-lg transition-all">Delete</button>
+                            <button onclick="wipeProductRecordNode('${p.id}')" class="text-rose-600 hover:text-white font-bold text-[9px] uppercase bg-rose-50 border border-rose-100 hover:bg-rose-600 px-2.5 py-1 rounded-lg transition-all">Purge</button>
                         </td>
                     </tr>`;
             });
@@ -595,37 +581,36 @@
 
         function updateMetricsVisuals() {
             document.getElementById("vendorRevenueLabel").innerText = renderValuation(trackedRevenueSum);
-            document.getElementById("vendorOrdersLabel").innerText = `${packedOrdersCount} Nodes`;
+            document.getElementById("vendorOrdersLabel").innerText = `${packedOrdersCount} Transacted`;
             document.getElementById("revProgressNode").style.width = `${Math.min(100, (trackedRevenueSum / 4000) * 100)}%`;
             document.getElementById("ordProgressNode").style.width = `${Math.min(100, (packedOrdersCount / 8) * 100)}%`;
         }
 
         function stageItemToCart(id) {
-            const sourceRef = CYBER_PRODUCT_INDEX.find(item => item.id === id);
-            if (!sourceRef || sourceRef.stock <= 0) return;
+            const targetCloudProductRecord = CYBER_PRODUCT_INDEX.find(item => item.id === id);
+            if (!targetCloudProductRecord || targetCloudProductRecord.stock <= 0) return;
 
             if (internalCartMemory[id]) {
-                if(internalCartMemory[id].qty >= sourceRef.stock) {
-                    triggerXenonNotice("Maximum inventory threshold reached for this checkout item.", "error");
+                if(internalCartMemory[id].qty >= targetCloudProductRecord.stock) {
+                    triggerXenonNotice("Maximum active allocation parameters reached for this row element.", "error");
                     return;
                 }
                 internalCartMemory[id].qty++;
             } else {
-                internalCartMemory[id] = { ...sourceRef, qty: 1 };
+                internalCartMemory[id] = { ...targetCloudProductRecord, qty: 1 };
             }
             renderCartInterfaceStream();
             toggleCartDrawer(true);
-            triggerXenonNotice("Item localized in checkout storage arrays.");
+            triggerXenonNotice("Product node instance staged successfully into memory storage buffers.");
         }
 
-        // FEATURE 4 IMPLEMENTATION: Dynamic Cart Quantity Controls Node Modifiers (+ and - operations)
-        function modifyCartItemQuantityUnit(id, computationalOperator) {
+        function modifyCartItemQuantityUnit(id, operationActionKeywordCode) {
             if(!internalCartMemory[id]) return;
-            const sourceCloudItemProduct = CYBER_PRODUCT_INDEX.find(p => p.id === id);
+            const liveCloudReferenceItem = CYBER_PRODUCT_INDEX.find(p => p.id === id);
 
-            if(computationalOperator === 'increment') {
-                if(internalCartMemory[id].qty >= sourceCloudItemProduct.stock) {
-                    triggerXenonNotice("Cannot exceed live cloud endpoint stock parameters allocation.", "error");
+            if(operationActionKeywordCode === 'increment') {
+                if(internalCartMemory[id].qty >= liveCloudReferenceItem.stock) {
+                    triggerXenonNotice("Cannot surpass allocated physical inventory thresholds allocation maps.", "error");
                     return;
                 }
                 internalCartMemory[id].qty++;
@@ -647,13 +632,13 @@
             const promoRow = document.getElementById("promoRowAlert");
 
             wrapper.innerHTML = "";
-            let grossFinancialAggregateSum = 0;
-            let netQuantityCounter = 0;
+            let grossCalculatedFinancialSum = 0;
+            let absoluteQuantityCounter = 0;
 
-            const operationalKeys = Object.keys(internalCartMemory);
+            const cartActiveKeysMap = Object.keys(internalCartMemory);
 
-            if (operationalKeys.length === 0) {
-                wrapper.innerHTML = `<div class="text-slate-400 text-center py-16 font-medium">Checkout buffer structure is vacant.</div>`;
+            if (cartActiveKeysMap.length === 0) {
+                wrapper.innerHTML = `<div class="text-slate-400 text-center py-16 font-semibold">Your check-out selection bag buffer is completely empty.</div>`;
                 globalCounter.innerText = "0";
                 subtotalLabel.innerText = renderValuation(0);
                 totalLabel.innerText = renderValuation(0);
@@ -661,77 +646,76 @@
                 return;
             }
 
-            operationalKeys.forEach(key => {
-                const nodeInstance = internalCartMemory[key];
-                netQuantityCounter += nodeInstance.qty;
-                grossFinancialAggregateSum += (nodeInstance.price * nodeInstance.qty);
+            cartActiveKeysMap.forEach(key => {
+                const dynamicCartNodeItem = internalCartMemory[key];
+                absoluteQuantityCounter += dynamicCartNodeItem.qty;
+                grossCalculatedFinancialSum += (dynamicCartNodeItem.price * dynamicCartNodeItem.qty);
 
-                // FEATURE 4 COMPONENT DOM GENERATOR LAYOUT
                 wrapper.innerHTML += `
-                    <div class="flex items-center justify-between py-3.5 text-slate-700 dark:text-slate-300">
+                    <div class="flex items-center justify-between py-3.5 text-slate-700">
                         <div class="min-w-0 pr-2 space-y-0.5">
-                            <p class="font-extrabold text-slate-950 dark:text-white truncate text-xs heading-font">${nodeInstance.name}</p>
-                            <span class="text-[10px] text-slate-400 font-mono">${renderValuation(nodeInstance.price)} each</span>
+                            <p class="font-extrabold text-slate-900 truncate text-xs heading-font">${dynamicCartNodeItem.name}</p>
+                            <span class="text-[10px] text-slate-400 font-mono">${renderValuation(dynamicCartNodeItem.price)} allocation</span>
                         </div>
                         <div class="flex items-center gap-2.5 shrink-0">
-                            <span class="font-extrabold text-purple-600 dark:text-purple-400 font-mono">${renderValuation(nodeInstance.price * nodeInstance.qty)}</span>
+                            <span class="font-extrabold text-orange-700 font-mono">${renderValuation(dynamicCartNodeItem.price * dynamicCartNodeItem.qty)}</span>
                             
-                            <div class="flex items-center bg-slate-50 dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-lg overflow-hidden">
-                                <button onclick="modifyCartItemQuantityUnit('${nodeInstance.id}', 'decrement')" class="px-2 py-0.5 text-slate-500 hover:bg-purple-100 dark:hover:bg-slate-800 font-bold transition-colors">-</button>
-                                <span class="px-1.5 font-bold font-mono text-[11px] text-slate-800 dark:text-white">${nodeInstance.qty}</span>
-                                <button onclick="modifyCartItemQuantityUnit('${nodeInstance.id}', 'increment')" class="px-2 py-0.5 text-slate-500 hover:bg-purple-100 dark:hover:bg-slate-800 font-bold transition-colors">+</button>
+                            <div class="flex items-center bg-slate-50 border border-orange-100 rounded-lg overflow-hidden">
+                                <button onclick="modifyCartItemQuantityUnit('${dynamicCartNodeItem.id}', 'decrement')" class="px-2 py-0.5 text-slate-500 hover:bg-orange-100 font-bold transition-colors">-</button>
+                                <span class="px-1.5 font-bold font-mono text-[11px] text-slate-800">${dynamicCartNodeItem.qty}</span>
+                                <button onclick="modifyCartItemQuantityUnit('${dynamicCartNodeItem.id}', 'increment')" class="px-2 py-0.5 text-slate-500 hover:bg-orange-100 font-bold transition-colors">+</button>
                             </div>
                         </div>
                     </div>`;
             });
 
-            let discountReductionValue = grossFinancialAggregateSum * activeDiscountRatio;
-            let finalNetPriceOut = grossFinancialAggregateSum - discountReductionValue;
+            let calculatedDiscountReductionValue = grossCalculatedFinancialSum * activeDiscountRatio;
+            let finalizedNetInvoiceAmount = grossCalculatedFinancialSum - calculatedDiscountReductionValue;
 
-            globalCounter.innerText = netQuantityCounter;
-            subtotalLabel.innerText = renderValuation(grossFinancialAggregateSum);
+            globalCounter.innerText = absoluteQuantityCounter;
+            subtotalLabel.innerText = renderValuation(grossCalculatedFinancialSum);
             
             if(activeDiscountRatio > 0) {
-                discountLabel.innerText = "-" + renderValuation(discountReductionValue);
+                discountLabel.innerText = "-" + renderValuation(calculatedDiscountReductionValue);
                 promoRow.classList.remove("hidden");
             } else {
                 promoRow.classList.add("hidden");
             }
 
-            totalLabel.innerText = renderValuation(finalNetPriceOut);
+            totalLabel.innerText = renderValuation(finalizedNetInvoiceAmount);
         }
 
         function renderInvoiceLedgerHistoryList() {
             const container = document.getElementById("customerOrderHistoryTarget");
             if(invoiceLedgerHistory.length === 0) {
-                container.innerHTML = `<div class="text-slate-400 font-medium py-4 text-center">Central network ledger pipeline has no records indexed.</div>`;
+                container.innerHTML = `<div class="text-slate-400 font-medium py-4 text-center">No structural operational invoice nodes verified inside API memory logs.</div>`;
                 return;
             }
 
             container.innerHTML = "";
-            invoiceLedgerHistory.slice().reverse().forEach(inv => {
+            invoiceLedgerHistory.slice().reverse().forEach(invoiceNode => {
                 container.innerHTML += `
-                    <div class="bg-slate-50 dark:bg-slate-900/50 border border-purple-50/50 dark:border-slate-800 p-3 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm">
+                    <div class="bg-white/90 border border-orange-100/30 p-3 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm hover:border-orange-200 transition-colors">
                         <div class="space-y-0.5 min-w-0">
                             <div class="flex items-center gap-2">
-                                <span class="text-purple-600 dark:text-purple-400 font-bold heading-font">BLOCK-TX #${inv.id || '9872'}</span>
-                                <span class="text-slate-400 text-[10px] font-mono">${inv.time || '00:00'}</span>
+                                <span class="text-orange-700 font-bold heading-font">NODE-TX #${invoiceNode.id || '2831'}</span>
+                                <span class="text-slate-400 text-[10px] font-mono">${invoiceNode.time || '00:00'}</span>
                             </div>
-                            <p class="text-slate-600 dark:text-slate-400 font-medium text-[11px] truncate tracking-wide">${inv.summary}</p>
+                            <p class="text-slate-600 font-medium text-[11px] truncate tracking-wide">${invoiceNode.summary}</p>
                         </div>
-                        <span class="text-emerald-600 font-bold font-mono text-xs self-end sm:self-center">${renderValuation(inv.totalVal)}</span>
+                        <span class="text-emerald-700 font-bold font-mono text-xs self-end sm:self-center">${renderValuation(invoiceNode.totalVal)}</span>
                     </div>`;
             });
         }
 
         function applyCartPromoNode() {
-            const validationValue = document.getElementById("cartPromoInput").value.toUpperCase().trim();
-            if (validationValue === "XENON2026") {
+            const verificationTokenInputString = document.getElementById("cartPromoInput").value.toUpperCase().trim();
+            if (verificationTokenInputString === "XENON2026") {
                 activeDiscountRatio = 0.15;
-                triggerXenonNotice("Coupon verified! 15% discount applied.", 'success');
+                triggerXenonNotice("Cryptographic voucher accepted! 15% discount integrated successfully.", 'success');
             } else {
                 activeDiscountRatio = 0.00;
-                triggerXenonNotice("Invalid voucher key format input.", 'error');
+                triggerXenonNotice("Voucher sequence format is unauthorized or expired.", 'error');
             }
             renderCartInterfaceStream();
         }
@@ -751,13 +735,13 @@
             if (targetLayer === 'storefront') {
                 storefrontNode.classList.replace("hidden", "block");
                 vendorNode.classList.replace("block", "hidden");
-                storefrontBtn.className = "text-xs font-bold px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-sm transition-all";
-                vendorBtn.className = "text-xs font-bold px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all";
+                storefrontBtn.className = "text-xs font-bold px-4 py-2 rounded-lg bg-white text-slate-950 shadow-sm transition-all";
+                vendorBtn.className = "text-xs font-bold px-4 py-2 rounded-lg text-emerald-700 hover:text-slate-900 transition-all";
             } else {
                 vendorNode.classList.replace("hidden", "block");
                 storefrontNode.classList.replace("block", "hidden");
-                vendorBtn.className = "text-xs font-bold px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-sm transition-all";
-                storefrontBtn.className = "text-xs font-bold px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all";
+                vendorBtn.className = "text-xs font-bold px-4 py-2 rounded-lg bg-white text-slate-950 shadow-sm transition-all";
+                storefrontBtn.className = "text-xs font-bold px-4 py-2 rounded-lg text-emerald-700 hover:text-slate-900 transition-all";
                 refreshVendorInventoryTable();
             }
         }
@@ -765,11 +749,11 @@
         function triggerXenonNotice(msg, variant='info') {
             const hub = document.getElementById("xenonNotificationHub");
             const toast = document.createElement("div");
-            toast.className = `p-3.5 rounded-xl font-bold text-xs shadow-2xl transition-all duration-300 border bg-white dark:bg-slate-800 border-purple-100 dark:border-slate-700 text-slate-900 dark:text-white`;
+            toast.className = `p-3.5 rounded-xl font-bold text-xs shadow-2xl transition-all duration-300 border bg-white border-orange-100 text-slate-800`;
             
-            if(variant === 'success') toast.innerHTML = `✨ <span class="text-emerald-600">${msg}</span>`;
-            else if(variant === 'error') toast.innerHTML = `⚠️ <span class="text-rose-500">${msg}</span>`;
-            else toast.innerHTML = `⚙️ <span class="text-purple-600 dark:text-purple-400">${msg}</span>`;
+            if(variant === 'success') toast.innerHTML = `✨ <span class="text-emerald-700">${msg}</span>`;
+            else if(variant === 'error') toast.innerHTML = `⚠️ <span class="text-rose-600">${msg}</span>`;
+            else toast.innerHTML = `🎨 <span class="text-orange-700">${msg}</span>`;
 
             hub.appendChild(toast);
             setTimeout(() => { toast.classList.remove("translate-y-2", "opacity-0"); }, 30);
