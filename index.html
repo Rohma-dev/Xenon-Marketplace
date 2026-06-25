@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +9,17 @@
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .heading-font { font-family: 'Space Grotesk', sans-serif; }
-        .xenon-glow { box-shadow: 0 0 20px rgba(0, 242, 254, 0.15); }
+        .xenon-glow { box-shadow: 0 0 25px rgba(0, 242, 254, 0.12); }
+        .card-glow:hover { box-shadow: 0 0 30px rgba(138, 43, 226, 0.2); border-color: rgba(138, 43, 226, 0.4); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #090a0f; }
+        ::-webkit-scrollbar-thumb { background: #1f2235; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00f2fe; }
     </style>
 </head>
-<body class="bg-[#090a0f] text-slate-300 min-h-screen flex flex-col justify-between antialiased">
+<body class="bg-[#05060a] text-slate-300 min-h-screen flex flex-col justify-between antialiased">
 
-    <header class="sticky top-0 z-50 bg-[#0e1017]/90 backdrop-blur-md border-b border-zinc-800/80 shadow-xl">
+    <header class="sticky top-0 z-50 bg-[#0c0d14]/90 backdrop-blur-md border-b border-zinc-800/60 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
             
             <div class="flex items-center gap-3">
@@ -28,33 +32,39 @@
                 </div>
             </div>
             
-            <div class="bg-[#141722] border border-zinc-800 p-1.5 rounded-xl flex gap-1.5 xenon-glow">
-                <button id="switchStorefrontBtn" onclick="toggleXenonPortal('storefront')" class="text-[10px] uppercase tracking-widest font-black px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-black transition-all duration-300 shadow-md">
-                    🛒 Storefront
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCartDrawer(true)" class="bg-[#11131f] border border-zinc-800 hover:border-cyan-500/50 px-4 py-2 rounded-xl flex items-center gap-2 transition-all group">
+                    <span class="text-xs">🛒</span>
+                    <span id="globalCartCounter" class="font-mono text-xs font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-md">0</span>
                 </button>
-                <button id="switchVendorBtn" onclick="toggleXenonPortal('vendor')" class="text-[10px] uppercase tracking-widest font-black px-5 py-2.5 rounded-lg text-zinc-400 hover:text-white transition-all duration-300">
-                    📊 Vendor Core
-                </button>
+
+                <div class="bg-[#11131f] border border-zinc-800 p-1 rounded-xl flex gap-1 xenon-glow">
+                    <button id="switchStorefrontBtn" onclick="toggleXenonPortal('storefront')" class="text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-black transition-all duration-300">
+                        🛒 Storefront
+                    </button>
+                    <button id="switchVendorBtn" onclick="toggleXenonPortal('vendor')" class="text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg text-zinc-400 hover:text-white transition-all duration-300">
+                        📊 Vendor Core
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-12 flex-1 w-full">
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-10 flex-1 w-full relative">
         
         <div id="portalStorefront" class="space-y-8 block transition-all duration-300">
-            <div class="bg-gradient-to-r from-[#111420] to-[#18122b] border border-zinc-800/60 p-8 sm:p-12 rounded-3xl relative overflow-hidden xenon-glow">
+            <div class="bg-gradient-to-r from-[#0e111d] to-[#161026] border border-zinc-800/60 p-8 sm:p-12 rounded-3xl relative overflow-hidden xenon-glow">
                 <div class="max-w-lg space-y-4 relative z-10">
                     <span class="text-[10px] uppercase tracking-widest font-bold text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full border border-cyan-500/20">The Future of E-Commerce</span>
                     <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight heading-font leading-tight">Curated Premium Marketplace Grid.</h2>
-                    <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">Discover elite products sourced globally from verified system vendors with absolute real-time transactional transparency.</p>
+                    <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">Discover elite cyber hardware sourced globally from verified system vendors with absolute transactional transparency.</p>
                 </div>
                 <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl"></div>
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
             </div>
 
-            <div class="border border-dashed border-zinc-800 p-12 text-center rounded-2xl">
-                <p class="text-xs font-mono text-zinc-500">[STOREFRONT PAYLOAD IDLE] Next step will injection-map live product arrays here.</p>
-            </div>
+            <div id="xenonProductsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                </div>
         </div>
 
         <div id="portalVendor" class="space-y-8 hidden transition-all duration-300">
@@ -63,18 +73,156 @@
                 <p class="text-xs text-zinc-500 mt-0.5">Real-time inventory mapping, database stream mutations, and core matrix metrics.</p>
             </div>
 
-            <div class="border border-dashed border-zinc-800 p-12 text-center rounded-2xl">
-                <p class="text-xs font-mono text-zinc-500">[VENDOR LOGISTICS OFFLINE] Next step will bind inventory controllers here.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl">
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Live Virtual Stock</h4>
+                    <p class="text-2xl font-bold font-mono text-cyan-400 mt-2">4 Node Items</p>
+                </div>
+                <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl">
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">System State</h4>
+                    <p class="text-2xl font-bold font-mono text-emerald-400 mt-2">Database Ready</p>
+                </div>
+                <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl">
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Active Vendor Link</h4>
+                    <p class="text-2xl font-bold font-mono text-purple-400 mt-2">Admin Core #1</p>
+                </div>
             </div>
         </div>
 
+        <div id="xenonCartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-[#0c0d14] border-l border-zinc-800/80 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
+            <div class="space-y-6 flex-1 flex flex-col overflow-hidden">
+                <div class="flex justify-between items-center border-b border-zinc-900 pb-4">
+                    <h3 class="heading-font font-bold text-white tracking-wide text-sm">System Checkout Cache</h3>
+                    <button onclick="toggleCartDrawer(false)" class="text-zinc-500 hover:text-white text-xs font-mono bg-zinc-900 px-2 py-1 rounded">CLOSE ✕</button>
+                </div>
+                
+                <div id="cartStreamWrapper" class="flex-1 overflow-y-auto space-y-4 pr-1 text-xs divide-y divide-zinc-900">
+                    </div>
+            </div>
+
+            <div class="border-t border-zinc-900 pt-4 space-y-4 bg-[#0c0d14]">
+                <div class="flex justify-between items-baseline">
+                    <span class="text-xs text-zinc-500 font-mono">Gross Allocation Valuation:</span>
+                    <span id="cartTotalLabel" class="text-xl font-black font-mono text-cyan-400">$0.00</span>
+                </div>
+                <button onclick="alert('Database linkage operational. Processing payload checkout...')" class="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-extrabold text-xs uppercase tracking-widest py-4 rounded-xl shadow-lg shadow-cyan-500/10 active:scale-95 transition-all">
+                    Initiate Node Checkout ⚡
+                </button>
+            </div>
+        </div>
     </main>
 
-    <footer class="border-t border-zinc-900 bg-[#05060a] py-6 text-center text-[10px] font-mono text-zinc-600 tracking-widest uppercase">
+    <footer class="border-t border-zinc-900 bg-[#030406] py-6 text-center text-[10px] font-mono text-zinc-600 tracking-widest uppercase">
         © 2026 Xenon Distributed Ledger Core // Architecture Engineering Node By Rohma Noor
     </footer>
 
     <script>
+        // Elite Tech Datasets Array
+        const CYBER_PRODUCT_INDEX = [
+            { id: "XN-1", name: "Xenon Holo-Glass HUD", price: 349.00, desc: "AR glasses overlaying real-time system analytical nodes onto vision fields.", img: "🕶️" },
+            { id: "XN-2", "name": "Quantum Core Rig V1", price: 2199.00, desc: "Super-cooled liquid matrix workstation utilizing carbon-fiber casing modules.", img: "🖥️" },
+            { id: "XN-3", name: "Apex Neural Keyboard", price: 185.00, desc: "Low-latency mechanical layout equipped with optical magnetic switches.", img: "⌨️" },
+            { id: "XN-4", name: "Chronos Matrix Wristwatch", price: 420.00, desc: "Tactical titanium shell displaying isolated hardware streams over sync data.", img: "⌚" }
+        ];
+
+        let internalCartMemory = {};
+
+        // Injects Products into the Grid UI
+        function compileXenonStorefrontGrid() {
+            const grid = document.getElementById("xenonProductsGrid");
+            grid.innerHTML = "";
+
+            CYBER_PRODUCT_INDEX.forEach(product => {
+                grid.innerHTML += `
+                    <div class="bg-[#0e111d] border border-zinc-900 p-6 rounded-2xl flex flex-col justify-between gap-5 card-glow transition-all duration-300 relative group">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 bg-[#151a2d] border border-zinc-800 rounded-xl flex items-center justify-center text-2xl shadow-inner">${product.img}</div>
+                            <div class="space-y-1">
+                                <h4 class="text-white font-bold text-sm tracking-wide group-hover:text-cyan-400 transition-all">${product.name}</h4>
+                                <p class="text-[11px] text-zinc-500 leading-relaxed">${product.desc}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between border-t border-zinc-900/60 pt-4">
+                            <span class="font-mono text-cyan-400 font-bold text-xs">$${product.price.toFixed(2)}</span>
+                            <button onclick="stageItemToCart('${product.id}')" class="bg-[#141829] hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 border border-zinc-800 text-zinc-400 hover:text-black font-extrabold text-[9px] uppercase tracking-wider px-3 py-2 rounded-lg transition-all">
+                                Alloc +
+                            </button>
+                        </div>
+                    </div>`;
+            });
+        }
+
+        // Add to Cart Logical Operations
+        function stageItemToCart(id) {
+            if (internalCartMemory[id]) {
+                internalCartMemory[id].qty++;
+            } else {
+                const targetObj = CYBER_PRODUCT_INDEX.find(p => p.id === id);
+                internalCartMemory[id] = { ...targetObj, qty: 1 };
+            }
+            renderCartInterfaceStream();
+            toggleCartDrawer(true); // Auto-open cart to show active interaction
+        }
+
+        function clearCartRowUnit(id) {
+            if (!internalCartMemory[id]) return;
+            internalCartMemory[id].qty--;
+            if (internalCartMemory[id].qty <= 0) {
+                delete internalCartMemory[id];
+            }
+            renderCartInterfaceStream();
+        }
+
+        function renderCartInterfaceStream() {
+            const wrapper = document.getElementById("cartStreamWrapper");
+            const globalCounter = document.getElementById("globalCartCounter");
+            const totalLabel = document.getElementById("cartTotalLabel");
+
+            wrapper.innerHTML = "";
+            let calculatedSum = 0;
+            let netQuantityUnits = 0;
+
+            const targetKeys = Object.keys(internalCartMemory);
+
+            if (targetKeys.length === 0) {
+                wrapper.innerHTML = `<div class="text-zinc-600 text-center py-12 font-mono">[CACHE EMPTY]<br>Allocation parameters unassigned.</div>`;
+                globalCounter.innerText = "0";
+                totalLabel.innerText = "$0.00";
+                return;
+            }
+
+            targetKeys.forEach(key => {
+                const activeNode = internalCartMemory[key];
+                netQuantityUnits += activeNode.qty;
+                calculatedSum += (activeNode.price * activeNode.qty);
+
+                wrapper.innerHTML += `
+                    <div class="flex items-center justify-between py-3.5 text-zinc-300">
+                        <div class="min-w-0 pr-2 space-y-0.5">
+                            <p class="font-bold text-white truncate">${activeNode.name}</p>
+                            <span class="text-[10px] text-zinc-500 font-mono">$${activeNode.price.toFixed(2)} x ${activeNode.qty}</span>
+                        </div>
+                        <div class="flex items-center gap-3 shrink-0">
+                            <span class="font-mono font-bold text-cyan-400">$${(activeNode.price * activeNode.qty).toFixed(2)}</span>
+                            <button onclick="clearCartRowUnit('${activeNode.id}')" class="w-5 h-5 bg-[#141829] border border-zinc-800 text-zinc-500 hover:text-rose-400 rounded flex items-center justify-center font-bold font-mono">-</button>
+                        </div>
+                    </div>`;
+            });
+
+            globalCounter.innerText = netQuantityUnits;
+            totalLabel.innerText = "$" + calculatedSum.toFixed(2);
+        }
+
+        function toggleCartDrawer(openState) {
+            const drawer = document.getElementById("xenonCartDrawer");
+            if (openState) {
+                drawer.classList.remove("translate-x-full");
+            } else {
+                drawer.classList.add("translate-x-full");
+            }
+        }
+
+        // View Toggler Engine
         function toggleXenonPortal(targetLayer) {
             const storefrontNode = document.getElementById("portalStorefront");
             const vendorNode = document.getElementById("portalVendor");
@@ -82,23 +230,22 @@
             const vendorBtn = document.getElementById("switchVendorBtn");
 
             if (targetLayer === 'storefront') {
-                storefrontNode.classList.remove("hidden");
-                storefrontNode.classList.add("block");
-                vendorNode.classList.remove("block");
-                vendorNode.classList.add("hidden");
-
-                storefrontBtn.className = "text-[10px] uppercase tracking-widest font-black px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-black transition-all duration-300 shadow-md";
-                vendorBtn.className = "text-[10px] uppercase tracking-widest font-black px-5 py-2.5 rounded-lg text-zinc-400 hover:text-white transition-all duration-300";
+                storefrontNode.classList.replace("hidden", "block");
+                vendorNode.classList.replace("block", "hidden");
+                storefrontBtn.className = "text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-black transition-all duration-300 shadow-md";
+                vendorBtn.className = "text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg text-zinc-400 hover:text-white transition-all duration-300";
             } else {
-                vendorNode.classList.remove("hidden");
-                vendorNode.classList.add("block");
-                storefrontNode.classList.remove("block");
-                storefrontNode.classList.add("hidden");
-
-                vendorBtn.className = "text-[10px] uppercase tracking-widest font-black px-5 py-2.5 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 text-white transition-all duration-300 shadow-md";
-                storefrontBtn.className = "text-[10px] uppercase tracking-widest font-black px-5 py-2.5 rounded-lg text-zinc-400 hover:text-white transition-all duration-300";
+                vendorNode.classList.replace("hidden", "block");
+                storefrontNode.classList.replace("block", "hidden");
+                vendorBtn.className = "text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 text-white transition-all duration-300 shadow-md";
+                storefrontBtn.className = "text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg text-zinc-400 hover:text-white transition-all duration-300";
             }
         }
+
+        window.onload = function() {
+            compileXenonStorefrontGrid();
+            renderCartInterfaceStream();
+        };
     </script>
 </body>
 </html>
