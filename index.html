@@ -63,8 +63,8 @@
                     X
                 </div>
                 <div>
-                    <h1 class="text-slate-900 font-extrabold text-xl tracking-tight heading-font">xenon<span class="text-orange-600 text-xs ml-1">v10.0</span></h1>
-                    <span class="text-[10px] text-emerald-700 font-bold tracking-wider block uppercase">20 Active Stock Array Matrix</span>
+                    <h1 class="text-slate-900 font-extrabold text-xl tracking-tight heading-font">xenon<span class="text-orange-600 text-xs ml-1">v11.0</span></h1>
+                    <span class="text-[10px] text-emerald-700 font-bold tracking-wider block uppercase">20 Active Products Preloaded</span>
                 </div>
             </div>
             
@@ -97,8 +97,8 @@
         <div id="portalStorefront" class="space-y-8 block transition-all duration-300">
             <div class="bg-white/80 border border-orange-100/40 p-6 sm:p-10 rounded-3xl relative overflow-hidden premium-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div class="max-w-xl space-y-3 relative z-10">
-                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-100/50 px-3 py-1 rounded-full">Database Expansion Complete</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight heading-font">Xenon Mega Catalog: 20 Live Active Premium Nodes</h2>
+                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-100/50 px-3 py-1 rounded-full">Database Sync Locked</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight heading-font">Xenon Mega Catalog: 20 Live Active Premium Products</h2>
                     <p class="text-xs text-slate-600 leading-relaxed font-medium">Explore a fully populated premium marketplace grid. Sort through Gadgets, Wearables, and Computing tech instantly with real-time reactive search parameters.</p>
                 </div>
                 <div class="w-32 h-32 rounded-full custom-gradient absolute -right-10 -bottom-10 opacity-10 blur-3xl"></div>
@@ -121,8 +121,7 @@
             </div>
 
             <div id="xenonProductsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                 <div class="col-span-full text-center py-16 text-xs text-orange-400 font-bold animate-pulse">Establishing secure network catalog data synchronization...</div>
-            </div>
+                 </div>
 
             <div class="bg-white/80 border border-orange-100/40 rounded-3xl p-6 sm:p-8 premium-shadow space-y-6">
                 <div>
@@ -271,13 +270,10 @@
     </main>
 
     <footer class="border-t border-orange-100/40 bg-white/50 py-5 text-center text-xs text-slate-500 font-medium tracking-wide">
-        © 2026 Xenon Distributed Ledger Node v10.0. 20 Seed Nodes Online. Built by Rohma Noor.
+        © 2026 Xenon Distributed Ledger Node v11.0. 20 Preloaded Core Products. Built by Rohma Noor.
     </footer>
 
     <script>
-        const BACKEND_PRODUCTS_URL = "https://667b003f3c30ed74e664b5ba.mockapi.io/api/v1/products";
-        const BACKEND_ORDERS_URL = "https://667b003f3c30ed74e664b5ba.mockapi.io/api/v1/orders";
-
         let currentActiveCategoryFilter = "All";
         const CURRENCY_DICTIONARY = {
             USD: { symbol: "$", rate: 1.0 },
@@ -286,15 +282,14 @@
         };
         let currentCurrencyMode = "USD";
 
-        let CYBER_PRODUCT_INDEX = [];
         let internalCartMemory = {};
         let activeDiscountRatio = 0.00;
         let trackedRevenueSum = 0.00;
         let packedOrdersCount = 0;
         let invoiceLedgerHistory = [];
 
-        // 20 COMPLETE PREMIUM HIGH-END PRODUCTS SOURCE MATRIX
-        const MEGA_STATIC_SEED_NODES = [
+        // 20 PERMANENT HIGH-END PREMIUM PRODUCTS FOR STABLE RENDERING
+        let CYBER_PRODUCT_INDEX = [
             { id: "1", name: "Quantum Sound Pods X", price: 149.00, desc: "Acoustic spatial audio architecture with ultra fluid bass transducers.", img: "🎧 Gadgets", stock: 12, rating: 5.0 },
             { id: "2", name: "Titan Fusion Fluid Phone", price: 999.00, desc: "Sleek organic matrix screen backed by intelligent adaptive processors.", img: "📱 Gadgets", stock: 8, rating: 4.5 },
             { id: "3", name: "Chronos Carbon Smartwatch", price: 249.00, desc: "High density telemetry layout tracking dynamic multisport analytics.", img: "⌚ Wearables", stock: 15, rating: 4.0 },
@@ -317,10 +312,11 @@
             { id: "20", name: "Hyperion Ergonomic Pro Mouse", price: 95.00, desc: "Ultralight aerodynamic body mapping precision tracking up to 30K DPI metrics.", img: "💻 Tech", stock: 22, rating: 4.5 }
         ];
 
-        window.onload = async function() {
+        window.onload = function() {
+            compileXenonStorefrontGrid();
+            refreshVendorInventoryTable();
             renderCartInterfaceStream();
-            await pullCloudProductCatalogIndex();
-            await pullCloudLedgerTransactionsIndex();
+            updateMetricsVisuals();
         };
 
         function filterStorefrontByCategory(categoryValueString) {
@@ -337,41 +333,7 @@
             triggerXenonNotice(`Catalog segmented to [${categoryValueString}] list successfully.`);
         }
 
-        async function pullCloudProductCatalogIndex() {
-            try {
-                let res = await fetch(BACKEND_PRODUCTS_URL);
-                if (res.ok) {
-                    let apiData = await res.json();
-                    // Merge or fall back if API doesn't have all 20 nodes
-                    if(apiData.length < 20) {
-                        CYBER_PRODUCT_INDEX = MEGA_STATIC_SEED_NODES;
-                    } else {
-                        CYBER_PRODUCT_INDEX = apiData;
-                    }
-                } else {
-                    CYBER_PRODUCT_INDEX = MEGA_STATIC_SEED_NODES;
-                }
-            } catch (err) {
-                CYBER_PRODUCT_INDEX = MEGA_STATIC_SEED_NODES;
-            }
-            compileXenonStorefrontGrid();
-            refreshVendorInventoryTable();
-        }
-
-        async function pullCloudLedgerTransactionsIndex() {
-            try {
-                let res = await fetch(BACKEND_ORDERS_URL);
-                if(res.ok) {
-                    invoiceLedgerHistory = await res.json();
-                    packedOrdersCount = invoiceLedgerHistory.length;
-                    trackedRevenueSum = invoiceLedgerHistory.reduce((acc, obj) => acc + parseFloat(obj.totalVal || 0), 0);
-                    renderInvoiceLedgerHistoryList();
-                    updateMetricsVisuals();
-                }
-            } catch (error) { console.error(error); }
-        }
-
-        async function handleVendorFormSubmit(e) {
+        function handleVendorFormSubmit(e) {
             e.preventDefault();
             const name = document.getElementById("vProdName").value;
             const price = parseFloat(document.getElementById("vProdPrice").value);
@@ -400,7 +362,7 @@
             }
         }
 
-        async function triggerCheckoutOperation() {
+        function triggerCheckoutOperation() {
             const memorySlots = Object.keys(internalCartMemory);
             if(memorySlots.length === 0) return;
 
@@ -457,6 +419,7 @@
             return `${currentSelectedConfigMode.symbol}${(amountUSD * currentSelectedConfigMode.rate).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
         }
 
+        // Realtime Currency Switcher
         function switchGlobalCurrencyEngine() {
             currentCurrencyMode = document.getElementById("currencySelectorNode").value;
             compileXenonStorefrontGrid();
