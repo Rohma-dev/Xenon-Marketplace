@@ -3,23 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💎 Xenon | Next-Gen Enterprise Marketplace & SaaS Core</title>
+    <title>💎 Xenon | Ultimate Enterprise SaaS Core v3.0</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700;800&family=Space+Grotesk:wght=600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .heading-font { font-family: 'Space Grotesk', sans-serif; }
-        .xenon-glow { box-shadow: 0 0 25px rgba(0, 242, 254, 0.12); }
-        .card-glow:hover { box-shadow: 0 0 30px rgba(138, 43, 226, 0.2); border-color: rgba(138, 43, 226, 0.4); }
+        .xenon-glow { box-shadow: 0 0 30px rgba(0, 242, 254, 0.15); }
+        .card-glow:hover { box-shadow: 0 0 35px rgba(138, 43, 226, 0.25); border-color: rgba(138, 43, 226, 0.5); }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #090a0f; }
         ::-webkit-scrollbar-thumb { background: #1f2235; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #00f2fe; }
     </style>
 </head>
-<body class="bg-[#05060a] text-slate-300 min-h-screen flex flex-col justify-between antialiased">
+<body class="bg-[#05060a] text-slate-300 min-h-screen flex flex-col justify-between antialiased relative">
 
-    <header class="sticky top-0 z-50 bg-[#0c0d14]/90 backdrop-blur-md border-b border-zinc-800/60 shadow-xl">
+    <div id="xenonNotificationHub" class="fixed top-24 right-6 z-50 space-y-3 pointer-events-none w-80"></div>
+
+    <header class="sticky top-0 z-40 bg-[#0c0d14]/90 backdrop-blur-md border-b border-zinc-800/60 shadow-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
             
             <div class="flex items-center gap-3">
@@ -28,22 +30,28 @@
                 </div>
                 <div>
                     <h1 class="text-white font-extrabold text-base tracking-wider heading-font">XENON</h1>
-                    <span class="text-[9px] text-cyan-400 font-mono tracking-widest block uppercase">Multi-Vendor Ecosystem // SaaS v2.0</span>
+                    <span class="text-[9px] text-cyan-400 font-mono tracking-widest block uppercase">Multi-Vendor Grid Core // Enterprise v3.0</span>
                 </div>
             </div>
             
-            <div class="flex items-center gap-4">
-                <button onclick="toggleCartDrawer(true)" class="bg-[#11131f] border border-zinc-800 hover:border-cyan-500/50 px-4 py-2 rounded-xl flex items-center gap-2 transition-all group">
+            <div class="flex items-center gap-3 sm:gap-4">
+                <select id="currencySelectorNode" onchange="switchGlobalCurrencyEngine()" class="bg-[#11131f] border border-zinc-800 text-zinc-400 font-mono text-[11px] rounded-xl px-2.5 py-2 focus:outline-none focus:border-cyan-500">
+                    <option value="USD">🇺🇸 USD ($)</option>
+                    <option value="PKR">🇵🇰 PKR (Rs)</option>
+                    <option value="INR">🇮🇳 INR (₹)</option>
+                </select>
+
+                <button onclick="toggleCartDrawer(true)" class="bg-[#11131f] border border-zinc-800 hover:border-cyan-500/50 px-3.5 py-2 rounded-xl flex items-center gap-2 transition-all group">
                     <span class="text-xs">🛒</span>
                     <span id="globalCartCounter" class="font-mono text-xs font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-md">0</span>
                 </button>
 
                 <div class="bg-[#11131f] border border-zinc-800 p-1 rounded-xl flex gap-1 xenon-glow">
-                    <button id="switchStorefrontBtn" onclick="toggleXenonPortal('storefront')" class="text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-black transition-all duration-300">
-                        🛒 Storefront
+                    <button id="switchStorefrontBtn" onclick="toggleXenonPortal('storefront')" class="text-[10px] uppercase tracking-widest font-black px-3 sm:px-4 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-black transition-all duration-300">
+                        🛒 Store
                     </button>
-                    <button id="switchVendorBtn" onclick="toggleXenonPortal('vendor')" class="text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg text-zinc-400 hover:text-white transition-all duration-300">
-                        📊 Vendor Core
+                    <button id="switchVendorBtn" onclick="toggleXenonPortal('vendor')" class="text-[10px] uppercase tracking-widest font-black px-3 sm:px-4 py-2.5 rounded-lg text-zinc-400 hover:text-white transition-all duration-300">
+                        📊 Vendor
                     </button>
                 </div>
             </div>
@@ -67,8 +75,8 @@
                 <div class="relative w-full sm:w-72">
                     <input type="text" id="xenonSearchInput" oninput="compileXenonStorefrontGrid()" placeholder="Search active network products..." class="w-full bg-[#141724] border border-zinc-800 focus:border-cyan-500 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none font-medium transition-all">
                 </div>
-                <div class="flex gap-2 w-full sm:w-auto overflow-x-auto">
-                    <span class="text-[10px] font-mono tracking-wider uppercase text-zinc-500 self-center hidden md:inline">SYSTEM NODES FORWARDED BY ACTIVE INVENTORY</span>
+                <div class="text-right w-full sm:w-auto">
+                    <span class="text-[10px] font-mono tracking-wider uppercase text-zinc-500">Live Node Engine Monitoring 🟢</span>
                 </div>
             </div>
 
@@ -83,17 +91,28 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl">
+                <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl relative overflow-hidden">
                     <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Gross Live Revenue</h4>
                     <p id="vendorRevenueLabel" class="text-2xl font-bold font-mono text-emerald-400 mt-2">$0.00</p>
+                    <div class="w-full bg-zinc-900 h-1 rounded-full mt-4 overflow-hidden">
+                        <div id="revProgressNode" class="bg-emerald-400 h-full w-0 transition-all duration-500"></div>
+                    </div>
                 </div>
-                <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl">
+                <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl relative overflow-hidden">
                     <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Network Orders Tracked</h4>
                     <p id="vendorOrdersLabel" class="text-2xl font-bold font-mono text-cyan-400 mt-2">0 Units</p>
+                    <div class="w-full bg-zinc-900 h-1 rounded-full mt-4 overflow-hidden">
+                        <div id="ordProgressNode" class="bg-cyan-400 h-full w-0 transition-all duration-500"></div>
+                    </div>
                 </div>
                 <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl">
                     <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Total Launched Items</h4>
                     <p id="vendorTotalItemsLabel" class="text-2xl font-bold font-mono text-purple-400 mt-2">4 Nodes</p>
+                    <div class="flex gap-1 mt-4 h-2 items-end">
+                        <div class="w-full bg-purple-600 h-1/3 rounded"></div>
+                        <div class="w-full bg-purple-500 h-2/3 rounded"></div>
+                        <div class="w-full bg-purple-400 h-full rounded"></div>
+                    </div>
                 </div>
             </div>
 
@@ -121,7 +140,14 @@
                                     <option value="🛸">🛸 Anti-Grav UFO</option>
                                     <option value="💾">💾 Data Matrix Drive</option>
                                     <option value="⚙️">⚙️ Cluster Engine</option>
+                                    <option value="🔥">🔥 Hyper Core Ignite</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="space-y-1">
+                                <label class="text-zinc-400 font-medium">Initial Stock Count</label>
+                                <input type="number" id="vProdStock" required value="10" class="w-full bg-[#111320] border border-zinc-800 focus:border-purple-500 rounded-lg p-2.5 text-white focus:outline-none font-mono transition-all">
                             </div>
                         </div>
                         <div class="space-y-1">
@@ -143,6 +169,7 @@
                                     <tr>
                                         <th class="pb-3 pl-2">Asset ID</th>
                                         <th class="pb-3">Title Name</th>
+                                        <th class="pb-3">Stock Units</th>
                                         <th class="pb-3">Market Valuation</th>
                                         <th class="pb-3 text-right pr-2">Action Node</th>
                                     </tr>
@@ -198,18 +225,58 @@
     </footer>
 
     <script>
-        // Core Global Memory Database
+        // Currency Exchange Rates Database Matrix
+        const CURRENCY_DICTIONARY = {
+            USD: { symbol: "$", rate: 1.0 },
+            PKR: { symbol: "Rs ", rate: 278.50 },
+            INR: { symbol: "₹ ", rate: 83.40 }
+        };
+        let currentCurrencyMode = "USD";
+
+        // Core Global Memory Database Array
         let CYBER_PRODUCT_INDEX = [
-            { id: "XN-1", name: "Xenon Holo-Glass HUD", price: 349.00, desc: "AR glasses overlaying real-time system analytical nodes onto vision fields.", img: "🕶️" },
-            { id: "XN-2", name: "Quantum Core Rig V1", price: 2199.00, desc: "Super-cooled liquid matrix workstation utilizing carbon-fiber casing modules.", img: "🖥️" },
-            { id: "XN-3", name: "Apex Neural Keyboard", price: 185.00, desc: "Low-latency mechanical layout equipped with optical magnetic switches.", img: "⌨️" },
-            { id: "XN-4", name: "Chronos Matrix Wristwatch", price: 420.00, desc: "Tactical titanium shell displaying isolated hardware streams over sync data.", img: "⌚" }
+            { id: "XN-1", name: "Xenon Holo-Glass HUD", price: 349.00, desc: "AR glasses overlaying real-time system analytical nodes onto vision fields.", img: "🕶️", stock: 12 },
+            { id: "XN-2", name: "Quantum Core Rig V1", price: 2199.00, desc: "Super-cooled liquid matrix workstation utilizing carbon-fiber casing modules.", img: "🖥️", stock: 4 },
+            { id: "XN-3", name: "Apex Neural Keyboard", price: 185.00, desc: "Low-latency mechanical layout equipped with optical magnetic switches.", img: "⌨️", stock: 25 },
+            { id: "XN-4", name: "Chronos Matrix Wristwatch", price: 420.00, desc: "Tactical titanium shell displaying isolated hardware streams over sync data.", img: "⌚", stock: 8 }
         ];
 
         let internalCartMemory = {};
         let activeDiscountRatio = 0.00;
         let trackedRevenueSum = 0.00;
         let packedOrdersCount = 0;
+
+        // Custom Dynamic Notification Hub Trigger
+        function triggerXenonNotice(msg, variant='info') {
+            const hub = document.getElementById("xenonNotificationHub");
+            const toast = document.createElement("div");
+            toast.className = `p-3.5 rounded-xl border border-zinc-800 text-xs font-mono font-semibold backdrop-blur-md shadow-2xl transition-all duration-300 transform translate-y-2 opacity-0 flex items-center gap-2 bg-[#0c0e17]/95`;
+            
+            if(variant === 'success') toast.innerHTML = `🟢 <span class="text-emerald-400">${msg}</span>`;
+            else if(variant === 'error') toast.innerHTML = `🔴 <span class="text-rose-400">${msg}</span>`;
+            else toast.innerHTML = `⚡ <span class="text-cyan-400">${msg}</span>`;
+
+            hub.appendChild(toast);
+            setTimeout(() => { toast.classList.remove("translate-y-2", "opacity-0"); }, 50);
+            setTimeout(() => {
+                toast.classList.add("translate-y-[-10px]", "opacity-0");
+                setTimeout(() => { toast.remove(); }, 300);
+            }, 3000);
+        }
+
+        // Price formatting engine relative to currency dictionary state
+        function renderValuation(amountUSD) {
+            const config = CURRENCY_DICTIONARY[currentCurrencyMode];
+            return `${config.symbol}${(amountUSD * config.rate).toFixed(2)}`;
+        }
+
+        function switchGlobalCurrencyEngine() {
+            currentCurrencyMode = document.getElementById("currencySelectorNode").value;
+            compileXenonStorefrontGrid();
+            renderCartInterfaceStream();
+            refreshVendorInventoryTable();
+            triggerXenonNotice(`Currency standard localized to [${currentCurrencyMode}]`);
+        }
 
         // Injects Products into Storefront Grid + Evaluates Search filters
         function compileXenonStorefrontGrid() {
@@ -220,31 +287,35 @@
             let matchingItems = CYBER_PRODUCT_INDEX.filter(p => p.name.toLowerCase().includes(filterKeyword));
 
             if(matchingItems.length === 0) {
-                grid.innerHTML = `<div class="col-span-full border border-dashed border-zinc-800 p-12 text-center rounded-2xl text-xs font-mono text-zinc-500">[SEARCH DEFLATED] No live product signatures align with configuration keywords.</div>`;
+                grid.innerHTML = `<div class="col-span-full border border-dashed border-zinc-800 p-12 text-center rounded-2xl text-xs font-mono text-zinc-500">[SEARCH DEFLATED] No active products align.</div>`;
                 return;
             }
 
             matchingItems.forEach(product => {
+                const outOfStock = product.stock <= 0;
                 grid.innerHTML += `
-                    <div class="bg-[#0e111d] border border-zinc-900 p-6 rounded-2xl flex flex-col justify-between gap-5 card-glow transition-all duration-300 relative group">
+                    <div class="bg-[#0e111d] border border-zinc-900 p-6 rounded-2xl flex flex-col justify-between gap-5 card-glow transition-all duration-300 relative group ${outOfStock ? 'opacity-60' : ''}">
                         <div class="space-y-4">
-                            <div class="w-12 h-12 bg-[#151a2d] border border-zinc-800 rounded-xl flex items-center justify-center text-2xl shadow-inner">${product.img}</div>
+                            <div class="flex justify-between items-start">
+                                <div class="w-12 h-12 bg-[#151a2d] border border-zinc-800 rounded-xl flex items-center justify-center text-2xl shadow-inner">${product.img}</div>
+                                <span class="text-[9px] font-mono px-2 py-0.5 rounded border ${outOfStock ? 'text-rose-400 bg-rose-500/5 border-rose-500/20' : 'text-zinc-500 border-zinc-800'}">Stock: ${product.stock}</span>
+                            </div>
                             <div class="space-y-1">
                                 <h4 class="text-white font-bold text-sm tracking-wide group-hover:text-cyan-400 transition-all">${product.name}</h4>
                                 <p class="text-[11px] text-zinc-500 leading-relaxed">${product.desc}</p>
                             </div>
                         </div>
                         <div class="flex items-center justify-between border-t border-zinc-900/60 pt-4">
-                            <span class="font-mono text-cyan-400 font-bold text-xs">$${product.price.toFixed(2)}</span>
-                            <button onclick="stageItemToCart('${product.id}')" class="bg-[#141829] hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 border border-zinc-800 text-zinc-400 hover:text-black font-extrabold text-[9px] uppercase tracking-wider px-3 py-2 rounded-lg transition-all">
-                                Alloc +
+                            <span class="font-mono text-cyan-400 font-bold text-xs">${renderValuation(product.price)}</span>
+                            <button ${outOfStock ? 'disabled' : ''} onclick="stageItemToCart('${product.id}')" class="bg-[#141829] hover:bg-gradient-to-r hover:from-cyan-500 hover:to-blue-600 border border-zinc-800 text-zinc-400 hover:text-black font-extrabold text-[9px] uppercase tracking-wider px-3 py-2 rounded-lg transition-all disabled:opacity-30 disabled:pointer-events-none">
+                                ${outOfStock ? 'Sold Out' : 'Alloc +'}
                             </button>
                         </div>
                     </div>`;
             });
         }
 
-        // Compiles Vendor Inventory Table Rows (CRUD Visual)
+        // Compiles Vendor Inventory Table Rows
         function refreshVendorInventoryTable() {
             const tableBody = document.getElementById("vendorInventoryTableTarget");
             const totalItemsLabel = document.getElementById("vendorTotalItemsLabel");
@@ -257,7 +328,8 @@
                     <tr class="hover:bg-[#111422]/40 transition-colors font-medium">
                         <td class="py-4 pl-2 font-mono text-[11px] text-zinc-500">${p.id}</td>
                         <td class="py-4 text-white font-semibold flex items-center gap-2"><span>${p.img}</span> ${p.name}</td>
-                        <td class="py-4 font-mono text-cyan-400 font-bold">$${p.price.toFixed(2)}</td>
+                        <td class="py-4 font-mono font-bold ${p.stock < 5 ? 'text-amber-400' : 'text-zinc-400'}">${p.stock} units</td>
+                        <td class="py-4 font-mono text-cyan-400 font-bold">${renderValuation(p.price)}</td>
                         <td class="py-4 text-right pr-2">
                             <button onclick="purgeProductNode('${p.id}')" class="text-rose-500 hover:text-rose-400 font-mono text-[10px] uppercase bg-rose-500/5 hover:bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded">Purge</button>
                         </td>
@@ -265,24 +337,25 @@
             });
         }
 
-        // Add Product Form Controller (Create Feature)
+        // Add Product Form Controller
         function handleVendorFormSubmit(e) {
             e.preventDefault();
             const name = document.getElementById("vProdName").value;
             const price = parseFloat(document.getElementById("vProdPrice").value);
             const img = document.getElementById("vProdImg").value;
             const desc = document.getElementById("vProdDesc").value;
+            const stock = parseInt(document.getElementById("vProdStock").value);
             const generatedId = `XN-${Math.floor(100 + Math.random() * 900)}`;
 
-            CYBER_PRODUCT_INDEX.unshift({ id: generatedId, name, price, desc, img });
+            CYBER_PRODUCT_INDEX.unshift({ id: generatedId, name, price, desc, img, stock });
             
             document.getElementById("xenonVendorForm").reset();
             compileXenonStorefrontGrid();
             refreshVendorInventoryTable();
-            alert(`Product Node successfully linked into catalog sequence! ID: ${generatedId}`);
+            triggerXenonNotice(`Node Broadcast Active: ${name} launched!`, 'success');
         }
 
-        // Delete Product Controller (Delete Feature)
+        // Delete Product Controller
         function purgeProductNode(id) {
             if(confirm("Confirm hard purge mutation command on product payload data slot?")) {
                 CYBER_PRODUCT_INDEX = CYBER_PRODUCT_INDEX.filter(p => p.id !== id);
@@ -292,20 +365,27 @@
                 }
                 compileXenonStorefrontGrid();
                 refreshVendorInventoryTable();
+                triggerXenonNotice(`Data segment cache purged from matrix index.`, 'error');
             }
         }
 
         // Cart Logical Management Core
         function stageItemToCart(id) {
+            const productRef = CYBER_PRODUCT_INDEX.find(p => p.id === id);
+            if (!productRef || productRef.stock <= 0) return;
+
             if (internalCartMemory[id]) {
+                if(internalCartMemory[id].qty >= productRef.stock) {
+                    triggerXenonNotice(`Maximum operational inventory stock depth allocated.`, 'error');
+                    return;
+                }
                 internalCartMemory[id].qty++;
             } else {
-                const targetObj = CYBER_PRODUCT_INDEX.find(p => p.id === id);
-                if(!targetObj) return;
-                internalCartMemory[id] = { ...targetObj, qty: 1 };
+                internalCartMemory[id] = { ...productRef, qty: 1 };
             }
             renderCartInterfaceStream();
             toggleCartDrawer(true);
+            triggerXenonNotice(`${productRef.name} cached into checkout link.`);
         }
 
         function clearCartRowUnit(id) {
@@ -320,11 +400,11 @@
         function applyCartPromoNode() {
             const val = document.getElementById("cartPromoInput").value.toUpperCase().trim();
             if (val === "XENON2026") {
-                activeDiscountRatio = 0.15; // 15% discount
-                alert("Promo security token authorized. Applying 15% valuation reduction.");
+                activeDiscountRatio = 0.15;
+                triggerXenonNotice("Promo cryptographic authorization key active! -15%", 'success');
             } else {
                 activeDiscountRatio = 0.00;
-                alert("Invalid cryptographic authorization key.");
+                triggerXenonNotice("Invalid cryptographic code signature.", 'error');
             }
             renderCartInterfaceStream();
         }
@@ -346,8 +426,8 @@
             if (targetKeys.length === 0) {
                 wrapper.innerHTML = `<div class="text-zinc-600 text-center py-12 font-mono">[CACHE EMPTY]<br>Allocation parameters unassigned.</div>`;
                 globalCounter.innerText = "0";
-                subtotalLabel.innerText = "$0.00";
-                totalLabel.innerText = "$0.00";
+                subtotalLabel.innerText = renderValuation(0);
+                totalLabel.innerText = renderValuation(0);
                 promoRow.classList.add("hidden");
                 return;
             }
@@ -361,10 +441,10 @@
                     <div class="flex items-center justify-between py-3.5 text-zinc-300">
                         <div class="min-w-0 pr-2 space-y-0.5">
                             <p class="font-bold text-white truncate">${activeNode.name}</p>
-                            <span class="text-[10px] text-zinc-500 font-mono">$${activeNode.price.toFixed(2)} x ${activeNode.qty}</span>
+                            <span class="text-[10px] text-zinc-500 font-mono">${renderValuation(activeNode.price)} x ${activeNode.qty}</span>
                         </div>
                         <div class="flex items-center gap-3 shrink-0">
-                            <span class="font-mono font-bold text-cyan-400">$${(activeNode.price * activeNode.qty).toFixed(2)}</span>
+                            <span class="font-mono font-bold text-cyan-400">${renderValuation(activeNode.price * activeNode.qty)}</span>
                             <button onclick="clearCartRowUnit('${activeNode.id}')" class="w-5 h-5 bg-[#141829] border border-zinc-800 text-zinc-500 hover:text-rose-400 rounded flex items-center justify-center font-bold font-mono">-</button>
                         </div>
                     </div>`;
@@ -374,22 +454,31 @@
             let netFinalTotal = grossSum - calculatedDiscount;
 
             globalCounter.innerText = netQuantityUnits;
-            subtotalLabel.innerText = "$" + grossSum.toFixed(2);
+            subtotalLabel.innerText = renderValuation(grossSum);
             
             if(activeDiscountRatio > 0) {
-                discountLabel.innerText = "-$" + calculatedDiscount.toFixed(2);
+                discountLabel.innerText = "-" + renderValuation(calculatedDiscount);
                 promoRow.classList.remove("hidden");
             } else {
                 promoRow.classList.add("hidden");
             }
 
-            totalLabel.innerText = "$" + netFinalTotal.toFixed(2);
+            totalLabel.innerText = renderValuation(netFinalTotal);
         }
 
-        // Simulated Checkout Pipeline that hooks analytics variables
+        // Simulated Checkout Pipeline that hooks analytics graphs variables
         function triggerCheckoutOperation() {
             const targetKeys = Object.keys(internalCartMemory);
             if(targetKeys.length === 0) return;
+
+            // Deduct Stocks Logic
+            targetKeys.forEach(key => {
+                const cartItem = internalCartMemory[key];
+                const liveProduct = CYBER_PRODUCT_INDEX.find(p => p.id === key);
+                if(liveProduct) {
+                    liveProduct.stock = Math.max(0, liveProduct.stock - cartItem.qty);
+                }
+            });
 
             let grossSum = 0;
             targetKeys.forEach(key => {
@@ -402,8 +491,13 @@
             trackedRevenueSum += netFinal;
             packedOrdersCount++;
 
-            document.getElementById("vendorRevenueLabel").innerText = "$" + trackedRevenueSum.toFixed(2);
-            document.getElementById("vendorOrdersLabel").innerText = `${packedOrdersCount} Units`;
+            // Update Analytical Graphic Visual Indicators
+            document.getElementById("vendorRevenueLabel").innerText = renderValuation(trackedRevenueSum);
+            document.getElementById("vendorOrdersLabel").innerText = `${packedOrdersCount} Nodes`;
+            
+            // Adjust progress sliders graphically
+            document.getElementById("revProgressNode").style.width = `${Math.min(100, (trackedRevenueSum / 5000) * 100)}%`;
+            document.getElementById("ordProgressNode").style.width = `${Math.min(100, (packedOrdersCount / 10) * 100)}%`;
 
             // Flush cart states
             internalCartMemory = {};
@@ -411,9 +505,10 @@
             document.getElementById("cartPromoInput").value = "";
             
             renderCartInterfaceStream();
+            compileXenonStorefrontGrid();
             toggleCartDrawer(false);
 
-            alert(`🚀 Node Invoice Dispatched! Checkout sequence finished for $${netFinal.toFixed(2)}. Statistics synced into Vendor Terminal.`);
+            triggerXenonNotice(`Invoice complete. Data synchronized into Vendor Terminal.`, 'success');
         }
 
         function toggleCartDrawer(openState) {
