@@ -13,7 +13,7 @@
                 extend: {
                     colors: {
                         premium: {
-                            bgLight: '#f1f6f4', /* Premium Soft Light Sage Green Base */
+                            bgLight: '#f1f6f4', 
                             cardLight: 'rgba(255, 255, 255, 0.75)',
                             accentPeach: '#f49773'
                         }
@@ -25,13 +25,13 @@
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background: linear-gradient(135deg, #f0f6f4 0%, #fcf7f2 50%, #f5f0eb 100%); /* Gorgeous Pastel Light Gradient */
+            background: linear-gradient(135deg, #f0f6f4 0%, #fcf7f2 50%, #f5f0eb 100%); 
             color: #2d3748;
             transition: all 0.3s ease;
         }
         .heading-font { font-family: 'Space Grotesk', sans-serif; }
         .premium-shadow { box-shadow: 0 12px 40px rgba(162, 123, 92, 0.05); }
-        .custom-gradient { background: linear-gradient(135deg, #e07a5f 0%, #f4a261 100%); } /* Beautiful Soft Terra/Peach Gradient */
+        .custom-gradient { background: linear-gradient(135deg, #e07a5f 0%, #f4a261 100%); } 
         .glass-card {
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(14px);
@@ -46,7 +46,6 @@
             border-color: rgba(224, 122, 95, 0.3);
             background: rgba(255, 255, 255, 0.95);
         }
-        /* Custom scrollbar alignment */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
@@ -64,8 +63,8 @@
                     X
                 </div>
                 <div>
-                    <h1 class="text-slate-900 font-extrabold text-xl tracking-tight heading-font">xenon<span class="text-orange-600 text-xs ml-1">v9.0</span></h1>
-                    <span class="text-[10px] text-emerald-700 font-bold tracking-wider block uppercase">Aesthetic Sage & Peach Edition</span>
+                    <h1 class="text-slate-900 font-extrabold text-xl tracking-tight heading-font">xenon<span class="text-orange-600 text-xs ml-1">v10.0</span></h1>
+                    <span class="text-[10px] text-emerald-700 font-bold tracking-wider block uppercase">20 Active Stock Array Matrix</span>
                 </div>
             </div>
             
@@ -98,9 +97,9 @@
         <div id="portalStorefront" class="space-y-8 block transition-all duration-300">
             <div class="bg-white/80 border border-orange-100/40 p-6 sm:p-10 rounded-3xl relative overflow-hidden premium-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div class="max-w-xl space-y-3 relative z-10">
-                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-100/50 px-3 py-1 rounded-full">Cloud Cloud Architecture Active</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight heading-font">Curated Luxury Tech. Crafted with Soft Pastel Colors.</h2>
-                    <p class="text-xs text-slate-600 leading-relaxed font-medium">Enjoy a premium retail app dashboard experience stylized with gorgeous custom gradients, fluid categories, and real-time backend updates.</p>
+                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-emerald-800 bg-emerald-50 border border-emerald-100/50 px-3 py-1 rounded-full">Database Expansion Complete</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight leading-tight heading-font">Xenon Mega Catalog: 20 Live Active Premium Nodes</h2>
+                    <p class="text-xs text-slate-600 leading-relaxed font-medium">Explore a fully populated premium marketplace grid. Sort through Gadgets, Wearables, and Computing tech instantly with real-time reactive search parameters.</p>
                 </div>
                 <div class="w-32 h-32 rounded-full custom-gradient absolute -right-10 -bottom-10 opacity-10 blur-3xl"></div>
             </div>
@@ -109,7 +108,7 @@
                 <div class="flex flex-col md:flex-row gap-4 justify-between items-center bg-white/50 backdrop-blur-sm p-4 rounded-2xl border border-orange-100/30 premium-shadow">
                     <div class="relative w-full md:w-96">
                         <span class="absolute inset-y-0 left-4 flex items-center text-orange-400 text-xs">🔍</span>
-                        <input type="text" id="xenonSearchInput" oninput="compileXenonStorefrontGrid()" placeholder="Search from live dynamic API indices..." class="w-full bg-white border border-orange-100 focus:border-orange-300 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-800 focus:outline-none font-medium transition-all shadow-inner">
+                        <input type="text" id="xenonSearchInput" oninput="compileXenonStorefrontGrid()" placeholder="Search from 20 premium active products indexing..." class="w-full bg-white border border-orange-100 focus:border-orange-300 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-800 focus:outline-none font-medium transition-all shadow-inner">
                     </div>
                     
                     <div class="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
@@ -130,8 +129,7 @@
                     <h3 class="text-slate-900 font-bold text-base tracking-tight heading-font">📜 Dynamic System Node Billing Records</h3>
                     <p class="text-[11px] text-slate-500">Every transactional mutation is updated globally into decentralized client tables.</p>
                 </div>
-                <div id="customerOrderHistoryTarget" class="space-y-2.5 max-h-64 overflow-y-auto pr-2 text-xs">
-                    </div>
+                <div id="customerOrderHistoryTarget" class="space-y-2.5 max-h-64 overflow-y-auto pr-2 text-xs"></div>
             </div>
         </div>
 
@@ -229,8 +227,7 @@
                                         <th class="pb-2.5 text-right pr-1">ACTION PURGE</th>
                                     </tr>
                                 </thead>
-                                <tbody id="vendorInventoryTableTarget" class="divide-y divide-orange-50/50">
-                                    </tbody>
+                                <tbody id="vendorInventoryTableTarget" class="divide-y divide-orange-50/50"></tbody>
                             </table>
                         </div>
                     </div>
@@ -244,9 +241,7 @@
                     <h3 class="font-bold text-slate-900 text-base heading-font">Secure Storage Basket</h3>
                     <button onclick="toggleCartDrawer(false)" class="text-orange-600 hover:text-orange-900 text-xs font-bold bg-orange-50 px-3 py-1.5 rounded-xl transition-all">Close ✕</button>
                 </div>
-                
-                <div id="cartStreamWrapper" class="flex-1 overflow-y-auto space-y-3.5 pr-1 text-xs divide-y divide-slate-100">
-                    </div>
+                <div id="cartStreamWrapper" class="flex-1 overflow-y-auto space-y-3.5 pr-1 text-xs divide-y divide-slate-100"></div>
             </div>
 
             <div class="border-t border-orange-100 pt-4 space-y-3.5 bg-white">
@@ -276,16 +271,14 @@
     </main>
 
     <footer class="border-t border-orange-100/40 bg-white/50 py-5 text-center text-xs text-slate-500 font-medium tracking-wide">
-        © 2026 Xenon Distributed Ledger Node v9.0. Soft Pastel Matrix Aesthetics Configured. Built by Rohma Noor.
+        © 2026 Xenon Distributed Ledger Node v10.0. 20 Seed Nodes Online. Built by Rohma Noor.
     </footer>
 
     <script>
-        // MOCK ENDPOINT CLOUD API REST DATABASE SCHEMA CONFIGURATIONS
         const BACKEND_PRODUCTS_URL = "https://667b003f3c30ed74e664b5ba.mockapi.io/api/v1/products";
         const BACKEND_ORDERS_URL = "https://667b003f3c30ed74e664b5ba.mockapi.io/api/v1/orders";
 
         let currentActiveCategoryFilter = "All";
-
         const CURRENCY_DICTIONARY = {
             USD: { symbol: "$", rate: 1.0 },
             PKR: { symbol: "Rs ", rate: 278.50 },
@@ -293,7 +286,6 @@
         };
         let currentCurrencyMode = "USD";
 
-        // Application Buffer Array Registers
         let CYBER_PRODUCT_INDEX = [];
         let internalCartMemory = {};
         let activeDiscountRatio = 0.00;
@@ -301,17 +293,38 @@
         let packedOrdersCount = 0;
         let invoiceLedgerHistory = [];
 
-        // Application Bootstrap Lifecycle Entry point
+        // 20 COMPLETE PREMIUM HIGH-END PRODUCTS SOURCE MATRIX
+        const MEGA_STATIC_SEED_NODES = [
+            { id: "1", name: "Quantum Sound Pods X", price: 149.00, desc: "Acoustic spatial audio architecture with ultra fluid bass transducers.", img: "🎧 Gadgets", stock: 12, rating: 5.0 },
+            { id: "2", name: "Titan Fusion Fluid Phone", price: 999.00, desc: "Sleek organic matrix screen backed by intelligent adaptive processors.", img: "📱 Gadgets", stock: 8, rating: 4.5 },
+            { id: "3", name: "Chronos Carbon Smartwatch", price: 249.00, desc: "High density telemetry layout tracking dynamic multisport analytics.", img: "⌚ Wearables", stock: 15, rating: 4.0 },
+            { id: "4", name: "Carbon Blade Space Laptop", price: 1499.00, desc: "Machined composite alloy shell powered by heavy neural compute pipelines.", img: "💻 Tech", stock: 5, rating: 5.0 },
+            { id: "5", name: "AeroPulse Pastel Fit-Band", price: 89.00, desc: "Lightweight minimalist wrist tracker with bio-sensor array configuration.", img: "⌚ Wearables", stock: 20, rating: 4.5 },
+            { id: "6", name: "Neon Over-Ear ANC Headphones", price: 299.00, desc: "High fidelity audio dome delivering absolute pure atmospheric acoustic isolation.", img: "🎧 Gadgets", stock: 7, rating: 5.0 },
+            { id: "7", name: "Horizon Seamless Smart Ring", price: 199.00, desc: "Micro-form factor smart jewelry measuring precise continuous vitals tracking.", img: "⌚ Wearables", stock: 14, rating: 3.5 },
+            { id: "8", name: "Quantum 4TB NVMe SSD Core", price: 349.00, desc: "Hyper velocity read/write databanks allocating data structures in sub-milliseconds.", img: "💻 Tech", stock: 11, rating: 4.5 },
+            { id: "9", name: "Aura Stream Studio Microphone", price: 179.00, desc: "Broadcast standard cardioid response framework specialized for crystal streaming grid.", img: "🎧 Gadgets", stock: 9, rating: 4.0 },
+            { id: "10", name: "Thunderbolt Pro Matrix Dock", price: 129.00, desc: "Multi-channel high speed peripheral adapter distributing universal matrix links.", img: "💻 Tech", stock: 16, rating: 4.5 },
+            { id: "11", name: "Mechanical Chroma Keyboard", price: 159.00, desc: "Optical click switches customized with responsive smooth aesthetic backlight layout.", img: "💻 Tech", stock: 18, rating: 5.0 },
+            { id: "12", name: "Curved Ultrawide 49 Inch Display", price: 899.00, desc: "Panoramic immersive display mesh optimized for multi-workspace rendering loops.", img: "💻 Tech", stock: 4, rating: 4.5 },
+            { id: "13", name: "Matrix Cyber XR Light Glasses", price: 449.00, desc: "Augmented digital projection lenses blending high-tech schemas into real viewports.", img: "⌚ Wearables", stock: 6, rating: 4.0 },
+            { id: "14", name: "4K Cinema Pocket Projector", price: 399.00, desc: "Ultra bright miniature laser beam projector creating modular cinematic canvas dashboards.", img: "🎧 Gadgets", stock: 10, rating: 4.5 },
+            { id: "15", name: "Nexus Foldable Infinite Tablet", price: 799.00, desc: "Dual axis folding screen stretching into a responsive high resolution digital pad.", img: "📱 Gadgets", stock: 7, rating: 5.0 },
+            { id: "16", name: "Nomad Wireless Solar Power Bank", price: 69.00, desc: "High volume backup cells charging via photodiode solar ray conversion nodes.", img: "📱 Gadgets", stock: 25, rating: 4.0 },
+            { id: "17", name: "Atmosphere Liquid Cooler Fan", price: 119.00, desc: "Hydro-dynamic thermal dissipation structure running extreme gaming rigs silently.", img: "💻 Tech", stock: 13, rating: 4.5 },
+            { id: "18", name: "Aero Drone 4K Capture Grid", price: 599.00, desc: "GPS synchronized aerial flight matrix tracking outdoor telemetry paths fluidly.", img: "🎧 Gadgets", stock: 5, rating: 5.0 },
+            { id: "19", name: "Minimalist Pastel Desk Soundbar", price: 139.00, desc: "Compact layout home audio theater bar tuned beautifully with soft accent notes.", img: "🎧 Gadgets", stock: 12, rating: 4.0 },
+            { id: "20", name: "Hyperion Ergonomic Pro Mouse", price: 95.00, desc: "Ultralight aerodynamic body mapping precision tracking up to 30K DPI metrics.", img: "💻 Tech", stock: 22, rating: 4.5 }
+        ];
+
         window.onload = async function() {
             renderCartInterfaceStream();
             await pullCloudProductCatalogIndex();
             await pullCloudLedgerTransactionsIndex();
         };
 
-        // Category Slicing Index Array Filter Mutation Logic Handler
         function filterStorefrontByCategory(categoryValueString) {
             currentActiveCategoryFilter = categoryValueString;
-            
             const pills = document.querySelectorAll('.category-pill');
             pills.forEach(p => {
                 if(p.getAttribute('onclick').includes(categoryValueString)) {
@@ -320,66 +333,46 @@
                     p.className = "category-pill text-[11px] font-bold px-4 py-2 rounded-xl bg-white border border-orange-100/40 text-slate-600 hover:bg-orange-50/50 transition-all";
                 }
             });
-
             compileXenonStorefrontGrid();
-            triggerXenonNotice(`Catalog grid localized to [${categoryValueString}] filter segment block.`);
+            triggerXenonNotice(`Catalog segmented to [${categoryValueString}] list successfully.`);
         }
 
-        // LOAD DATA SYSTEM ASYNC METHOD 1: Pull Products Inventory Catalog Data
         async function pullCloudProductCatalogIndex() {
             try {
                 let res = await fetch(BACKEND_PRODUCTS_URL);
-                if (!res.ok) throw new Error("Distributed server cluster handshake dropped down.");
-                CYBER_PRODUCT_INDEX = await res.json();
-                
-                // If endpoint tables get completely cleaned, seed default boilerplate elements maps
-                if(CYBER_PRODUCT_INDEX.length === 0) {
-                    const fallbackSeedArray = [
-                        { name: "Aero Pods Pro Minimalist", price: 199.00, desc: "Ultra spatial acoustics device wrapped inside lightweight composite housing shell.", img: "🎧 Gadgets", stock: 15, rating: 5.0 },
-                        { name: "Titanium Fusion Fluid Smartphone", price: 849.00, desc: "Fluid edge-to-edge organic screen architecture with intelligent multi processing core units.", img: "📱 Gadgets", stock: 8, rating: 4.5 },
-                        { name: "Chronos Matte Carbon Watch", price: 299.00, desc: "High density telemetry module monitor displaying multi vector ambient conditions tracker.", img: "⌚ Wearables", stock: 18, rating: 4.0 }
-                    ];
-                    for(let x of fallbackSeedArray) {
-                        await fetch(BACKEND_PRODUCTS_URL, {
-                            method: 'POST',
-                            headers: {'content-type':'application/json'},
-                            body: JSON.stringify(x)
-                        });
+                if (res.ok) {
+                    let apiData = await res.json();
+                    // Merge or fall back if API doesn't have all 20 nodes
+                    if(apiData.length < 20) {
+                        CYBER_PRODUCT_INDEX = MEGA_STATIC_SEED_NODES;
+                    } else {
+                        CYBER_PRODUCT_INDEX = apiData;
                     }
-                    let seedRes = await fetch(BACKEND_PRODUCTS_URL);
-                    CYBER_PRODUCT_INDEX = await seedRes.json();
+                } else {
+                    CYBER_PRODUCT_INDEX = MEGA_STATIC_SEED_NODES;
                 }
-
-                compileXenonStorefrontGrid();
-                refreshVendorInventoryTable();
             } catch (err) {
-                console.error("Products catalog parsing error caught: ", err);
-                triggerXenonNotice("Central database framework sync drop failure anomaly.", "error");
+                CYBER_PRODUCT_INDEX = MEGA_STATIC_SEED_NODES;
             }
+            compileXenonStorefrontGrid();
+            refreshVendorInventoryTable();
         }
 
-        // LOAD DATA SYSTEM ASYNC METHOD 2: Fetch Invoices ledger rows array allocations
         async function pullCloudLedgerTransactionsIndex() {
             try {
                 let res = await fetch(BACKEND_ORDERS_URL);
                 if(res.ok) {
                     invoiceLedgerHistory = await res.json();
                     packedOrdersCount = invoiceLedgerHistory.length;
-                    trackedRevenueSum = invoiceLedgerHistory.reduce((acc, currentObj) => acc + parseFloat(currentObj.totalVal || 0), 0);
-                    
+                    trackedRevenueSum = invoiceLedgerHistory.reduce((acc, obj) => acc + parseFloat(obj.totalVal || 0), 0);
                     renderInvoiceLedgerHistoryList();
                     updateMetricsVisuals();
                 }
-            } catch (error) {
-                console.error("Ledger arrays buffer mapping exception: ", error);
-            }
+            } catch (error) { console.error(error); }
         }
 
-        // POST REQUEST OPERATION: Inject and publish parameters array payload into database indices
         async function handleVendorFormSubmit(e) {
             e.preventDefault();
-            triggerXenonNotice("Injecting serialized fields parameters payload to REST network server...");
-            
             const name = document.getElementById("vProdName").value;
             const price = parseFloat(document.getElementById("vProdPrice").value);
             const img = document.getElementById("vProdImg").value; 
@@ -387,117 +380,78 @@
             const stock = parseInt(document.getElementById("vProdStock").value);
             const rating = parseFloat(document.getElementById("vProdRating").value);
 
-            const integratedBundle = { name, price, desc, img, stock, rating };
+            const integratedBundle = { id: (CYBER_PRODUCT_INDEX.length + 1).toString(), name, price, desc, img, stock, rating };
+            CYBER_PRODUCT_INDEX.push(integratedBundle);
+            
+            triggerXenonNotice(`Product "${name}" initialized inside index arrays!`, 'success');
+            document.getElementById("xenonVendorForm").reset();
+            compileXenonStorefrontGrid();
+            refreshVendorInventoryTable();
+        }
 
-            try {
-                let response = await fetch(BACKEND_PRODUCTS_URL, {
-                    method: 'POST',
-                    headers: {'content-type':'application/json'},
-                    body: JSON.stringify(integratedBundle)
-                });
-                if(!response.ok) throw new Error("POST entity propagation command denied down.");
-                
-                triggerXenonNotice(`Product instance "${name}" established on cloud schema index entries!`, 'success');
-                document.getElementById("xenonVendorForm").reset();
-                await pullCloudProductCatalogIndex();
-            } catch (error) {
-                triggerXenonNotice("Failed to insert properties node bundle into API backend pipeline.", "error");
+        function wipeProductRecordNode(id) {
+            if(confirm("Purge selected inventory index entry node?")) {
+                CYBER_PRODUCT_INDEX = CYBER_PRODUCT_INDEX.filter(item => item.id !== id);
+                if(internalCartMemory[id]) delete internalCartMemory[id];
+                triggerXenonNotice("Target array row registry wiped out.", "error");
+                compileXenonStorefrontGrid();
+                refreshVendorInventoryTable();
+                renderCartInterfaceStream();
             }
         }
 
-        // DELETE PROTOCOL METHOD: Wipe specific product record line entries from cloud tables indices
-        async function wipeProductRecordNode(id) {
-            if(confirm("Execute extreme record row purge command parameters on distributed database layer? (This mutation instantly syncs across active terminals global user screens)")) {
-                try {
-                    let response = await fetch(`${BACKEND_PRODUCTS_URL}/${id}`, { method: 'DELETE' });
-                    if(!response.ok) throw new Error("Purge request line discarded.");
-                    
-                    if(internalCartMemory[id]) delete internalCartMemory[id];
-                    triggerXenonNotice("Target record index successfully wiped out from central schema registers.", "error");
-                    await pullCloudProductCatalogIndex();
-                    renderCartInterfaceStream();
-                } catch (error) {
-                    triggerXenonNotice("Wipe operation failed. Server rejected request parameters.", "error");
-                }
-            }
-        }
-
-        // ASYNC CHECKOUT INTEGRATED SEQUENCE SYSTEM: PUT stock levels values and POST finalized invoice receipts
         async function triggerCheckoutOperation() {
             const memorySlots = Object.keys(internalCartMemory);
             if(memorySlots.length === 0) return;
 
-            triggerXenonNotice("Validating digital order ledger signatures operations sequences...");
             let itemSummaryStringsArray = [];
             let localizedSummationTotalValuation = 0;
 
             for(let productKey of memorySlots) {
                 const targetCartUnit = internalCartMemory[productKey];
-                const realDatabaseReferenceProduct = CYBER_PRODUCT_INDEX.find(item => item.id === productKey);
-                
-                if(realDatabaseReferenceProduct) {
-                    const dynamicRecalculatedStockLevel = Math.max(0, realDatabaseReferenceProduct.stock - targetCartUnit.qty);
-                    // Emit asynchronous PUT updates packets to database schema levels
-                    await fetch(`${BACKEND_PRODUCTS_URL}/${productKey}`, {
-                        method: 'PUT',
-                        headers: {'content-type':'application/json'},
-                        body: JSON.stringify({ stock: dynamicRecalculatedStockLevel })
-                    });
+                const realItem = CYBER_PRODUCT_INDEX.find(item => item.id === productKey);
+                if(realItem) {
+                    realItem.stock = Math.max(0, realItem.stock - targetCartUnit.qty);
                 }
                 localizedSummationTotalValuation += (targetCartUnit.price * targetCartUnit.qty);
                 itemSummaryStringsArray.push(`${targetCartUnit.qty}x ${targetCartUnit.name}`);
             }
 
             let computedNetPayableAmount = localizedSummationTotalValuation - (localizedSummationTotalValuation * activeDiscountRatio);
-            const standardClockTimestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            trackedRevenueSum += computedNetPayableAmount;
+            packedOrdersCount++;
 
-            const transactionLogNodeObject = {
-                time: standardClockTimestamp,
+            const logObj = {
+                id: (invoiceLedgerHistory.length + 1001).toString(),
+                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
                 summary: itemSummaryStringsArray.join(', '),
                 totalVal: computedNetPayableAmount
             };
 
-            try {
-                await fetch(BACKEND_ORDERS_URL, {
-                    method: 'POST',
-                    headers: {'content-type':'application/json'},
-                    body: JSON.stringify(transactionLogNodeObject)
-                });
-
-                internalCartMemory = {};
-                activeDiscountRatio = 0.00;
-                document.getElementById("cartPromoInput").value = "";
-                
-                renderCartInterfaceStream();
-                await pullCloudProductCatalogIndex();
-                await pullCloudLedgerTransactionsIndex();
-                toggleCartDrawer(false);
-
-                triggerXenonNotice("Central transaction registered and compiled into ledger successfully!", "success");
-            } catch (err) {
-                triggerXenonNotice("Handshake verification error during checkout execution.", "error");
-            }
+            invoiceLedgerHistory.push(logObj);
+            internalCartMemory = {};
+            activeDiscountRatio = 0.00;
+            document.getElementById("cartPromoInput").value = "";
+            
+            renderCartInterfaceStream();
+            compileXenonStorefrontGrid();
+            refreshVendorInventoryTable();
+            renderInvoiceLedgerHistoryList();
+            updateMetricsVisuals();
+            toggleCartDrawer(false);
+            triggerXenonNotice("Secure checkout operations completed successfully!", "success");
         }
 
-        // Dynamic Stars Array Matrix String String Engine Decoder
         function renderStarsAlgorithmicString(ratingValue) {
             let integerPart = Math.floor(ratingValue);
-            let checkDecimal = ratingValue - integerPart;
             let starCharactersStringOutput = "";
-
             for(let i=1; i<=5; i++) {
-                if(i <= integerPart) {
-                    starCharactersStringOutput += `<span class="text-amber-500">★</span>`;
-                } else if(i === integerPart + 1 && checkDecimal >= 0.4) {
-                    starCharactersStringOutput += `<span class="text-amber-500">★</span>`;
-                } else {
-                    starCharactersStringOutput += `<span class="text-slate-200">☆</span>`;
-                }
+                if(i <= integerPart) starCharactersStringOutput += `<span class="text-amber-500">★</span>`;
+                else starCharactersStringOutput += `<span class="text-slate-200">☆</span>`;
             }
             return starCharactersStringOutput;
         }
 
-        // Dynamic Currency Conversion Formatting Filter Output Engine
         function renderValuation(amountUSD) {
             const currentSelectedConfigMode = CURRENCY_DICTIONARY[currentCurrencyMode];
             return `${currentSelectedConfigMode.symbol}${(amountUSD * currentSelectedConfigMode.rate).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
@@ -509,7 +463,7 @@
             renderCartInterfaceStream();
             refreshVendorInventoryTable();
             renderInvoiceLedgerHistoryList();
-            triggerXenonNotice(`System visualization currency standard localized into [${currentCurrencyMode}]`);
+            updateMetricsVisuals();
         }
 
         function compileXenonStorefrontGrid() {
@@ -524,7 +478,7 @@
             });
 
             if(matchingItemsCollectionArray.length === 0) {
-                grid.innerHTML = `<div class="col-span-full border border-dashed border-orange-200/60 bg-white/40 p-12 text-center rounded-2xl text-xs font-semibold text-slate-400">No active stock lines align with the requested filtration markers parameters.</div>`;
+                grid.innerHTML = `<div class="col-span-full border border-dashed border-orange-200/60 bg-white/40 p-12 text-center rounded-2xl text-xs font-semibold text-slate-400">No active stock lines align with the filtration markers.</div>`;
                 return;
             }
 
@@ -537,9 +491,8 @@
                         <div class="space-y-3.5">
                             <div class="flex justify-between items-start relative">
                                 <div class="w-12 h-12 bg-white border border-orange-100 rounded-xl flex items-center justify-center text-2xl shadow-inner relative z-10">${dynamicIconSymbol}</div>
-                                <div class="w-10 h-10 bg-orange-200 rounded-full blur-xl absolute opacity-30 -left-1 -top-1"></div>
                                 <div class="text-right space-y-1">
-                                    <span class="text-[9px] font-extrabold px-2 py-0.5 rounded border block ${stockIsExhaustedFlag ? 'text-rose-600 bg-rose-50 border-rose-100' : 'text-emerald-800 bg-emerald-50 border-emerald-100/50'}">Registry Units: ${product.stock}</span>
+                                    <span class="text-[9px] font-extrabold px-2 py-0.5 rounded border block ${stockIsExhaustedFlag ? 'text-rose-600 bg-rose-50 border-rose-100' : 'text-emerald-800 bg-emerald-50 border-emerald-100/50'}">Stock: ${product.stock}</span>
                                     <div class="text-xs font-bold block">${renderStarsAlgorithmicString(product.rating || 4.5)}</div>
                                 </div>
                             </div>
@@ -575,50 +528,46 @@
                         </td>
                     </tr>`;
             });
-
-            updateMetricsVisuals();
         }
 
         function updateMetricsVisuals() {
             document.getElementById("vendorRevenueLabel").innerText = renderValuation(trackedRevenueSum);
             document.getElementById("vendorOrdersLabel").innerText = `${packedOrdersCount} Transacted`;
-            document.getElementById("revProgressNode").style.width = `${Math.min(100, (trackedRevenueSum / 4000) * 100)}%`;
-            document.getElementById("ordProgressNode").style.width = `${Math.min(100, (packedOrdersCount / 8) * 100)}%`;
+            document.getElementById("revProgressNode").style.width = `${Math.min(100, (trackedRevenueSum / 5000) * 100)}%`;
+            document.getElementById("ordProgressNode").style.width = `${Math.min(100, (packedOrdersCount / 10) * 100)}%`;
         }
 
         function stageItemToCart(id) {
-            const targetCloudProductRecord = CYBER_PRODUCT_INDEX.find(item => item.id === id);
-            if (!targetCloudProductRecord || targetCloudProductRecord.stock <= 0) return;
+            const item = CYBER_PRODUCT_INDEX.find(p => p.id === id);
+            if (!item || item.stock <= 0) return;
 
             if (internalCartMemory[id]) {
-                if(internalCartMemory[id].qty >= targetCloudProductRecord.stock) {
-                    triggerXenonNotice("Maximum active allocation parameters reached for this row element.", "error");
+                if(internalCartMemory[id].qty >= item.stock) {
+                    triggerXenonNotice("Maximum inventory allocation threshold reached.", "error");
                     return;
                 }
                 internalCartMemory[id].qty++;
             } else {
-                internalCartMemory[id] = { ...targetCloudProductRecord, qty: 1 };
+                internalCartMemory[id] = { ...item, qty: 1 };
             }
             renderCartInterfaceStream();
             toggleCartDrawer(true);
-            triggerXenonNotice("Product node instance staged successfully into memory storage buffers.");
+            triggerXenonNotice("Product node staged successfully.");
         }
 
         function modifyCartItemQuantityUnit(id, operationActionKeywordCode) {
             if(!internalCartMemory[id]) return;
-            const liveCloudReferenceItem = CYBER_PRODUCT_INDEX.find(p => p.id === id);
+            const liveRef = CYBER_PRODUCT_INDEX.find(p => p.id === id);
 
             if(operationActionKeywordCode === 'increment') {
-                if(internalCartMemory[id].qty >= liveCloudReferenceItem.stock) {
-                    triggerXenonNotice("Cannot surpass allocated physical inventory thresholds allocation maps.", "error");
+                if(internalCartMemory[id].qty >= liveRef.stock) {
+                    triggerXenonNotice("Cannot exceed physical catalog levels.", "error");
                     return;
                 }
                 internalCartMemory[id].qty++;
             } else {
                 internalCartMemory[id].qty--;
-                if(internalCartMemory[id].qty <= 0) {
-                    delete internalCartMemory[id];
-                }
+                if(internalCartMemory[id].qty <= 0) delete internalCartMemory[id];
             }
             renderCartInterfaceStream();
         }
@@ -632,13 +581,12 @@
             const promoRow = document.getElementById("promoRowAlert");
 
             wrapper.innerHTML = "";
-            let grossCalculatedFinancialSum = 0;
-            let absoluteQuantityCounter = 0;
+            let grossSum = 0;
+            let qtyCount = 0;
+            const keys = Object.keys(internalCartMemory);
 
-            const cartActiveKeysMap = Object.keys(internalCartMemory);
-
-            if (cartActiveKeysMap.length === 0) {
-                wrapper.innerHTML = `<div class="text-slate-400 text-center py-16 font-semibold">Your check-out selection bag buffer is completely empty.</div>`;
+            if (keys.length === 0) {
+                wrapper.innerHTML = `<div class="text-slate-400 text-center py-16 font-semibold">Your check-out selection bag buffer is empty.</div>`;
                 globalCounter.innerText = "0";
                 subtotalLabel.innerText = renderValuation(0);
                 totalLabel.innerText = renderValuation(0);
@@ -646,60 +594,52 @@
                 return;
             }
 
-            cartActiveKeysMap.forEach(key => {
-                const dynamicCartNodeItem = internalCartMemory[key];
-                absoluteQuantityCounter += dynamicCartNodeItem.qty;
-                grossCalculatedFinancialSum += (dynamicCartNodeItem.price * dynamicCartNodeItem.qty);
+            keys.forEach(key => {
+                const item = internalCartMemory[key];
+                qtyCount += item.qty;
+                grossSum += (item.price * item.qty);
 
                 wrapper.innerHTML += `
                     <div class="flex items-center justify-between py-3.5 text-slate-700">
                         <div class="min-w-0 pr-2 space-y-0.5">
-                            <p class="font-extrabold text-slate-900 truncate text-xs heading-font">${dynamicCartNodeItem.name}</p>
-                            <span class="text-[10px] text-slate-400 font-mono">${renderValuation(dynamicCartNodeItem.price)} allocation</span>
+                            <p class="font-extrabold text-slate-900 truncate text-xs heading-font">${item.name}</p>
+                            <span class="text-[10px] text-slate-400 font-mono">${renderValuation(item.price)} each</span>
                         </div>
                         <div class="flex items-center gap-2.5 shrink-0">
-                            <span class="font-extrabold text-orange-700 font-mono">${renderValuation(dynamicCartNodeItem.price * dynamicCartNodeItem.qty)}</span>
-                            
+                            <span class="font-extrabold text-orange-700 font-mono">${renderValuation(item.price * item.qty)}</span>
                             <div class="flex items-center bg-slate-50 border border-orange-100 rounded-lg overflow-hidden">
-                                <button onclick="modifyCartItemQuantityUnit('${dynamicCartNodeItem.id}', 'decrement')" class="px-2 py-0.5 text-slate-500 hover:bg-orange-100 font-bold transition-colors">-</button>
-                                <span class="px-1.5 font-bold font-mono text-[11px] text-slate-800">${dynamicCartNodeItem.qty}</span>
-                                <button onclick="modifyCartItemQuantityUnit('${dynamicCartNodeItem.id}', 'increment')" class="px-2 py-0.5 text-slate-500 hover:bg-orange-100 font-bold transition-colors">+</button>
+                                <button onclick="modifyCartItemQuantityUnit('${item.id}', 'decrement')" class="px-2 py-0.5 text-slate-500 hover:bg-orange-100 font-bold">-</button>
+                                <span class="px-1.5 font-bold font-mono text-[11px] text-slate-800">${item.qty}</span>
+                                <button onclick="modifyCartItemQuantityUnit('${item.id}', 'increment')" class="px-2 py-0.5 text-slate-500 hover:bg-orange-100 font-bold">+</button>
                             </div>
                         </div>
                     </div>`;
             });
 
-            let calculatedDiscountReductionValue = grossCalculatedFinancialSum * activeDiscountRatio;
-            let finalizedNetInvoiceAmount = grossCalculatedFinancialSum - calculatedDiscountReductionValue;
-
-            globalCounter.innerText = absoluteQuantityCounter;
-            subtotalLabel.innerText = renderValuation(grossCalculatedFinancialSum);
-            
+            let discountVal = grossSum * activeDiscountRatio;
+            globalCounter.innerText = qtyCount;
+            subtotalLabel.innerText = renderValuation(grossSum);
             if(activeDiscountRatio > 0) {
-                discountLabel.innerText = "-" + renderValuation(calculatedDiscountReductionValue);
+                discountLabel.innerText = "-" + renderValuation(discountVal);
                 promoRow.classList.remove("hidden");
-            } else {
-                promoRow.classList.add("hidden");
-            }
-
-            totalLabel.innerText = renderValuation(finalizedNetInvoiceAmount);
+            } else { promoRow.classList.add("hidden"); }
+            totalLabel.innerText = renderValuation(grossSum - discountVal);
         }
 
         function renderInvoiceLedgerHistoryList() {
             const container = document.getElementById("customerOrderHistoryTarget");
             if(invoiceLedgerHistory.length === 0) {
-                container.innerHTML = `<div class="text-slate-400 font-medium py-4 text-center">No structural operational invoice nodes verified inside API memory logs.</div>`;
+                container.innerHTML = `<div class="text-slate-400 font-medium py-4 text-center">No structural invoices verified inside logs.</div>`;
                 return;
             }
-
             container.innerHTML = "";
             invoiceLedgerHistory.slice().reverse().forEach(invoiceNode => {
                 container.innerHTML += `
                     <div class="bg-white/90 border border-orange-100/30 p-3 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm hover:border-orange-200 transition-colors">
                         <div class="space-y-0.5 min-w-0">
                             <div class="flex items-center gap-2">
-                                <span class="text-orange-700 font-bold heading-font">NODE-TX #${invoiceNode.id || '2831'}</span>
-                                <span class="text-slate-400 text-[10px] font-mono">${invoiceNode.time || '00:00'}</span>
+                                <span class="text-orange-700 font-bold heading-font">TX-${invoiceNode.id}</span>
+                                <span class="text-slate-400 text-[10px] font-mono">${invoiceNode.time}</span>
                             </div>
                             <p class="text-slate-600 font-medium text-[11px] truncate tracking-wide">${invoiceNode.summary}</p>
                         </div>
@@ -709,13 +649,13 @@
         }
 
         function applyCartPromoNode() {
-            const verificationTokenInputString = document.getElementById("cartPromoInput").value.toUpperCase().trim();
-            if (verificationTokenInputString === "XENON2026") {
+            const token = document.getElementById("cartPromoInput").value.toUpperCase().trim();
+            if (token === "XENON2026") {
                 activeDiscountRatio = 0.15;
-                triggerXenonNotice("Cryptographic voucher accepted! 15% discount integrated successfully.", 'success');
+                triggerXenonNotice("15% discount integrated successfully.", 'success');
             } else {
                 activeDiscountRatio = 0.00;
-                triggerXenonNotice("Voucher sequence format is unauthorized or expired.", 'error');
+                triggerXenonNotice("Invalid promo code format.", 'error');
             }
             renderCartInterfaceStream();
         }
@@ -750,13 +690,10 @@
             const hub = document.getElementById("xenonNotificationHub");
             const toast = document.createElement("div");
             toast.className = `p-3.5 rounded-xl font-bold text-xs shadow-2xl transition-all duration-300 border bg-white border-orange-100 text-slate-800`;
-            
             if(variant === 'success') toast.innerHTML = `✨ <span class="text-emerald-700">${msg}</span>`;
             else if(variant === 'error') toast.innerHTML = `⚠️ <span class="text-rose-600">${msg}</span>`;
-            else toast.innerHTML = `🎨 <span class="text-orange-700">${msg}</span>`;
-
+            else toast.innerHTML = `📦 <span class="text-orange-700">${msg}</span>`;
             hub.appendChild(toast);
-            setTimeout(() => { toast.classList.remove("translate-y-2", "opacity-0"); }, 30);
             setTimeout(() => {
                 toast.classList.add("translate-y-[-10px]", "opacity-0");
                 setTimeout(() => { toast.remove(); }, 300);
