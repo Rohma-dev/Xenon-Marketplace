@@ -1,196 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💎 Xenon | Premium Modern Marketplace</title>
+    <title>💎 Xenon Ultimate | Next-Gen Cloud Ecosystem</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2 family=Inter:wght=300;400;500;600;700;800&family=Space+Grotesk:wght=500;700&display=swap" rel="stylesheet">
+    <script>
+        // Tailwind config expansion for smooth theme overrides
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        premium: {
+                            bgLight: '#f3f8f8',
+                            bgDark: '#0b0f19',
+                            cardDark: '#161f30'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
-            background-color: #f8fafc;
-            color: #1e293b;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-        .premium-shadow {
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        .premium-shadow { box-shadow: 0 10px 40px rgba(138, 43, 226, 0.04); }
+        .custom-gradient { background: linear-gradient(135deg, #8a2be2 0%, #6366f1 100%); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
         }
-        .card-hover:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.08);
-            border-color: #e2e8f0;
+        .dark .glass-card {
+            background: rgba(22, 31, 48, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .custom-gradient {
-            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-        }
-        /* Custom dynamic scrollbar styling */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        /* Webkit scrollbar engineering */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between antialiased">
+<body class="bg-premium-bgLight text-slate-800 dark:bg-premium-bgDark dark:text-slate-200 min-h-screen flex flex-col justify-between antialiased">
 
     <div id="xenonNotificationHub" class="fixed top-24 right-6 z-50 space-y-3 pointer-events-none w-80"></div>
 
-    <header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm">
+    <header class="sticky top-0 z-40 bg-white/70 dark:bg-premium-bgDark/70 backdrop-blur-md border-b border-purple-100 dark:border-slate-800 shadow-sm transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
             
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl custom-gradient flex items-center justify-center text-white text-lg font-bold shadow-md shadow-indigo-200">
+                <div class="w-11 h-11 rounded-2xl custom-gradient flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-purple-200 dark:shadow-none heading-font">
                     X
                 </div>
                 <div>
-                    <h1 class="text-slate-900 font-extrabold text-lg tracking-tight">xenon</h1>
-                    <span class="text-[10px] text-indigo-600 font-semibold tracking-wider block uppercase">Curated Marketplace Hub</span>
+                    <h1 class="text-slate-900 dark:text-white font-extrabold text-xl tracking-tight heading-font">xenon<span class="text-purple-500 text-xs ml-1">v8.0</span></h1>
+                    <span class="text-[10px] text-purple-600 dark:text-purple-400 font-bold tracking-wider block uppercase">Ultimate Engine Sync</span>
                 </div>
             </div>
             
-            <div class="flex items-center gap-3">
-                <select id="currencySelectorNode" onchange="switchGlobalCurrencyEngine()" class="bg-slate-50 border border-slate-200 text-slate-600 text-xs font-medium rounded-xl px-3 py-2.5 focus:outline-none focus:border-indigo-500 cursor-pointer">
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button onclick="toggleGlobalThemeEngine()" class="p-2.5 rounded-xl bg-white dark:bg-slate-800 border border-purple-100 dark:border-slate-700 text-sm shadow-sm hover:scale-105 transition-transform" title="Toggle Theme">
+                    <span id="themeToggleIcon">🌙</span>
+                </button>
+
+                <select id="currencySelectorNode" onchange="switchGlobalCurrencyEngine()" class="bg-white dark:bg-slate-800 border border-purple-100 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs font-semibold rounded-xl px-2.5 py-2.5 focus:outline-none cursor-pointer shadow-sm">
                     <option value="USD">🇺🇸 USD ($)</option>
                     <option value="PKR">🇵🇰 PKR (Rs)</option>
                     <option value="INR">🇮🇳 INR (₹)</option>
                 </select>
 
-                <button onclick="toggleCartDrawer(true)" class="bg-slate-50 hover:bg-slate-100 border border-slate-200 px-4 py-2.5 rounded-xl flex items-center gap-2 transition-all group relative">
-                    <span class="text-sm">🛒</span>
-                    <span id="globalCartCounter" class="font-semibold text-xs text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md transition-all">0</span>
+                <button onclick="toggleCartDrawer(true)" class="bg-white dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-slate-700 border border-purple-100 dark:border-slate-700 px-3.5 py-2.5 rounded-xl flex items-center gap-2 transition-all shadow-sm group">
+                    <span class="text-base group-hover:scale-110 transition-transform">🛍️</span>
+                    <span id="globalCartCounter" class="font-extrabold text-xs text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-slate-900 px-2 py-0.5 rounded-md">0</span>
                 </button>
 
-                <div class="bg-slate-100 p-1 rounded-xl flex gap-1">
-                    <button id="switchStorefrontBtn" onclick="toggleXenonPortal('storefront')" class="text-xs font-semibold px-4 py-2 rounded-lg bg-white text-slate-900 shadow-sm transition-all">
-                        Store
+                <div class="bg-purple-50 dark:bg-slate-900 p-1 rounded-xl flex gap-1 border border-purple-100 dark:border-slate-800">
+                    <button id="switchStorefrontBtn" onclick="toggleXenonPortal('storefront')" class="text-xs font-bold px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-sm transition-all">
+                        Market
                     </button>
-                    <button id="switchVendorBtn" onclick="toggleXenonPortal('vendor')" class="text-xs font-semibold px-4 py-2 rounded-lg text-slate-500 hover:text-slate-900 transition-all">
-                        Dashboard
+                    <button id="switchVendorBtn" onclick="toggleXenonPortal('vendor')" class="text-xs font-bold px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
+                        Control
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-10 flex-1 w-full relative">
+    <main class="max-w-7xl mx-auto px-4 sm:px-8 py-8 flex-1 w-full relative">
         
-        <div id="portalStorefront" class="space-y-10 block transition-all">
-            <div class="bg-white border border-slate-100 p-8 sm:p-12 rounded-3xl relative overflow-hidden premium-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                <div class="max-w-xl space-y-4 relative z-10">
-                    <span class="text-[11px] uppercase tracking-wider font-bold text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">Premium Curated Catalog</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">The smart way to discover premium gadgets & devices.</h2>
-                    <p class="text-sm text-slate-500 leading-relaxed">Experience a secure multi-vendor digital boutique designed with state-of-the-art interactive transaction verification tools.</p>
+        <div id="portalStorefront" class="space-y-8 block transition-all duration-300">
+            <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-6 sm:p-10 rounded-3xl relative overflow-hidden premium-shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div class="max-w-xl space-y-3 relative z-10">
+                    <span class="text-[10px] uppercase tracking-wider font-extrabold text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-slate-900 px-3 py-1 rounded-full border border-purple-100 dark:border-slate-700">Cloud Data Layer Active</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-950 dark:text-white tracking-tight heading-font">The Ultimate Decentralized Marketplace Experiment</h2>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed font-medium">Mutate catalog rows, filter indices instantaneously via categories, configure star algorithms, and enjoy fluid system themes.</p>
                 </div>
-                <div class="w-24 h-24 rounded-full bg-indigo-50 absolute -right-6 -bottom-6 opacity-60"></div>
+                <div class="w-32 h-32 rounded-full custom-gradient absolute -right-10 -bottom-10 opacity-10 blur-3xl"></div>
             </div>
 
-            <div class="flex flex-col sm:flex-row gap-4 justify-between items-center bg-white p-4 rounded-2xl border border-slate-100 premium-shadow">
-                <div class="relative w-full sm:w-80">
-                    <span class="absolute inset-y-0 left-3 flex items-center text-slate-400 text-xs">🔍</span>
-                    <input type="text" id="xenonSearchInput" oninput="compileXenonStorefrontGrid()" placeholder="Search from verified inventory products..." class="w-full bg-slate-50 border border-slate-200 focus:border-indigo-500 focus:bg-white rounded-xl pl-9 pr-4 py-2.5 text-xs text-slate-800 focus:outline-none font-medium transition-all">
-                </div>
-                <div class="text-right w-full sm:w-auto">
-                    <span class="text-xs font-semibold text-emerald-600 bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-xl">Live Catalog Synced Live 🟢</span>
+            <div class="space-y-4">
+                <div class="flex flex-col md:flex-row gap-4 justify-between items-center bg-white/50 dark:bg-slate-800/50 backdrop-blur-sm p-4 rounded-2xl border border-purple-50 dark:border-slate-800 premium-shadow">
+                    <div class="relative w-full md:w-96">
+                        <span class="absolute inset-y-0 left-4 flex items-center text-purple-400 text-xs">🔍</span>
+                        <input type="text" id="xenonSearchInput" oninput="compileXenonStorefrontGrid()" placeholder="Search from cluster database node indices..." class="w-full bg-white dark:bg-slate-800 border border-purple-100 dark:border-slate-700 focus:border-purple-300 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-800 dark:text-slate-200 focus:outline-none font-medium transition-all shadow-inner">
+                    </div>
+                    
+                    <div class="flex flex-wrap items-center gap-1.5 w-full md:w-auto">
+                        <button onclick="filterStorefrontByCategory('All')" class="category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-purple-600 text-white transition-all">All Stock</button>
+                        <button onclick="filterStorefrontByCategory('🎧 Gadgets')" class="category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-all">Gadgets</button>
+                        <button onclick="filterStorefrontByCategory('⌚ Wearables')" class="category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-all">Wearables</button>
+                        <button onclick="filterStorefrontByCategory('💻 Tech')" class="category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-all">Computing</button>
+                    </div>
                 </div>
             </div>
 
-            <div id="xenonProductsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                </div>
+            <div id="xenonProductsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                 <div class="col-span-full text-center py-16 text-xs text-purple-400 font-bold animate-pulse">Establishing cluster data links...</div>
+            </div>
 
-            <div class="bg-white border border-slate-100 rounded-3xl p-6 sm:p-8 premium-shadow space-y-6">
+            <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 rounded-3xl p-6 sm:p-8 premium-shadow space-y-6">
                 <div>
-                    <h3 class="text-slate-900 font-bold text-base tracking-tight">📦 Order History Receipts</h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Real-time dynamic billing sessions stored in local memory bank logs.</p>
+                    <h3 class="text-slate-950 dark:text-white font-bold text-base tracking-tight heading-font">📜 Centralized Blockchain Network Invoices</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400">Asynchronous checkout streams recorded globally across user terminals.</p>
                 </div>
-                <div id="customerOrderHistoryTarget" class="space-y-3 max-h-64 overflow-y-auto pr-2 text-sm">
+                <div id="customerOrderHistoryTarget" class="space-y-2.5 max-h-64 overflow-y-auto pr-2 text-xs">
                     </div>
             </div>
         </div>
 
-        <div id="portalVendor" class="space-y-8 hidden transition-all">
-            <div class="border-b border-slate-200 pb-4">
-                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Vendor Control Matrix</h2>
-                <p class="text-xs text-slate-500 mt-0.5">Track commercial sales vectors, product catalogs, and deploy store items.</p>
+        <div id="portalVendor" class="space-y-6 hidden transition-all duration-300">
+            <div class="border-b border-slate-200 dark:border-slate-700 pb-4">
+                <h2 class="text-xl font-bold text-slate-950 dark:text-white tracking-tight heading-font">Enterprise Cloud Controller</h2>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Mutate live values, delete product arrays from endpoint streams, and visualize global income analytics.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white border border-slate-100 p-6 rounded-2xl premium-shadow">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Store Revenue</h4>
-                    <p id="vendorRevenueLabel" class="text-3xl font-extrabold text-slate-900 mt-2">$0.00</p>
-                    <div class="w-full bg-slate-100 h-1.5 rounded-full mt-4 overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow">
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-purple-400">Consolidated Cash Metrics</h4>
+                    <p id="vendorRevenueLabel" class="text-2xl font-extrabold text-slate-950 dark:text-white mt-1 heading-font">$0.00</p>
+                    <div class="w-full bg-slate-100 dark:bg-slate-700 h-1 rounded-full mt-3 overflow-hidden">
                         <div id="revProgressNode" class="custom-gradient h-full w-0 transition-all duration-500"></div>
                     </div>
                 </div>
-                <div class="bg-white border border-slate-100 p-6 rounded-2xl premium-shadow">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Processed Item Orders</h4>
-                    <p id="vendorOrdersLabel" class="text-3xl font-extrabold text-slate-900 mt-2">0 Orders</p>
-                    <div class="w-full bg-slate-100 h-1.5 rounded-full mt-4 overflow-hidden">
-                        <div id="ordProgressNode" class="bg-indigo-600 h-full w-0 transition-all duration-500"></div>
+                <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow">
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-purple-400">Global Ledger Logs Count</h4>
+                    <p id="vendorOrdersLabel" class="text-2xl font-extrabold text-slate-950 dark:text-white mt-1 heading-font">0 Logs</p>
+                    <div class="w-full bg-slate-100 dark:bg-slate-700 h-1 rounded-full mt-3 overflow-hidden">
+                        <div id="ordProgressNode" class="bg-purple-600 h-full w-0 transition-all duration-500"></div>
                     </div>
                 </div>
-                <div class="bg-white border border-slate-100 p-6 rounded-2xl premium-shadow">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Active Listings</h4>
-                    <p id="vendorTotalItemsLabel" class="text-3xl font-extrabold text-indigo-600 mt-2">4 Items</p>
-                    <p class="text-[11px] text-slate-400 mt-3">Dynamic listings updated across client grids.</p>
+                <div class="bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow">
+                    <h4 class="text-[10px] font-bold uppercase tracking-wider text-purple-400">Database Vector Registry Row</h4>
+                    <p id="vendorTotalItemsLabel" class="text-2xl font-extrabold text-purple-500 mt-1 heading-font">0 Entries</p>
+                    <p class="text-[10px] text-slate-400 mt-2">Active products array sizing capacity.</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-1 bg-white border border-slate-100 p-6 rounded-2xl premium-shadow h-fit space-y-4">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-1 bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow h-fit space-y-4">
                     <div>
-                        <h3 class="text-slate-900 font-bold text-sm tracking-tight">Add New Custom Item</h3>
-                        <p class="text-xs text-slate-400 mt-0.5">Inject an item block seamlessly into the global buyer grid view.</p>
+                        <h3 class="text-slate-950 dark:text-white font-bold text-xs tracking-tight heading-font">Inject Listing Index</h3>
+                        <p class="text-[11px] text-slate-400">Deploy dynamic properties into REST api architecture structures.</p>
                     </div>
-                    <form id="xenonVendorForm" onsubmit="handleVendorFormSubmit(event)" class="space-y-4 text-xs">
+                    <form id="xenonVendorForm" onsubmit="handleVendorFormSubmit(event)" class="space-y-3.5 text-xs">
                         <div class="space-y-1">
-                            <label class="text-slate-600 font-medium">Product Title</label>
-                            <input type="text" id="vProdName" required placeholder="e.g., Wireless Sound Pods Premium" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 rounded-xl p-3 text-slate-800 focus:outline-none font-medium transition-all">
+                            <label class="text-slate-600 dark:text-slate-400 font-semibold">Listing Title</label>
+                            <input type="text" id="vProdName" required placeholder="e.g. Ultra Titanium Pods X" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium shadow-inner">
                         </div>
                         <div class="grid grid-cols-2 gap-3">
                             <div class="space-y-1">
-                                <label class="text-slate-600 font-medium">Price ($USD)</label>
-                                <input type="number" step="0.01" id="vProdPrice" required placeholder="99.00" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 rounded-xl p-3 text-slate-800 focus:outline-none font-medium transition-all">
+                                <label class="text-slate-600 dark:text-slate-400 font-semibold">Price ($)</label>
+                                <input type="number" step="0.01" id="vProdPrice" required placeholder="149.00" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium shadow-inner">
                             </div>
                             <div class="space-y-1">
-                                <label class="text-slate-600 font-medium">Asset Icon</label>
-                                <select id="vProdImg" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 rounded-xl p-3 text-slate-800 focus:outline-none font-medium cursor-pointer transition-all">
-                                    <option value="🎧">🎧 High-End Headphones</option>
-                                    <option value="📱">📱 Smart Mobile Device</option>
-                                    <option value="⌚">⌚ Luxury Smartwatch</option>
-                                    <option value="💻">💻 Ultimate Ultra Laptop</option>
-                                    <option value="📷">📷 Mirrorless Pro Camera</option>
-                                    <option value="🔋">🔋 Dynamic Power Hub</option>
+                                <label class="text-slate-600 dark:text-slate-400 font-semibold">Group Category</label>
+                                <select id="vProdImg" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium cursor-pointer shadow-inner">
+                                    <option value="🎧 Gadgets">🎧 Audio Gadgets</option>
+                                    <option value="📱 Gadgets">📱 Smartphones</option>
+                                    <option value="⌚ Wearables">⌚ Smart Wearables</option>
+                                    <option value="💻 Tech">💻 Ultimate Computing</option>
+                                    <option value="📷 Gadgets">📷 Pro Cameras</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="space-y-1">
+                                <label class="text-slate-600 dark:text-slate-400 font-semibold">Initial Stock Level</label>
+                                <input type="number" id="vProdStock" required value="20" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium shadow-inner">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-slate-600 dark:text-slate-400 font-semibold">Star Metric Metric</label>
+                                <select id="vProdRating" class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium cursor-pointer shadow-inner">
+                                    <option value="5.0">⭐⭐⭐⭐⭐ (5.0)</option>
+                                    <option value="4.5">⭐⭐⭐⭐★ (4.5)</option>
+                                    <option value="4.0">⭐⭐⭐⭐☆ (4.0)</option>
+                                    <option value="3.5">⭐⭐⭐★☆ (3.5)</option>
                                 </select>
                             </div>
                         </div>
                         <div class="space-y-1">
-                            <label class="text-slate-600 font-medium">Available Inventory Stock</label>
-                            <input type="number" id="vProdStock" required value="15" class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 rounded-xl p-3 text-slate-800 focus:outline-none font-medium transition-all">
+                            <label class="text-slate-600 dark:text-slate-400 font-semibold">Summary Parameters Description</label>
+                            <textarea id="vProdDesc" rows="2" required placeholder="Describe configuration array details..." class="w-full bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-xl p-2.5 text-slate-800 dark:text-slate-200 focus:outline-none font-medium shadow-inner"></textarea>
                         </div>
-                        <div class="space-y-1">
-                            <label class="text-slate-600 font-medium">Product Summary Description</label>
-                            <textarea id="vProdDesc" rows="3" required placeholder="Provide elite parameters, color accents, details..." class="w-full bg-slate-50 border border-slate-200 focus:bg-white focus:border-indigo-500 rounded-xl p-3 text-slate-800 focus:outline-none font-medium transition-all"></textarea>
-                        </div>
-                        <button type="submit" class="w-full custom-gradient hover:opacity-95 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md shadow-indigo-100 active:scale-98">
-                            Publish Listing Live ✨
+                        <button type="submit" class="w-full custom-gradient hover:opacity-90 text-white font-bold py-3 rounded-xl transition-all shadow-md shadow-purple-100 dark:shadow-none active:scale-98">
+                            Inject Row Index into Live Core 🚀
                         </button>
                     </form>
                 </div>
 
-                <div class="lg:col-span-2 bg-white border border-slate-100 p-6 rounded-2xl premium-shadow">
+                <div class="lg:col-span-2 bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-800 p-5 rounded-2xl premium-shadow">
                     <div class="space-y-4">
-                        <h3 class="text-slate-900 font-bold text-sm tracking-tight">Active Live Inventory Database</h3>
+                        <h3 class="text-slate-950 dark:text-white font-bold text-xs tracking-tight heading-font">Live Inventory Database Rows</h3>
                         <div class="overflow-x-auto">
-                            <table class="w-full text-left text-xs text-slate-500">
-                                <thead class="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+                            <table class="w-full text-left text-xs text-slate-600 dark:text-slate-400">
+                                <thead class="text-[10px] font-bold text-purple-400 uppercase border-b border-purple-50 dark:border-slate-700">
                                     <tr>
-                                        <th class="pb-3 pl-2">ID CODE</th>
-                                        <th class="pb-3">PRODUCT TITLE</th>
-                                        <th class="pb-3">INVENTORY UNITS</th>
-                                        <th class="pb-3">STORE PRICE</th>
-                                        <th class="pb-3 text-right pr-2">MUTATION</th>
+                                        <th class="pb-2.5 pl-1">API-ID</th>
+                                        <th class="pb-2.5">PRODUCT INSTANCE</th>
+                                        <th class="pb-2.5">STOCK</th>
+                                        <th class="pb-2.5">VALUATION</th>
+                                        <th class="pb-2.5 text-right pr-1">MUTATE</th>
                                     </tr>
                                 </thead>
-                                <tbody id="vendorInventoryTableTarget" class="divide-y divide-slate-100">
+                                <tbody id="vendorInventoryTableTarget" class="divide-y divide-purple-50/50 dark:divide-slate-700/50">
                                     </tbody>
                             </table>
                         </div>
@@ -199,49 +238,54 @@
             </div>
         </div>
 
-        <div id="xenonCartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white border-l border-slate-100 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
-            <div class="space-y-6 flex-1 flex flex-col overflow-hidden">
-                <div class="flex justify-between items-center border-b border-slate-100 pb-4">
-                    <h3 class="font-bold text-slate-900 text-base tracking-tight">Shopping Bag</h3>
-                    <button onclick="toggleCartDrawer(false)" class="text-slate-400 hover:text-slate-900 text-xs font-semibold bg-slate-50 hover:bg-slate-100 px-3 py-1.5 rounded-xl transition-all">Close ✕</button>
+        <div id="xenonCartDrawer" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white dark:bg-slate-800 border-l border-purple-50 dark:border-slate-700 z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col justify-between p-6">
+            <div class="space-y-5 flex-1 flex flex-col overflow-hidden">
+                <div class="flex justify-between items-center border-b border-purple-100 dark:border-slate-700 pb-3">
+                    <h3 class="font-bold text-slate-950 dark:text-white text-base heading-font">Your Storage Bag</h3>
+                    <button onclick="toggleCartDrawer(false)" class="text-purple-400 hover:text-purple-900 dark:hover:text-white text-xs font-bold bg-purple-50 dark:bg-slate-700 px-3 py-1.5 rounded-xl transition-all">Close ✕</button>
                 </div>
                 
-                <div id="cartStreamWrapper" class="flex-1 overflow-y-auto space-y-4 pr-1 text-xs divide-y divide-slate-50">
+                <div id="cartStreamWrapper" class="flex-1 overflow-y-auto space-y-3.5 pr-1 text-xs divide-y divide-slate-100 dark:divide-slate-700">
                     </div>
             </div>
 
-            <div class="border-t border-slate-100 pt-4 space-y-4 bg-white">
-                <div class="bg-slate-50 border border-slate-100 p-2 rounded-xl flex gap-2">
-                    <input type="text" id="cartPromoInput" placeholder="PROMO CODE (XENON2026)" class="w-full bg-white text-slate-800 border border-slate-200 rounded-lg px-3 py-2 text-[11px] uppercase font-semibold focus:outline-none focus:border-indigo-500">
-                    <button onclick="applyCartPromoNode()" class="bg-indigo-600 text-white font-semibold text-xs px-4 rounded-lg hover:bg-indigo-700 transition-all">Apply</button>
+            <div class="border-t border-purple-100 dark:border-slate-700 pt-4 space-y-3.5 bg-white dark:bg-slate-800">
+                <div class="bg-purple-50 dark:bg-slate-900 p-1.5 rounded-xl flex gap-1.5">
+                    <input type="text" id="cartPromoInput" placeholder="VOUCHER (XENON2026)" class="w-full bg-white dark:bg-slate-800 text-purple-900 dark:text-slate-100 border border-purple-100 dark:border-slate-700 rounded-lg px-2.5 py-2 text-[10px] uppercase font-bold focus:outline-none">
+                    <button onclick="applyCartPromoNode()" class="bg-purple-600 text-white font-bold text-xs px-3.5 rounded-lg hover:bg-purple-700 transition-all">Apply</button>
                 </div>
-                <div class="space-y-2 text-xs font-medium text-slate-600">
+                <div class="space-y-1.5 text-xs font-semibold text-slate-600 dark:text-slate-400">
                     <div class="flex justify-between">
-                        <span>Items Subtotal:</span>
-                        <span id="cartSubtotalLabel" class="text-slate-900 font-semibold">$0.00</span>
+                        <span>Items Base Value:</span>
+                        <span id="cartSubtotalLabel" class="text-slate-900 dark:text-white font-bold">$0.00</span>
                     </div>
-                    <div id="promoRowAlert" class="flex justify-between text-emerald-600 font-semibold hidden">
-                        <span>Promo Code Reduction (15%):</span>
+                    <div id="promoRowAlert" class="flex justify-between text-emerald-600 font-bold hidden">
+                        <span>Promo Code Applied (15%):</span>
                         <span id="cartDiscountLabel">-$0.00</span>
                     </div>
-                    <div class="flex justify-between items-baseline border-t border-slate-100 pt-3">
-                        <span class="text-slate-900 font-bold text-sm">Estimated Total:</span>
-                        <span id="cartTotalLabel" class="text-xl font-extrabold text-indigo-600">$0.00</span>
+                    <div class="flex justify-between items-baseline border-t border-purple-50 dark:border-slate-700 pt-3 mt-1">
+                        <span class="text-slate-950 dark:text-white font-bold text-xs">Total Net Value:</span>
+                        <span id="cartTotalLabel" class="text-lg font-extrabold text-purple-600 dark:text-purple-400 heading-font">$0.00</span>
                     </div>
                 </div>
-                <button onclick="triggerCheckoutOperation()" class="w-full custom-gradient text-white font-semibold text-xs py-4 rounded-xl shadow-lg shadow-indigo-100 hover:opacity-95 active:scale-98 transition-all">
-                    Proceed to Checkout Verification
+                <button onclick="triggerCheckoutOperation()" class="w-full custom-gradient text-white font-bold text-xs py-3.5 rounded-xl shadow-lg shadow-purple-100 dark:shadow-none hover:opacity-90 active:scale-98 transition-all">
+                    Execute Secure Network Checkout
                 </button>
             </div>
         </div>
     </main>
 
-    <footer class="border-t border-slate-100 bg-white py-6 text-center text-xs text-slate-400 font-medium tracking-wide">
-        © 2026 Xenon Digital Boutique Network. Built elegantly by Rohma Noor.
+    <footer class="border-t border-purple-50 dark:border-slate-800 bg-white dark:bg-slate-800/50 py-5 text-center text-xs text-slate-500 dark:text-slate-400 font-medium transition-all">
+        © 2026 Xenon Adaptive Core Ecosystem Engine v8.0. Pure Vanilla Javascript Backend Stream Sync.
     </footer>
 
     <script>
-        // Currency Exchange Config Matrix
+        // MOCK REST INSTANCE CLOUD NETWORK CONSTANTS
+        const BACKEND_PRODUCTS_URL = "https://667b003f3c30ed74e664b5ba.mockapi.io/api/v1/products";
+        const BACKEND_ORDERS_URL = "https://667b003f3c30ed74e664b5ba.mockapi.io/api/v1/orders";
+
+        let currentActiveCategoryFilter = "All";
+
         const CURRENCY_DICTIONARY = {
             USD: { symbol: "$", rate: 1.0 },
             PKR: { symbol: "Rs ", rate: 278.50 },
@@ -249,95 +293,279 @@
         };
         let currentCurrencyMode = "USD";
 
-        // Premium Seed Products Listing Array Catalog
-        const INITIAL_SEED_PRODUCTS = [
-            { id: "XN-1", name: "Premium Noise-Cancelling Audio Pods", price: 249.00, desc: "Acoustic spatial audio device equipped with adaptive pure audio levels ambient control profiles.", img: "🎧", stock: 12, rating: 4.9 },
-            { id: "XN-2", name: "Xenon Ultra Thin Pro Mobile", price: 999.00, desc: "Edge-to-edge dynamic OLED view framework powered by highly durable mineral shell casings.", img: "📱", stock: 5, rating: 5.0 },
-            { id: "XN-3", name: "Minimalist Titanium Smartwatch", price: 320.00, desc: "High-grade scratch resistant dial offering cellular synchronizations and metric tracking configurations.", img: "⌚", stock: 18, rating: 4.7 },
-            { id: "XN-4", name: "Retina Pro Studio Mirrorless Camera", price: 1450.00, desc: "Ultra-sharp image rendering configuration packed into a structural micro-chassis design layout.", img: "📷", stock: 3, rating: 4.8 }
-        ];
-
-        // Read LocalStorage Persistence data slots
-        let CYBER_PRODUCT_INDEX = JSON.parse(localStorage.getItem("xenon_luxury_products")) || INITIAL_SEED_PRODUCTS;
+        // Memory Array Spaces
+        let CYBER_PRODUCT_INDEX = [];
         let internalCartMemory = {};
         let activeDiscountRatio = 0.00;
-        let trackedRevenueSum = parseFloat(localStorage.getItem("xenon_luxury_revenue")) || 0.00;
-        let packedOrdersCount = parseInt(localStorage.getItem("xenon_luxury_orders_count")) || 0;
-        let invoiceLedgerHistory = JSON.parse(localStorage.getItem("xenon_luxury_ledger")) || [];
+        let trackedRevenueSum = 0.00;
+        let packedOrdersCount = 0;
+        let invoiceLedgerHistory = [];
 
-        function saveStateToLocalStorage() {
-            localStorage.setItem("xenon_luxury_products", JSON.stringify(CYBER_PRODUCT_INDEX));
-            localStorage.setItem("xenon_luxury_revenue", trackedRevenueSum.toString());
-            localStorage.setItem("xenon_luxury_orders_count", packedOrdersCount.toString());
-            localStorage.setItem("xenon_luxury_ledger", JSON.stringify(invoiceLedgerHistory));
-        }
-
-        // Beautiful System Toast Engine Alerts
-        function triggerXenonNotice(msg, variant='info') {
-            const hub = document.getElementById("xenonNotificationHub");
-            const toast = document.createElement("div");
-            toast.className = `p-4 rounded-xl border font-medium text-xs backdrop-blur-md shadow-xl transition-all duration-300 transform translate-y-2 opacity-0 flex items-center gap-2 bg-white/95 border-slate-100 text-slate-800 shadow-slate-200/50`;
-            
-            if(variant === 'success') toast.innerHTML = `✨ <span class="text-indigo-600 font-bold">${msg}</span>`;
-            else if(variant === 'error') toast.innerHTML = `⚠️ <span class="text-rose-500 font-bold">${msg}</span>`;
-            else toast.innerHTML = `ℹ️ <span class="text-slate-700 font-semibold">${msg}</span>`;
-
-            hub.appendChild(toast);
-            setTimeout(() => { toast.classList.remove("translate-y-2", "opacity-0"); }, 50);
-            setTimeout(() => {
-                toast.classList.add("translate-y-[-10px]", "opacity-0");
-                setTimeout(() => { toast.remove(); }, 300);
-            }, 2500);
-        }
-
-        function renderValuation(amountUSD) {
-            const config = CURRENCY_DICTIONARY[currentCurrencyMode];
-            return `${config.symbol}${(amountUSD * config.rate).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
-        }
-
-        function switchGlobalCurrencyEngine() {
-            currentCurrencyMode = document.getElementById("currencySelectorNode").value;
-            compileXenonStorefrontGrid();
+        // Application Bootstrap Pipeline Hookups
+        window.onload = async function() {
+            initializeThemeContextState();
             renderCartInterfaceStream();
-            refreshVendorInventoryTable();
-            renderInvoiceLedgerHistoryList();
-            triggerXenonNotice(`Currency adjusted to standard standard [${currentCurrencyMode}]`);
+            await pullCloudProductCatalogIndex();
+            await pullCloudLedgerTransactionsIndex();
+        };
+
+        // FEATURE 1 IMPLEMENTATION: Light/Dark Mode Toggle Configuration System
+        function initializeThemeContextState() {
+            if (localStorage.getItem('xenonThemeState') === 'dark') {
+                document.documentElement.classList.add('dark');
+                document.getElementById("themeToggleIcon").innerText = "☀️";
+            } else {
+                document.documentElement.classList.add('light');
+                document.getElementById("themeToggleIcon").innerText = "🌙";
+            }
         }
 
-        // Storefront Premium Grid Builder
+        function toggleGlobalThemeEngine() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.replace('dark', 'light');
+                localStorage.setItem('xenonThemeState', 'light');
+                document.getElementById("themeToggleIcon").innerText = "🌙";
+                triggerXenonNotice("Light Aethetic Variant Initialized.");
+            } else {
+                document.documentElement.classList.replace('light', 'dark');
+                localStorage.setItem('xenonThemeState', 'dark');
+                document.getElementById("themeToggleIcon").innerText = "☀️";
+                triggerXenonNotice("Cyberpunk Dark Matrix Mode Enabled.");
+            }
+        }
+
+        // FEATURE 2 IMPLEMENTATION: Category Filtration Methods Engine
+        function filterStorefrontByCategory(categoryValueString) {
+            currentActiveCategoryFilter = categoryValueString;
+            
+            // Re-render categories tabs active pills styles
+            const pills = document.querySelectorAll('.category-pill');
+            pills.forEach(p => {
+                if(p.getAttribute('onclick').includes(categoryValueString)) {
+                    p.className = "category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-purple-600 text-white transition-all";
+                } else {
+                    p.className = "category-pill text-[11px] font-bold px-3.5 py-2 rounded-xl bg-white dark:bg-slate-800 border border-purple-50 dark:border-slate-700 text-slate-600 dark:text-slate-300 transition-all";
+                }
+            });
+
+            compileXenonStorefrontGrid();
+            triggerXenonNotice(`Catalog sliced to [${categoryValueString}] entries.`);
+        }
+
+        // ASYNC CORE FETCH OPERATION 1: Load Products Index Out of API Database
+        async function pullCloudProductCatalogIndex() {
+            try {
+                let res = await fetch(BACKEND_PRODUCTS_URL);
+                if (!res.ok) throw new Error("Connection timed out.");
+                CYBER_PRODUCT_INDEX = await res.json();
+                
+                // If cloud pipeline database layout gets wiped out, populate boilerplate seeds
+                if(CYBER_PRODUCT_INDEX.length === 0) {
+                    const fallbackSeedArray = [
+                        { name: "Xenon Adaptive Audio Pods 1.0", price: 210.00, desc: "Noise isolation acoustics utilizing neural wave filtering processors.", img: "🎧 Gadgets", stock: 12, rating: 5.0 },
+                        { name: "Liquid Titanium OLED Smart Handset", price: 899.00, desc: "Sleek responsive aluminum build with advanced core multi-processing speeds.", img: "📱 Gadgets", stock: 6, rating: 4.5 },
+                        { name: "Chronos Carbon Fiber Smartwatch", price: 340.00, desc: "Tactile scratchproof screen detailing telemetry analysis pipelines.", img: "⌚ Wearables", stock: 16, rating: 4.0 }
+                    ];
+                    for(let x of fallbackSeedArray) {
+                        await fetch(BACKEND_PRODUCTS_URL, {
+                            method: 'POST',
+                            headers: {'content-type':'application/json'},
+                            body: JSON.stringify(x)
+                        });
+                    }
+                    let seedRes = await fetch(BACKEND_PRODUCTS_URL);
+                    CYBER_PRODUCT_INDEX = await seedRes.json();
+                }
+
+                compileXenonStorefrontGrid();
+                refreshVendorInventoryTable();
+            } catch (err) {
+                console.error("Products catalog mapping exception thrown: ", err);
+                triggerXenonNotice("Database connection dropped down.", "error");
+            }
+        }
+
+        // ASYNC FETCH DATA ENGINE 2: Load Transaction logs Array Maps
+        async function pullCloudLedgerTransactionsIndex() {
+            try {
+                let res = await fetch(BACKEND_ORDERS_URL);
+                if(res.ok) {
+                    invoiceLedgerHistory = await res.json();
+                    packedOrdersCount = invoiceLedgerHistory.length;
+                    trackedRevenueSum = invoiceLedgerHistory.reduce((acc, currentObj) => acc + parseFloat(currentObj.totalVal || 0), 0);
+                    
+                    renderInvoiceLedgerHistoryList();
+                    updateMetricsVisuals();
+                }
+            } catch (error) {
+                console.error("Ledgers load runtime error: ", error);
+            }
+        }
+
+        // CRUD PROCESS: POST Request Inject Product Data payload to REST Backend
+        async function handleVendorFormSubmit(e) {
+            e.preventDefault();
+            triggerXenonNotice("Propagating payload fields directly to API schema server...");
+            
+            const name = document.getElementById("vProdName").value;
+            const price = parseFloat(document.getElementById("vProdPrice").value);
+            const img = document.getElementById("vProdImg").value; // Holds category emoji string combo
+            const desc = document.getElementById("vProdDesc").value;
+            const stock = parseInt(document.getElementById("vProdStock").value);
+            const rating = parseFloat(document.getElementById("vProdRating").value);
+
+            const dynamicPayloadBundle = { name, price, desc, img, stock, rating };
+
+            try {
+                let response = await fetch(BACKEND_PRODUCTS_URL, {
+                    method: 'POST',
+                    headers: {'content-type':'application/json'},
+                    body: JSON.stringify(dynamicPayloadBundle)
+                });
+                if(!response.ok) throw new Error("Database validation fail.");
+                
+                triggerXenonNotice(`Success! "${name}" added to cloud.`, 'success');
+                document.getElementById("xenonVendorForm").reset();
+                await pullCloudProductCatalogIndex();
+            } catch (error) {
+                triggerXenonNotice("Error syncing parameters payload array.", "error");
+            }
+        }
+
+        // CRUD DELETE OPERATION: Erase Row Record Index From Server Database
+        async function wipeProductRecordNode(id) {
+            if(confirm("Confirm hard mutation wipe instruction directly on cloud API registry row? (This synchronization processes across all screens)")) {
+                try {
+                    let response = await fetch(`${BACKEND_PRODUCTS_URL}/${id}`, { method: 'DELETE' });
+                    if(!response.ok) throw new Error("Delete command failed.");
+                    
+                    if(internalCartMemory[id]) delete internalCartMemory[id];
+                    triggerXenonNotice("Data row successfully erased from global schema core.", "error");
+                    await pullCloudProductCatalogIndex();
+                    renderCartInterfaceStream();
+                } catch (error) {
+                    triggerXenonNotice("Erase mutation protocol dropped by server.", "error");
+                }
+            }
+        }
+
+        // ASYNC CHECKOUT LOGIC PIPELINE: PUT stock levels count mutations and POST billing index nodes
+        async function triggerCheckoutOperation() {
+            const keySlots = Object.keys(internalCartMemory);
+            if(keySlots.length === 0) return;
+
+            triggerXenonNotice("Assembling ledger serialization checkout sequences...");
+            let invoiceReceiptItemsList = [];
+            let aggregateGrossSum = 0;
+
+            for(let cellId of keySlots) {
+                const targetBagNode = internalCartMemory[cellId];
+                const realDatabaseReferenceProduct = CYBER_PRODUCT_INDEX.find(item => item.id === cellId);
+                
+                if(realDatabaseReferenceProduct) {
+                    const finalizedDeductedStockLevelValue = Math.max(0, realDatabaseReferenceProduct.stock - targetBagNode.qty);
+                    // Emit asynchronous PUT updates packets to database schema levels
+                    await fetch(`${BACKEND_PRODUCTS_URL}/${cellId}`, {
+                        method: 'PUT',
+                        headers: {'content-type':'application/json'},
+                        body: JSON.stringify({ stock: finalizedDeductedStockLevelValue })
+                    });
+                }
+                aggregateGrossSum += (targetBagNode.price * targetBagNode.qty);
+                invoiceReceiptItemsList.push(`${targetBagNode.qty}x ${targetBagNode.name}`);
+            }
+
+            let netPayableInvoiceTotal = aggregateGrossSum - (aggregateGrossSum * activeDiscountRatio);
+            const timeString = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+
+            const transactionReceiptPayloadNode = {
+                time: timeString,
+                summary: invoiceReceiptItemsList.join(', '),
+                totalVal: netPayableInvoiceTotal
+            };
+
+            try {
+                await fetch(BACKEND_ORDERS_URL, {
+                    method: 'POST',
+                    headers: {'content-type':'application/json'},
+                    body: JSON.stringify(transactionReceiptPayloadNode)
+                });
+
+                internalCartMemory = {};
+                activeDiscountRatio = 0.00;
+                document.getElementById("cartPromoInput").value = "";
+                
+                renderCartInterfaceStream();
+                await pullCloudProductCatalogIndex();
+                await pullCloudLedgerTransactionsIndex();
+                toggleCartDrawer(false);
+
+                triggerXenonNotice("Invoice registered on database ledger successfully!", "success");
+            } catch (err) {
+                triggerXenonNotice("Transaction checkout pipe dropped out.", "error");
+            }
+        }
+
+        // FEATURE 3 COMPONENT BUILDER: Interactive Star Logic Generator Parsing
+        function renderStarsAlgorithmicString(ratingValue) {
+            let integerPart = Math.floor(ratingValue);
+            let checkDecimal = ratingValue - integerPart;
+            let starsRowHtmlOutput = "";
+
+            for(let i=1; i<=5; i++) {
+                if(i <= integerPart) {
+                    starsRowHtmlOutput += `<span class="text-amber-500">★</span>`;
+                } else if(i === integerPart + 1 && checkDecimal >= 0.4) {
+                    starsRowHtmlOutput += `<span class="text-amber-500">★</span>`; // Half or proximate filled
+                } else {
+                    starsRowHtmlOutput += `<span class="text-slate-300 dark:text-slate-600">☆</span>`;
+                }
+            }
+            return starsRowHtmlOutput;
+        }
+
         function compileXenonStorefrontGrid() {
             const grid = document.getElementById("xenonProductsGrid");
-            const filterKeyword = document.getElementById("xenonSearchInput").value.toLowerCase();
+            const searchKeyword = document.getElementById("xenonSearchInput").value.toLowerCase();
             grid.innerHTML = "";
 
-            let matchingItems = CYBER_PRODUCT_INDEX.filter(p => p.name.toLowerCase().includes(filterKeyword));
+            // Layered Filter Logic: Category parsing validation combined with active word strings matching
+            let filteredArray = CYBER_PRODUCT_INDEX.filter(item => {
+                const alignCategory = (currentActiveCategoryFilter === "All") || (item.img && item.img.includes(currentActiveCategoryFilter));
+                const alignSearch = item.name.toLowerCase().includes(searchKeyword);
+                return alignCategory && alignSearch;
+            });
 
-            if(matchingItems.length === 0) {
-                grid.innerHTML = `<div class="col-span-full border border-dashed border-slate-200 bg-white p-12 text-center rounded-2xl text-xs font-semibold text-slate-400">No matching luxury products found in stock indices.</div>`;
+            if(filteredArray.length === 0) {
+                grid.innerHTML = `<div class="col-span-full border border-dashed border-purple-200 dark:border-slate-700 p-12 text-center rounded-2xl text-xs font-semibold text-slate-400">No active item matches inside this specific filter segment node.</div>`;
                 return;
             }
 
-            matchingItems.forEach(product => {
-                const outOfStock = product.stock <= 0;
+            filteredArray.forEach(product => {
+                const outOfStockFlag = product.stock <= 0;
+                // Parse split arrays to safely handle emoji indicators configurations symbols
+                const designIconSymbol = product.img ? product.img.split(" ")[0] : "💎";
+
                 grid.innerHTML += `
-                    <div class="bg-white border border-slate-100 p-5 rounded-2xl flex flex-col justify-between gap-4 card-hover premium-shadow transition-all duration-300 relative ${outOfStock ? 'opacity-50' : ''}">
-                        <div class="space-y-4">
-                            <div class="flex justify-between items-start">
-                                <div class="w-14 h-14 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center text-3xl">${product.img}</div>
+                    <div class="p-5 rounded-2xl flex flex-col justify-between gap-4 glass-card shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative ${outOfStockFlag ? 'opacity-40' : ''}">
+                        <div class="space-y-3.5">
+                            <div class="flex justify-between items-start relative">
+                                <div class="w-12 h-12 bg-white dark:bg-slate-900 border border-purple-100 dark:border-slate-800 rounded-xl flex items-center justify-center text-2xl shadow-inner relative z-10">${designIconSymbol}</div>
+                                <div class="w-10 h-10 bg-purple-400 rounded-full blur-xl absolute opacity-30 -left-1 -top-1"></div>
                                 <div class="text-right space-y-1">
-                                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full block ${outOfStock ? 'text-rose-600 bg-rose-50 border-rose-100' : 'text-slate-500 bg-slate-50 border-slate-100'}">Stock: ${product.stock}</span>
-                                    <span class="text-[11px] text-amber-500 font-bold block">★ ${product.rating || '4.8'}</span>
+                                    <span class="text-[9px] font-extrabold px-2 py-0.5 rounded border block ${outOfStockFlag ? 'text-rose-600 bg-rose-50 dark:bg-slate-900 border-rose-100 dark:border-rose-950' : 'text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-900 border-slate-100 dark:border-slate-800'}">Units: ${product.stock}</span>
+                                    <div class="text-xs font-bold block">${renderStarsAlgorithmicString(product.rating || 4.5)}</div>
                                 </div>
                             </div>
                             <div class="space-y-1">
-                                <h4 class="text-slate-900 font-bold text-sm tracking-tight group-hover:text-indigo-600 transition-all">${product.name}</h4>
-                                <p class="text-xs text-slate-400 leading-relaxed font-normal">${product.desc}</p>
+                                <h4 class="text-slate-900 dark:text-white font-extrabold text-xs tracking-tight heading-font">${product.name}</h4>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed font-normal">${product.desc}</p>
                             </div>
                         </div>
-                        <div class="flex items-center justify-between border-t border-slate-50 pt-4 mt-1">
-                            <span class="font-bold text-indigo-600 text-sm">${renderValuation(product.price)}</span>
-                            <button ${outOfStock ? 'disabled' : ''} onclick="stageItemToCart('${product.id}')" class="bg-slate-900 hover:bg-indigo-600 border border-transparent text-white font-semibold text-[10px] uppercase tracking-wider px-3.5 py-2 rounded-xl transition-all disabled:opacity-30 disabled:pointer-events-none">
-                                ${outOfStock ? 'Sold Out' : 'Add to Bag'}
+                        <div class="flex items-center justify-between border-t border-purple-50/50 dark:border-slate-700/50 pt-3.5 mt-1">
+                            <span class="font-extrabold text-purple-600 dark:text-purple-400 text-sm font-mono">${renderValuation(product.price)}</span>
+                            <button ${outOfStockFlag ? 'disabled' : ''} onclick="stageItemToCart('${product.id}')" class="custom-gradient text-white font-bold text-[10px] uppercase tracking-wider px-3 py-2 rounded-xl transition-all disabled:opacity-20 disabled:pointer-events-none active:scale-95">
+                                ${outOfStockFlag ? 'Depleted' : 'Add Node'}
                             </button>
                         </div>
                     </div>`;
@@ -346,96 +574,66 @@
 
         function refreshVendorInventoryTable() {
             const tableBody = document.getElementById("vendorInventoryTableTarget");
-            document.getElementById("vendorTotalItemsLabel").innerText = `${CYBER_PRODUCT_INDEX.length} Items`;
+            document.getElementById("vendorTotalItemsLabel").innerText = `${CYBER_PRODUCT_INDEX.length} Rows`;
             tableBody.innerHTML = "";
 
             CYBER_PRODUCT_INDEX.forEach(p => {
                 tableBody.innerHTML += `
-                    <tr class="hover:bg-slate-50/50 transition-colors font-medium">
-                        <td class="py-4 pl-2 font-bold text-slate-400 text-[11px]">${p.id}</td>
-                        <td class="py-4 text-slate-900 font-bold flex items-center gap-2"><span>${p.img}</span> ${p.name}</td>
-                        <td class="py-4 font-bold ${p.stock < 5 ? 'text-amber-600' : 'text-slate-500'}">${p.stock} units</td>
-                        <td class="py-4 text-slate-900 font-bold">${renderValuation(p.price)}</td>
-                        <td class="py-4 text-right pr-2">
-                            <button onclick="purgeProductNode('${p.id}')" class="text-rose-600 hover:text-white font-semibold text-[10px] uppercase bg-rose-50 border border-rose-100 hover:bg-rose-600 px-3 py-1.5 rounded-xl transition-all">Remove</button>
+                    <tr class="hover:bg-purple-50/10 dark:hover:bg-slate-700/20 transition-colors font-medium">
+                        <td class="py-3 pl-1 font-bold text-purple-400 text-[10px]">${p.id}</td>
+                        <td class="py-3 text-slate-900 dark:text-white font-bold text-xs truncate max-w-xs heading-font">${p.name}</td>
+                        <td class="py-3 font-bold ${p.stock < 5 ? 'text-amber-600' : 'text-slate-500'}">${p.stock} pcs</td>
+                        <td class="py-3 text-slate-950 dark:text-slate-200 font-extrabold font-mono">${renderValuation(p.price)}</td>
+                        <td class="py-3 text-right pr-1">
+                            <button onclick="wipeProductRecordNode('${p.id}')" class="text-rose-600 hover:text-white font-bold text-[9px] uppercase bg-rose-50 dark:bg-slate-900 border border-rose-100 dark:border-rose-950 hover:bg-rose-600 px-2.5 py-1 rounded-lg transition-all">Delete</button>
                         </td>
                     </tr>`;
             });
 
-            // Set metric visualizations values
+            updateMetricsVisuals();
+        }
+
+        function updateMetricsVisuals() {
             document.getElementById("vendorRevenueLabel").innerText = renderValuation(trackedRevenueSum);
-            document.getElementById("vendorOrdersLabel").innerText = `${packedOrdersCount} Orders`;
-            document.getElementById("revProgressNode").style.width = `${Math.min(100, (trackedRevenueSum / 5000) * 100)}%`;
-            document.getElementById("ordProgressNode").style.width = `${Math.min(100, (packedOrdersCount / 10) * 100)}%`;
+            document.getElementById("vendorOrdersLabel").innerText = `${packedOrdersCount} Nodes`;
+            document.getElementById("revProgressNode").style.width = `${Math.min(100, (trackedRevenueSum / 4000) * 100)}%`;
+            document.getElementById("ordProgressNode").style.width = `${Math.min(100, (packedOrdersCount / 8) * 100)}%`;
         }
 
-        // Add Product Form Controller Handler
-        function handleVendorFormSubmit(e) {
-            e.preventDefault();
-            const name = document.getElementById("vProdName").value;
-            const price = parseFloat(document.getElementById("vProdPrice").value);
-            const img = document.getElementById("vProdImg").value;
-            const desc = document.getElementById("vProdDesc").value;
-            const stock = parseInt(document.getElementById("vProdStock").value);
-            const generatedId = `XN-${Math.floor(100 + Math.random() * 900)}`;
-            const randomRating = (4.4 + Math.random() * 0.6).toFixed(1);
-
-            CYBER_PRODUCT_INDEX.unshift({ id: generatedId, name, price, desc, img, stock, rating: parseFloat(randomRating) });
-            
-            saveStateToLocalStorage();
-            document.getElementById("xenonVendorForm").reset();
-            compileXenonStorefrontGrid();
-            refreshVendorInventoryTable();
-            triggerXenonNotice(`Product "${name}" successfully listed!`, 'success');
-        }
-
-        // Delete Product Node Handler
-        function purgeProductNode(id) {
-            if(confirm("Are you sure you want to remove this active product listing from the storefront catalog?")) {
-                CYBER_PRODUCT_INDEX = CYBER_PRODUCT_INDEX.filter(p => p.id !== id);
-                if(internalCartMemory[id]) delete internalCartMemory[id];
-                
-                saveStateToLocalStorage();
-                compileXenonStorefrontGrid();
-                refreshVendorInventoryTable();
-                triggerXenonNotice(`Listing database row index removed safely.`, 'error');
-            }
-        }
-
-        // Shopping Cart Management Logic Nodes
         function stageItemToCart(id) {
-            const productRef = CYBER_PRODUCT_INDEX.find(p => p.id === id);
-            if (!productRef || productRef.stock <= 0) return;
+            const sourceRef = CYBER_PRODUCT_INDEX.find(item => item.id === id);
+            if (!sourceRef || sourceRef.stock <= 0) return;
 
             if (internalCartMemory[id]) {
-                if(internalCartMemory[id].qty >= productRef.stock) {
-                    triggerXenonNotice(`No further stock units available in catalog registry.`, 'error');
+                if(internalCartMemory[id].qty >= sourceRef.stock) {
+                    triggerXenonNotice("Maximum inventory threshold reached for this checkout item.", "error");
                     return;
                 }
                 internalCartMemory[id].qty++;
             } else {
-                internalCartMemory[id] = { ...productRef, qty: 1 };
+                internalCartMemory[id] = { ...sourceRef, qty: 1 };
             }
             renderCartInterfaceStream();
             toggleCartDrawer(true);
-            triggerXenonNotice(`Added ${productRef.name} to checkout bag.`);
+            triggerXenonNotice("Item localized in checkout storage arrays.");
         }
 
-        function clearCartRowUnit(id) {
-            if (!internalCartMemory[id]) return;
-            internalCartMemory[id].qty--;
-            if (internalCartMemory[id].qty <= 0) delete internalCartMemory[id];
-            renderCartInterfaceStream();
-        }
+        // FEATURE 4 IMPLEMENTATION: Dynamic Cart Quantity Controls Node Modifiers (+ and - operations)
+        function modifyCartItemQuantityUnit(id, computationalOperator) {
+            if(!internalCartMemory[id]) return;
+            const sourceCloudItemProduct = CYBER_PRODUCT_INDEX.find(p => p.id === id);
 
-        function applyCartPromoNode() {
-            const val = document.getElementById("cartPromoInput").value.toUpperCase().trim();
-            if (val === "XENON2026") {
-                activeDiscountRatio = 0.15;
-                triggerXenonNotice("Coupon verified! 15% discount applied.", 'success');
+            if(computationalOperator === 'increment') {
+                if(internalCartMemory[id].qty >= sourceCloudItemProduct.stock) {
+                    triggerXenonNotice("Cannot exceed live cloud endpoint stock parameters allocation.", "error");
+                    return;
+                }
+                internalCartMemory[id].qty++;
             } else {
-                activeDiscountRatio = 0.00;
-                triggerXenonNotice("Invalid discount voucher authentication token.", 'error');
+                internalCartMemory[id].qty--;
+                if(internalCartMemory[id].qty <= 0) {
+                    delete internalCartMemory[id];
+                }
             }
             renderCartInterfaceStream();
         }
@@ -449,13 +647,13 @@
             const promoRow = document.getElementById("promoRowAlert");
 
             wrapper.innerHTML = "";
-            let grossSum = 0;
-            let netQuantityUnits = 0;
+            let grossFinancialAggregateSum = 0;
+            let netQuantityCounter = 0;
 
-            const targetKeys = Object.keys(internalCartMemory);
+            const operationalKeys = Object.keys(internalCartMemory);
 
-            if (targetKeys.length === 0) {
-                wrapper.innerHTML = `<div class="text-slate-400 text-center py-14 font-medium">Your shopping bag is completely empty.</div>`;
+            if (operationalKeys.length === 0) {
+                wrapper.innerHTML = `<div class="text-slate-400 text-center py-16 font-medium">Checkout buffer structure is vacant.</div>`;
                 globalCounter.innerText = "0";
                 subtotalLabel.innerText = renderValuation(0);
                 totalLabel.innerText = renderValuation(0);
@@ -463,108 +661,79 @@
                 return;
             }
 
-            targetKeys.forEach(key => {
-                const activeNode = internalCartMemory[key];
-                netQuantityUnits += activeNode.qty;
-                grossSum += (activeNode.price * activeNode.qty);
+            operationalKeys.forEach(key => {
+                const nodeInstance = internalCartMemory[key];
+                netQuantityCounter += nodeInstance.qty;
+                grossFinancialAggregateSum += (nodeInstance.price * nodeInstance.qty);
 
+                // FEATURE 4 COMPONENT DOM GENERATOR LAYOUT
                 wrapper.innerHTML += `
-                    <div class="flex items-center justify-between py-4 text-slate-700">
+                    <div class="flex items-center justify-between py-3.5 text-slate-700 dark:text-slate-300">
                         <div class="min-w-0 pr-2 space-y-0.5">
-                            <p class="font-bold text-slate-900 truncate">${activeNode.name}</p>
-                            <span class="text-xs text-slate-400 font-medium">${renderValuation(activeNode.price)} x ${activeNode.qty}</span>
+                            <p class="font-extrabold text-slate-950 dark:text-white truncate text-xs heading-font">${nodeInstance.name}</p>
+                            <span class="text-[10px] text-slate-400 font-mono">${renderValuation(nodeInstance.price)} each</span>
                         </div>
-                        <div class="flex items-center gap-3 shrink-0">
-                            <span class="font-bold text-indigo-600">${renderValuation(activeNode.price * activeNode.qty)}</span>
-                            <button onclick="clearCartRowUnit('${activeNode.id}')" class="w-6 h-6 bg-slate-50 border border-slate-200 text-slate-400 hover:text-rose-600 rounded-lg flex items-center justify-center font-bold text-sm">-</button>
+                        <div class="flex items-center gap-2.5 shrink-0">
+                            <span class="font-extrabold text-purple-600 dark:text-purple-400 font-mono">${renderValuation(nodeInstance.price * nodeInstance.qty)}</span>
+                            
+                            <div class="flex items-center bg-slate-50 dark:bg-slate-900 border border-purple-100 dark:border-slate-700 rounded-lg overflow-hidden">
+                                <button onclick="modifyCartItemQuantityUnit('${nodeInstance.id}', 'decrement')" class="px-2 py-0.5 text-slate-500 hover:bg-purple-100 dark:hover:bg-slate-800 font-bold transition-colors">-</button>
+                                <span class="px-1.5 font-bold font-mono text-[11px] text-slate-800 dark:text-white">${nodeInstance.qty}</span>
+                                <button onclick="modifyCartItemQuantityUnit('${nodeInstance.id}', 'increment')" class="px-2 py-0.5 text-slate-500 hover:bg-purple-100 dark:hover:bg-slate-800 font-bold transition-colors">+</button>
+                            </div>
                         </div>
                     </div>`;
             });
 
-            let calculatedDiscount = grossSum * activeDiscountRatio;
-            let netFinalTotal = grossSum - calculatedDiscount;
+            let discountReductionValue = grossFinancialAggregateSum * activeDiscountRatio;
+            let finalNetPriceOut = grossFinancialAggregateSum - discountReductionValue;
 
-            globalCounter.innerText = netQuantityUnits;
-            subtotalLabel.innerText = renderValuation(grossSum);
+            globalCounter.innerText = netQuantityCounter;
+            subtotalLabel.innerText = renderValuation(grossFinancialAggregateSum);
             
             if(activeDiscountRatio > 0) {
-                discountLabel.innerText = "-" + renderValuation(calculatedDiscount);
+                discountLabel.innerText = "-" + renderValuation(discountReductionValue);
                 promoRow.classList.remove("hidden");
             } else {
                 promoRow.classList.add("hidden");
             }
 
-            totalLabel.innerText = renderValuation(netFinalTotal);
-        }
-
-        // Checkout Action Pipeline Processing Terminal
-        function triggerCheckoutOperation() {
-            const targetKeys = Object.keys(internalCartMemory);
-            if(targetKeys.length === 0) return;
-
-            let invoiceSummaryItems = [];
-            let grossSum = 0;
-
-            targetKeys.forEach(key => {
-                const cartItem = internalCartMemory[key];
-                const liveProduct = CYBER_PRODUCT_INDEX.find(p => p.id === key);
-                if(liveProduct) {
-                    liveProduct.stock = Math.max(0, liveProduct.stock - cartItem.qty);
-                }
-                grossSum += (cartItem.price * cartItem.qty);
-                invoiceSummaryItems.push(`${cartItem.qty}x ${cartItem.name}`);
-            });
-
-            let netFinal = grossSum - (grossSum * activeDiscountRatio);
-
-            trackedRevenueSum += netFinal;
-            packedOrdersCount++;
-
-            // Create timestamp log ledger item
-            const currentTimestampString = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            invoiceLedgerHistory.unshift({
-                id: `INV-${Math.floor(10500 + Math.random() * 88000)}`,
-                time: currentTimestampString,
-                summary: invoiceSummaryItems.join(', '),
-                totalVal: netFinal
-            });
-
-            saveStateToLocalStorage();
-
-            // Clear configuration bags
-            internalCartMemory = {};
-            activeDiscountRatio = 0.00;
-            document.getElementById("cartPromoInput").value = "";
-            
-            renderCartInterfaceStream();
-            compileXenonStorefrontGrid();
-            renderInvoiceLedgerHistoryList();
-            toggleCartDrawer(false);
-
-            triggerXenonNotice(`Order successfully verified! Receipt ledger updated.`, 'success');
+            totalLabel.innerText = renderValuation(finalNetPriceOut);
         }
 
         function renderInvoiceLedgerHistoryList() {
             const container = document.getElementById("customerOrderHistoryTarget");
             if(invoiceLedgerHistory.length === 0) {
-                container.innerHTML = `<div class="text-slate-400 font-medium py-3 text-center">No transactions have been logged in your account history yet.</div>`;
+                container.innerHTML = `<div class="text-slate-400 font-medium py-4 text-center">Central network ledger pipeline has no records indexed.</div>`;
                 return;
             }
 
             container.innerHTML = "";
-            invoiceLedgerHistory.forEach(inv => {
+            invoiceLedgerHistory.slice().reverse().forEach(inv => {
                 container.innerHTML += `
-                    <div class="bg-slate-50 border border-slate-100 p-4 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-200 transition-all">
-                        <div class="space-y-0.5">
+                    <div class="bg-slate-50 dark:bg-slate-900/50 border border-purple-50/50 dark:border-slate-800 p-3 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-sm">
+                        <div class="space-y-0.5 min-w-0">
                             <div class="flex items-center gap-2">
-                                <span class="text-indigo-600 font-bold">${inv.id}</span>
-                                <span class="text-slate-400 text-xs">${inv.time}</span>
+                                <span class="text-purple-600 dark:text-purple-400 font-bold heading-font">BLOCK-TX #${inv.id || '9872'}</span>
+                                <span class="text-slate-400 text-[10px] font-mono">${inv.time || '00:00'}</span>
                             </div>
-                            <p class="text-slate-600 font-semibold text-xs truncate max-w-md">${inv.summary}</p>
+                            <p class="text-slate-600 dark:text-slate-400 font-medium text-[11px] truncate tracking-wide">${inv.summary}</p>
                         </div>
-                        <span class="text-emerald-600 font-bold text-sm self-end sm:self-center">${renderValuation(inv.totalVal)}</span>
+                        <span class="text-emerald-600 font-bold font-mono text-xs self-end sm:self-center">${renderValuation(inv.totalVal)}</span>
                     </div>`;
             });
+        }
+
+        function applyCartPromoNode() {
+            const validationValue = document.getElementById("cartPromoInput").value.toUpperCase().trim();
+            if (validationValue === "XENON2026") {
+                activeDiscountRatio = 0.15;
+                triggerXenonNotice("Coupon verified! 15% discount applied.", 'success');
+            } else {
+                activeDiscountRatio = 0.00;
+                triggerXenonNotice("Invalid voucher key format input.", 'error');
+            }
+            renderCartInterfaceStream();
         }
 
         function toggleCartDrawer(openState) {
@@ -582,23 +751,33 @@
             if (targetLayer === 'storefront') {
                 storefrontNode.classList.replace("hidden", "block");
                 vendorNode.classList.replace("block", "hidden");
-                storefrontBtn.className = "text-xs font-semibold px-4 py-2 rounded-lg bg-white text-slate-900 shadow-sm transition-all";
-                vendorBtn.className = "text-xs font-semibold px-4 py-2 rounded-lg text-slate-500 hover:text-slate-900 transition-all";
+                storefrontBtn.className = "text-xs font-bold px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-sm transition-all";
+                vendorBtn.className = "text-xs font-bold px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all";
             } else {
                 vendorNode.classList.replace("hidden", "block");
                 storefrontNode.classList.replace("block", "hidden");
-                vendorBtn.className = "text-xs font-semibold px-4 py-2 rounded-lg bg-white text-slate-900 shadow-sm transition-all";
-                storefrontBtn.className = "text-xs font-semibold px-4 py-2 rounded-lg text-slate-500 hover:text-slate-900 transition-all";
+                vendorBtn.className = "text-xs font-bold px-4 py-2 rounded-lg bg-white dark:bg-slate-800 text-slate-950 dark:text-white shadow-sm transition-all";
+                storefrontBtn.className = "text-xs font-bold px-4 py-2 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all";
                 refreshVendorInventoryTable();
             }
         }
 
-        window.onload = function() {
-            compileXenonStorefrontGrid();
-            refreshVendorInventoryTable();
-            renderCartInterfaceStream();
-            renderInvoiceLedgerHistoryList();
-        };
+        function triggerXenonNotice(msg, variant='info') {
+            const hub = document.getElementById("xenonNotificationHub");
+            const toast = document.createElement("div");
+            toast.className = `p-3.5 rounded-xl font-bold text-xs shadow-2xl transition-all duration-300 border bg-white dark:bg-slate-800 border-purple-100 dark:border-slate-700 text-slate-900 dark:text-white`;
+            
+            if(variant === 'success') toast.innerHTML = `✨ <span class="text-emerald-600">${msg}</span>`;
+            else if(variant === 'error') toast.innerHTML = `⚠️ <span class="text-rose-500">${msg}</span>`;
+            else toast.innerHTML = `⚙️ <span class="text-purple-600 dark:text-purple-400">${msg}</span>`;
+
+            hub.appendChild(toast);
+            setTimeout(() => { toast.classList.remove("translate-y-2", "opacity-0"); }, 30);
+            setTimeout(() => {
+                toast.classList.add("translate-y-[-10px]", "opacity-0");
+                setTimeout(() => { toast.remove(); }, 300);
+            }, 2500);
+        }
     </script>
 </body>
 </html>
