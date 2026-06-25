@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <h1 class="text-white font-extrabold text-base tracking-wider heading-font">XENON</h1>
-                    <span class="text-[9px] text-cyan-400 font-mono tracking-widest block uppercase">Multi-Vendor Ecosystem // SaaS v1.0</span>
+                    <span class="text-[9px] text-cyan-400 font-mono tracking-widest block uppercase">Multi-Vendor Ecosystem // SaaS v2.0</span>
                 </div>
             </div>
             
@@ -63,6 +63,15 @@
                 <div class="absolute -right-20 -top-20 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
             </div>
 
+            <div class="flex flex-col sm:flex-row gap-4 justify-between items-center bg-[#0d0f18] p-4 rounded-2xl border border-zinc-900 shadow-inner">
+                <div class="relative w-full sm:w-72">
+                    <input type="text" id="xenonSearchInput" oninput="compileXenonStorefrontGrid()" placeholder="Search active network products..." class="w-full bg-[#141724] border border-zinc-800 focus:border-cyan-500 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none font-medium transition-all">
+                </div>
+                <div class="flex gap-2 w-full sm:w-auto overflow-x-auto">
+                    <span class="text-[10px] font-mono tracking-wider uppercase text-zinc-500 self-center hidden md:inline">SYSTEM NODES FORWARDED BY ACTIVE INVENTORY</span>
+                </div>
+            </div>
+
             <div id="xenonProductsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 </div>
         </div>
@@ -75,16 +84,74 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl">
-                    <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Live Virtual Stock</h4>
-                    <p class="text-2xl font-bold font-mono text-cyan-400 mt-2">4 Node Items</p>
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Gross Live Revenue</h4>
+                    <p id="vendorRevenueLabel" class="text-2xl font-bold font-mono text-emerald-400 mt-2">$0.00</p>
                 </div>
                 <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl">
-                    <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">System State</h4>
-                    <p class="text-2xl font-bold font-mono text-emerald-400 mt-2">Database Ready</p>
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Network Orders Tracked</h4>
+                    <p id="vendorOrdersLabel" class="text-2xl font-bold font-mono text-cyan-400 mt-2">0 Units</p>
                 </div>
                 <div class="bg-[#0e111d] border border-zinc-800/80 p-6 rounded-2xl">
-                    <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Active Vendor Link</h4>
-                    <p class="text-2xl font-bold font-mono text-purple-400 mt-2">Admin Core #1</p>
+                    <h4 class="text-xs font-mono uppercase tracking-wider text-zinc-500">Total Launched Items</h4>
+                    <p id="vendorTotalItemsLabel" class="text-2xl font-bold font-mono text-purple-400 mt-2">4 Nodes</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-1 bg-[#0c0e16] border border-zinc-800/80 p-6 rounded-2xl shadow-xl h-fit space-y-4">
+                    <div>
+                        <h3 class="text-white font-bold heading-font text-sm">Deploy New Product Node</h3>
+                        <p class="text-[11px] text-zinc-500">Inject an item directly into the global client storefront array catalog.</p>
+                    </div>
+                    <form id="xenonVendorForm" onsubmit="handleVendorFormSubmit(event)" class="space-y-3.5 text-xs">
+                        <div class="space-y-1">
+                            <label class="text-zinc-400 font-medium">Product Title</label>
+                            <input type="text" id="vProdName" required placeholder="e.g., Cybernetic Processor Shell" class="w-full bg-[#111320] border border-zinc-800 focus:border-purple-500 rounded-lg p-2.5 text-white focus:outline-none font-medium transition-all">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="space-y-1">
+                                <label class="text-zinc-400 font-medium">Price ($USD)</label>
+                                <input type="number" step="0.01" id="vProdPrice" required placeholder="299.00" class="w-full bg-[#111320] border border-zinc-800 focus:border-purple-500 rounded-lg p-2.5 text-white focus:outline-none font-mono transition-all">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="text-zinc-400 font-medium">Display Asset (Emoji)</label>
+                                <select id="vProdImg" class="w-full bg-[#111320] border border-zinc-800 focus:border-purple-500 rounded-lg p-2.5 text-white focus:outline-none transition-all">
+                                    <option value="🚀">🚀 Spaceship Node</option>
+                                    <option value="💻">💻 Matrix Terminal</option>
+                                    <option value="🛸">🛸 Anti-Grav UFO</option>
+                                    <option value="💾">💾 Data Matrix Drive</option>
+                                    <option value="⚙️">⚙️ Cluster Engine</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-zinc-400 font-medium">Node Description</label>
+                            <textarea id="vProdDesc" rows="3" required placeholder="Describe item metrics..." class="w-full bg-[#111320] border border-zinc-800 focus:border-purple-500 rounded-lg p-2.5 text-white focus:outline-none transition-all"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white font-bold py-3 rounded-xl transition-all shadow-md shadow-purple-500/10 active:scale-95">
+                            Broadcast to Storefront Grid ⚡
+                        </button>
+                    </form>
+                </div>
+
+                <div class="lg:col-span-2 bg-[#0c0e16] border border-zinc-800/80 p-6 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-4 w-full">
+                        <h3 class="text-white font-bold heading-font text-sm">Active Product Inventories</h3>
+                        <div class="overflow-x-auto w-full">
+                            <table class="w-full text-left text-xs text-zinc-400">
+                                <thead class="text-[10px] font-mono tracking-wider text-zinc-500 uppercase border-b border-zinc-900">
+                                    <tr>
+                                        <th class="pb-3 pl-2">Asset ID</th>
+                                        <th class="pb-3">Title Name</th>
+                                        <th class="pb-3">Market Valuation</th>
+                                        <th class="pb-3 text-right pr-2">Action Node</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="vendorInventoryTableTarget" class="divide-y divide-zinc-900/50">
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,11 +168,25 @@
             </div>
 
             <div class="border-t border-zinc-900 pt-4 space-y-4 bg-[#0c0d14]">
-                <div class="flex justify-between items-baseline">
-                    <span class="text-xs text-zinc-500 font-mono">Gross Allocation Valuation:</span>
-                    <span id="cartTotalLabel" class="text-xl font-black font-mono text-cyan-400">$0.00</span>
+                <div class="bg-[#111320] border border-zinc-800 p-2 rounded-xl flex gap-2">
+                    <input type="text" id="cartPromoInput" placeholder="Enter PROMO (XENON2026)" class="w-full bg-[#08090f] text-white border border-zinc-900 rounded-lg px-3 py-1.5 text-[11px] uppercase font-mono focus:outline-none focus:border-cyan-500">
+                    <button onclick="applyCartPromoNode()" class="bg-cyan-500 text-black font-extrabold text-[10px] px-3 rounded-lg hover:bg-cyan-400 uppercase tracking-wider transition-all">Apply</button>
                 </div>
-                <button onclick="alert('Database linkage operational. Processing payload checkout...')" class="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-extrabold text-xs uppercase tracking-widest py-4 rounded-xl shadow-lg shadow-cyan-500/10 active:scale-95 transition-all">
+                <div class="space-y-1.5 text-xs font-mono">
+                    <div class="flex justify-between text-zinc-500">
+                        <span>Gross Evaluation:</span>
+                        <span id="cartSubtotalLabel">$0.00</span>
+                    </div>
+                    <div id="promoRowAlert" class="flex justify-between text-emerald-400 hidden">
+                        <span>Discount Applied (15%):</span>
+                        <span id="cartDiscountLabel">-$0.00</span>
+                    </div>
+                    <div class="flex justify-between items-baseline border-t border-zinc-900 pt-2">
+                        <span class="text-zinc-400 font-bold">Net Total:</span>
+                        <span id="cartTotalLabel" class="text-xl font-black text-cyan-400">$0.00</span>
+                    </div>
+                </div>
+                <button onclick="triggerCheckoutOperation()" class="w-full bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-extrabold text-xs uppercase tracking-widest py-4 rounded-xl shadow-lg shadow-cyan-500/10 active:scale-95 transition-all">
                     Initiate Node Checkout ⚡
                 </button>
             </div>
@@ -117,22 +198,33 @@
     </footer>
 
     <script>
-        // Elite Tech Datasets Array
-        const CYBER_PRODUCT_INDEX = [
+        // Core Global Memory Database
+        let CYBER_PRODUCT_INDEX = [
             { id: "XN-1", name: "Xenon Holo-Glass HUD", price: 349.00, desc: "AR glasses overlaying real-time system analytical nodes onto vision fields.", img: "🕶️" },
-            { id: "XN-2", "name": "Quantum Core Rig V1", price: 2199.00, desc: "Super-cooled liquid matrix workstation utilizing carbon-fiber casing modules.", img: "🖥️" },
+            { id: "XN-2", name: "Quantum Core Rig V1", price: 2199.00, desc: "Super-cooled liquid matrix workstation utilizing carbon-fiber casing modules.", img: "🖥️" },
             { id: "XN-3", name: "Apex Neural Keyboard", price: 185.00, desc: "Low-latency mechanical layout equipped with optical magnetic switches.", img: "⌨️" },
             { id: "XN-4", name: "Chronos Matrix Wristwatch", price: 420.00, desc: "Tactical titanium shell displaying isolated hardware streams over sync data.", img: "⌚" }
         ];
 
         let internalCartMemory = {};
+        let activeDiscountRatio = 0.00;
+        let trackedRevenueSum = 0.00;
+        let packedOrdersCount = 0;
 
-        // Injects Products into the Grid UI
+        // Injects Products into Storefront Grid + Evaluates Search filters
         function compileXenonStorefrontGrid() {
             const grid = document.getElementById("xenonProductsGrid");
+            const filterKeyword = document.getElementById("xenonSearchInput").value.toLowerCase();
             grid.innerHTML = "";
 
-            CYBER_PRODUCT_INDEX.forEach(product => {
+            let matchingItems = CYBER_PRODUCT_INDEX.filter(p => p.name.toLowerCase().includes(filterKeyword));
+
+            if(matchingItems.length === 0) {
+                grid.innerHTML = `<div class="col-span-full border border-dashed border-zinc-800 p-12 text-center rounded-2xl text-xs font-mono text-zinc-500">[SEARCH DEFLATED] No live product signatures align with configuration keywords.</div>`;
+                return;
+            }
+
+            matchingItems.forEach(product => {
                 grid.innerHTML += `
                     <div class="bg-[#0e111d] border border-zinc-900 p-6 rounded-2xl flex flex-col justify-between gap-5 card-glow transition-all duration-300 relative group">
                         <div class="space-y-4">
@@ -152,16 +244,68 @@
             });
         }
 
-        // Add to Cart Logical Operations
+        // Compiles Vendor Inventory Table Rows (CRUD Visual)
+        function refreshVendorInventoryTable() {
+            const tableBody = document.getElementById("vendorInventoryTableTarget");
+            const totalItemsLabel = document.getElementById("vendorTotalItemsLabel");
+            tableBody.innerHTML = "";
+
+            totalItemsLabel.innerText = `${CYBER_PRODUCT_INDEX.length} Nodes`;
+
+            CYBER_PRODUCT_INDEX.forEach(p => {
+                tableBody.innerHTML += `
+                    <tr class="hover:bg-[#111422]/40 transition-colors font-medium">
+                        <td class="py-4 pl-2 font-mono text-[11px] text-zinc-500">${p.id}</td>
+                        <td class="py-4 text-white font-semibold flex items-center gap-2"><span>${p.img}</span> ${p.name}</td>
+                        <td class="py-4 font-mono text-cyan-400 font-bold">$${p.price.toFixed(2)}</td>
+                        <td class="py-4 text-right pr-2">
+                            <button onclick="purgeProductNode('${p.id}')" class="text-rose-500 hover:text-rose-400 font-mono text-[10px] uppercase bg-rose-500/5 hover:bg-rose-500/10 border border-rose-500/20 px-2.5 py-1 rounded">Purge</button>
+                        </td>
+                    </tr>`;
+            });
+        }
+
+        // Add Product Form Controller (Create Feature)
+        function handleVendorFormSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById("vProdName").value;
+            const price = parseFloat(document.getElementById("vProdPrice").value);
+            const img = document.getElementById("vProdImg").value;
+            const desc = document.getElementById("vProdDesc").value;
+            const generatedId = `XN-${Math.floor(100 + Math.random() * 900)}`;
+
+            CYBER_PRODUCT_INDEX.unshift({ id: generatedId, name, price, desc, img });
+            
+            document.getElementById("xenonVendorForm").reset();
+            compileXenonStorefrontGrid();
+            refreshVendorInventoryTable();
+            alert(`Product Node successfully linked into catalog sequence! ID: ${generatedId}`);
+        }
+
+        // Delete Product Controller (Delete Feature)
+        function purgeProductNode(id) {
+            if(confirm("Confirm hard purge mutation command on product payload data slot?")) {
+                CYBER_PRODUCT_INDEX = CYBER_PRODUCT_INDEX.filter(p => p.id !== id);
+                if(internalCartMemory[id]) {
+                    delete internalCartMemory[id];
+                    renderCartInterfaceStream();
+                }
+                compileXenonStorefrontGrid();
+                refreshVendorInventoryTable();
+            }
+        }
+
+        // Cart Logical Management Core
         function stageItemToCart(id) {
             if (internalCartMemory[id]) {
                 internalCartMemory[id].qty++;
             } else {
                 const targetObj = CYBER_PRODUCT_INDEX.find(p => p.id === id);
+                if(!targetObj) return;
                 internalCartMemory[id] = { ...targetObj, qty: 1 };
             }
             renderCartInterfaceStream();
-            toggleCartDrawer(true); // Auto-open cart to show active interaction
+            toggleCartDrawer(true);
         }
 
         function clearCartRowUnit(id) {
@@ -173,13 +317,28 @@
             renderCartInterfaceStream();
         }
 
+        function applyCartPromoNode() {
+            const val = document.getElementById("cartPromoInput").value.toUpperCase().trim();
+            if (val === "XENON2026") {
+                activeDiscountRatio = 0.15; // 15% discount
+                alert("Promo security token authorized. Applying 15% valuation reduction.");
+            } else {
+                activeDiscountRatio = 0.00;
+                alert("Invalid cryptographic authorization key.");
+            }
+            renderCartInterfaceStream();
+        }
+
         function renderCartInterfaceStream() {
             const wrapper = document.getElementById("cartStreamWrapper");
             const globalCounter = document.getElementById("globalCartCounter");
+            const subtotalLabel = document.getElementById("cartSubtotalLabel");
+            const discountLabel = document.getElementById("cartDiscountLabel");
             const totalLabel = document.getElementById("cartTotalLabel");
+            const promoRow = document.getElementById("promoRowAlert");
 
             wrapper.innerHTML = "";
-            let calculatedSum = 0;
+            let grossSum = 0;
             let netQuantityUnits = 0;
 
             const targetKeys = Object.keys(internalCartMemory);
@@ -187,14 +346,16 @@
             if (targetKeys.length === 0) {
                 wrapper.innerHTML = `<div class="text-zinc-600 text-center py-12 font-mono">[CACHE EMPTY]<br>Allocation parameters unassigned.</div>`;
                 globalCounter.innerText = "0";
+                subtotalLabel.innerText = "$0.00";
                 totalLabel.innerText = "$0.00";
+                promoRow.classList.add("hidden");
                 return;
             }
 
             targetKeys.forEach(key => {
                 const activeNode = internalCartMemory[key];
                 netQuantityUnits += activeNode.qty;
-                calculatedSum += (activeNode.price * activeNode.qty);
+                grossSum += (activeNode.price * activeNode.qty);
 
                 wrapper.innerHTML += `
                     <div class="flex items-center justify-between py-3.5 text-zinc-300">
@@ -209,17 +370,56 @@
                     </div>`;
             });
 
+            let calculatedDiscount = grossSum * activeDiscountRatio;
+            let netFinalTotal = grossSum - calculatedDiscount;
+
             globalCounter.innerText = netQuantityUnits;
-            totalLabel.innerText = "$" + calculatedSum.toFixed(2);
+            subtotalLabel.innerText = "$" + grossSum.toFixed(2);
+            
+            if(activeDiscountRatio > 0) {
+                discountLabel.innerText = "-$" + calculatedDiscount.toFixed(2);
+                promoRow.classList.remove("hidden");
+            } else {
+                promoRow.classList.add("hidden");
+            }
+
+            totalLabel.innerText = "$" + netFinalTotal.toFixed(2);
+        }
+
+        // Simulated Checkout Pipeline that hooks analytics variables
+        function triggerCheckoutOperation() {
+            const targetKeys = Object.keys(internalCartMemory);
+            if(targetKeys.length === 0) return;
+
+            let grossSum = 0;
+            targetKeys.forEach(key => {
+                grossSum += (internalCartMemory[key].price * internalCartMemory[key].qty);
+            });
+
+            let netFinal = grossSum - (grossSum * activeDiscountRatio);
+
+            // Mutate Vendor Metrics values
+            trackedRevenueSum += netFinal;
+            packedOrdersCount++;
+
+            document.getElementById("vendorRevenueLabel").innerText = "$" + trackedRevenueSum.toFixed(2);
+            document.getElementById("vendorOrdersLabel").innerText = `${packedOrdersCount} Units`;
+
+            // Flush cart states
+            internalCartMemory = {};
+            activeDiscountRatio = 0.00;
+            document.getElementById("cartPromoInput").value = "";
+            
+            renderCartInterfaceStream();
+            toggleCartDrawer(false);
+
+            alert(`🚀 Node Invoice Dispatched! Checkout sequence finished for $${netFinal.toFixed(2)}. Statistics synced into Vendor Terminal.`);
         }
 
         function toggleCartDrawer(openState) {
             const drawer = document.getElementById("xenonCartDrawer");
-            if (openState) {
-                drawer.classList.remove("translate-x-full");
-            } else {
-                drawer.classList.add("translate-x-full");
-            }
+            if (openState) drawer.classList.remove("translate-x-full");
+            else drawer.classList.add("translate-x-full");
         }
 
         // View Toggler Engine
@@ -239,11 +439,13 @@
                 storefrontNode.classList.replace("block", "hidden");
                 vendorBtn.className = "text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-600 text-white transition-all duration-300 shadow-md";
                 storefrontBtn.className = "text-[10px] uppercase tracking-widest font-black px-4 py-2.5 rounded-lg text-zinc-400 hover:text-white transition-all duration-300";
+                refreshVendorInventoryTable();
             }
         }
 
         window.onload = function() {
             compileXenonStorefrontGrid();
+            refreshVendorInventoryTable();
             renderCartInterfaceStream();
         };
     </script>
